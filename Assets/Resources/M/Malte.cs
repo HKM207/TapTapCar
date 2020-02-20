@@ -21,26 +21,6 @@ public class Malte
         SceneManager.LoadScene("Ingame");
     }
 
-
-    public static void DisplayGarageUI()
-    {
-        Variables.garageUi = Variables.garageUi.GetComponent<GameObject>();
-        if (!Variables.garageUi.activeSelf)
-        {
-            Variables.garageUi.SetActive(true);
-        }
-    }
-
-    public static void DisableGarageUI()
-    {
-        Variables.garageUi = Variables.garageUi.GetComponent<GameObject>();
-        
-        if (Variables.garageUi.activeSelf)
-        {
-            Variables.garageUi.SetActive(false);
-        }   
-    }
-
     public static void SaveGame()
     {
         string path = Application.dataPath;
