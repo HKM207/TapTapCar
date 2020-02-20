@@ -41,6 +41,43 @@ public class CreateDontDestroy : MonoBehaviour
         CurrentGamestate = Gamestate.mainMenu;
     }
 
+    //-------------------------------------------------------------
+    public void Update()
+    {
+        //---------------------ZeitRythmus-----------------------------
+        Variables.timeInSek += Time.deltaTime;
+        //Debug.Log(Variables.timeInSek);
+
+        Variables.timeInTicks = Variables.timeInSek * 4;
+        //Debug.Log("Ticks " + Variables.timeInTicks);
+        //-------------------------------------------------------------
+
+
+        if (Input.anyKeyDown)
+        {
+            Hauke.ScrapyardClick();
+        }
+
+        if (Variables.scrapYardCollector >= 1)
+        {
+            Hauke.ScrapYardCollector();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Variables.scrapYardCollector ++;
+            Hauke.ScrapYardCollectorMuliplierCalculation();
+        }
+
+        Debug.Log("colectors " + Variables.scrapYardCollector);
+        Debug.Log("muliplier " + Variables.scrapYardCollectorMultiplier);
+
+        Debug.Log("Anzahl Scrap: " + Variables.resScraps);
+        Debug.Log("Anzahl Electronics: " + Variables.resElectronics);
+        Debug.Log("Anzahl Plastics: " + Variables.resPlastics);
+    }
+    //-------------------------------------------------------------
+
 
     private void AudioManager()
     {
@@ -67,6 +104,11 @@ public class CreateDontDestroy : MonoBehaviour
 }
 public class Variables
 {
+    //-------------------Ticks-----------------------------------
+    public static float timeInSek;
+    public static float timeInTicks;
+    public static int tickCounter = 1;
+    //-------------------------------------------------------------
 
     //FUCKING VARIABLEN STEHEN
     public static float resScraps;
@@ -81,7 +123,7 @@ public class Variables
     public static float playerMoney;
     public static float playerExperience;
 
-    public static float clickMultiplier;
+    public static float clickMultiplier = 1;
 
     public static int engineLevel;
     public static int tireLevel;
@@ -89,4 +131,11 @@ public class Variables
 
     public static float carValueMultiplier;
     //FUCKING VARIABLEN STEHEN
+
+
+    //-------------------------------------------------------------
+    public static int scrapYardCollector;
+    public static float scrapYardCollectorMultiplier;
+    public static float startScrapYardCollectorMultiplier = 0.125f;
+    //-------------------------------------------------------------
 }
