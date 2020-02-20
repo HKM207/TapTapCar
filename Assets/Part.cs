@@ -8,8 +8,7 @@ public enum SortOfPart
 {
     Frame,
     Tire,
-    Engine,
-
+    Engine
 }
 public class Part
 {
@@ -31,6 +30,7 @@ public class Part
     public int requiredScrap;
     public int requiredPlastics;
     public int requiredElectronics;
+
     public SortOfPart sort;
 
     public int level;
