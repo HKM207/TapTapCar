@@ -14,15 +14,16 @@ public class CreateDontDestroy : MonoBehaviour
 
     private GameObject logic;
     private static CreateDontDestroy instance;
-    
+
     public static Gamestate CurrentGamestate;
     public static bool isNewGame = true;
+    
 
 
 
     private void Awake()
-
     {
+        
         logic = this.gameObject;
         if (instance != null)
         {
@@ -32,16 +33,28 @@ public class CreateDontDestroy : MonoBehaviour
         {
             instance = this;
         }
-
         DontDestroyOnLoad(this.gameObject);
+
     }
 
     private void Start()
     {
+
+        Variables.garageUi = GameObject.FindGameObjectWithTag("GarageUI");
+        //Variables.garageUi.GetComponent<GameObject>();
+        //Variables.garageUi.SetActive(false);
         CurrentGamestate = Gamestate.mainMenu;
     }
 
+    private void Update()
+    {
+        SaveGame();
+    }
+    
+   
 
+
+//-----------------------MALTE---------------------------//
     private void AudioManager()
     {
         if (CurrentGamestate == Gamestate.mainMenu)
@@ -56,17 +69,35 @@ public class CreateDontDestroy : MonoBehaviour
 
     public void NewGame()
     {
+        CurrentGamestate = Gamestate.ingame;
         Malte.LoadNewGame();
     }
     public void LoadGame()
     {
-        Malte.LoadGame();
+        if (Malte.LoadGameFromSave())
+        {
+            CurrentGamestate = Gamestate.ingame;
+            Malte.LoadGame();
+        }
     }
+
+    void SaveGame()
+    {
+        if (CurrentGamestate == Gamestate.ingame && Input.GetKeyDown(KeyCode.L))
+        {
+            Malte.SaveGame();
+        }
+    }
+
+    //-----------------------MALTE---------------------------//
 
 
 }
 public class Variables
 {
+
+    //UI SHIT
+    public static GameObject garageUi;
 
     //FUCKING VARIABLEN STEHEN
     public static float resScraps;
