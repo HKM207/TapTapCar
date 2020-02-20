@@ -121,3 +121,52 @@ public class Variables
     public static float carValueMultiplier;
     //FUCKING VARIABLEN STEHEN
 }
+
+    //-------------------------------------------------------------
+    {
+        //---------------------ZeitRythmus-----------------------------
+    public void Update()
+        Variables.timeInSek += Time.deltaTime;
+        //Debug.Log(Variables.timeInSek);
+
+        Variables.timeInTicks = Variables.timeInSek * 4;
+        //Debug.Log("Ticks " + Variables.timeInTicks);
+        //-------------------------------------------------------------
+
+        if (Input.anyKeyDown)
+
+        {
+        if (Variables.scrapYardCollector >= 1)
+        }
+            Hauke.ScrapyardClick();
+        {
+
+            Hauke.ScrapYardCollector();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            Variables.scrapYardCollector ++;
+        {
+        }
+
+            Hauke.ScrapYardCollectorMuliplierCalculation();
+        Debug.Log("colectors " + Variables.scrapYardCollector);
+
+    //-------------------------------------------------------------
+    }
+        Debug.Log("Anzahl Plastics: " + Variables.resPlastics);
+        Debug.Log("Anzahl Electronics: " + Variables.resElectronics);
+        Debug.Log("Anzahl Scrap: " + Variables.resScraps);
+        Debug.Log("muliplier " + Variables.scrapYardCollectorMultiplier);
+public class Variables
+{
+    //-------------------Ticks-----------------------------------
+    public static float timeInSek;
+    public static int tickCounter = 1;
+    public static float timeInTicks;
+    //-------------------------------------------------------------
+    //-------------------------------------------------------------
+    public static float scrapYardCollectorMultiplier;
+    public static int scrapYardCollector;
+    public static float startScrapYardCollectorMultiplier = 0.125f;
+    //-------------------------------------------------------------
