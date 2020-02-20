@@ -7,9 +7,13 @@ public class IngameUi : MonoBehaviour
 {
     public Button button;
 
+    public Text scraps;
+    public Text electronics;
+    public Text plastics;
+
     private void Awake()
     {
-        Variables.garageUi = GameObject.FindGameObjectWithTag("GarageUI");  
+        Variables.garageUi = GameObject.FindGameObjectWithTag("GarageUI");
     }
 
     public void Start()
@@ -27,10 +31,19 @@ public class IngameUi : MonoBehaviour
             button.onClick.AddListener(EnableGarageUI);
         }
     }
+    private void Update()
+    {
+        if (this.gameObject.name.Contains("Ui"))
+        {
+            scraps.text = "Scrap: " + Mathf.RoundToInt(Variables.resScraps).ToString();
+            electronics.text = "Electronics: " + Mathf.RoundToInt(Variables.resElectronics).ToString();
+            plastics.text = "Plastics: " + Mathf.RoundToInt(Variables.resPlastics).ToString();
 
+        }
+    }
     public void EnableGarageUI()
     {
-        
+
         if (!Variables.garageUi.activeSelf)
         {
             Variables.garageUi.SetActive(true);

@@ -17,13 +17,13 @@ public class CreateDontDestroy : MonoBehaviour
 
     public static Gamestate CurrentGamestate;
     public static bool isNewGame = true;
-    
+
 
 
 
     private void Awake()
     {
-        
+
         logic = this.gameObject;
         if (instance != null)
         {
@@ -48,13 +48,46 @@ public class CreateDontDestroy : MonoBehaviour
 
     private void Update()
     {
+        if (CurrentGamestate == Gamestate.ingame)
+        {
+
+            Variables.timeInSek += Time.deltaTime;
+            //Debug.Log(Variables.timeInSek);
+
+            Variables.timeInTicks = Variables.timeInSek * 4;
+            //Debug.Log("Ticks " + Variables.timeInTicks);
+            //-------------------------------------------------------------
+
+            if (Input.anyKeyDown)
+            {
+                Hauke.ScrapyardClick();
+            }
+            if (Variables.scrapYardCollector >= 1)
+            {
+
+                Hauke.ScrapYardCollector();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+
+                Variables.scrapYardCollector++;
+                Hauke.ScrapYardCollectorMuliplierCalculation();
+
+            }
+            Debug.Log("Anzahl Plastics: " + Variables.resPlastics);
+            Debug.Log("Anzahl Electronics: " + Variables.resElectronics);
+            Debug.Log("Anzahl Scrap: " + Variables.resScraps);
+            Debug.Log("muliplier " + Variables.scrapYardCollectorMultiplier);
+            Debug.Log("colectors " + Variables.scrapYardCollector);
+        }
         SaveGame();
     }
-    
-   
 
 
-//-----------------------MALTE---------------------------//
+
+
+    //-----------------------MALTE---------------------------//
     private void AudioManager()
     {
         if (CurrentGamestate == Gamestate.mainMenu)
@@ -112,54 +145,14 @@ public class Variables
     public static float playerMoney;
     public static float playerExperience;
 
-    public static float clickMultiplier;
+    public static float clickMultiplier = 1;
 
     public static int engineLevel;
     public static int tireLevel;
     public static int frameLevel;
 
     public static float carValueMultiplier;
-    //FUCKING VARIABLEN STEHEN
-}
 
-    //-------------------------------------------------------------
-    {
-        //---------------------ZeitRythmus-----------------------------
-    public void Update()
-        Variables.timeInSek += Time.deltaTime;
-        //Debug.Log(Variables.timeInSek);
-
-        Variables.timeInTicks = Variables.timeInSek * 4;
-        //Debug.Log("Ticks " + Variables.timeInTicks);
-        //-------------------------------------------------------------
-
-        if (Input.anyKeyDown)
-
-        {
-        if (Variables.scrapYardCollector >= 1)
-        }
-            Hauke.ScrapyardClick();
-        {
-
-            Hauke.ScrapYardCollector();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            Variables.scrapYardCollector ++;
-        {
-        }
-
-            Hauke.ScrapYardCollectorMuliplierCalculation();
-        Debug.Log("colectors " + Variables.scrapYardCollector);
-
-    //-------------------------------------------------------------
-    }
-        Debug.Log("Anzahl Plastics: " + Variables.resPlastics);
-        Debug.Log("Anzahl Electronics: " + Variables.resElectronics);
-        Debug.Log("Anzahl Scrap: " + Variables.resScraps);
-        Debug.Log("muliplier " + Variables.scrapYardCollectorMultiplier);
-public class Variables
-{
     //-------------------Ticks-----------------------------------
     public static float timeInSek;
     public static int tickCounter = 1;
@@ -170,3 +163,8 @@ public class Variables
     public static int scrapYardCollector;
     public static float startScrapYardCollectorMultiplier = 0.125f;
     //-------------------------------------------------------------
+    //FUCKING VARIABLEN STEHEN
+}
+
+
+

@@ -24,7 +24,7 @@ public class Malte
     public static void SaveGame()
     {
         string path = Application.dataPath;
-        path += "/data/" + saveFileName;
+        path += "/Resources/data/" + saveFileName;
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file;
 
@@ -62,7 +62,7 @@ public class Malte
     public static bool LoadGameFromSave()
     {
         string path = Application.dataPath;
-        path += "/data/" + saveFileName;
+        path += "/Resources/data/" + saveFileName;
         if (File.Exists(path))
         {
             BinaryFormatter bf = new BinaryFormatter();
