@@ -66,9 +66,12 @@ public class CreateDontDestroy : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                if (Variables.playerMoney >= Variables.workerCost ) 
+                {
+                    Variables.scrapYardCollector++;
+                    Hauke.ScrapYardCollectorMuliplierCalculation();
 
-                Variables.scrapYardCollector++;
-                Hauke.ScrapYardCollectorMuliplierCalculation();
+                }
 
             }
         }
@@ -134,9 +137,9 @@ public class Variables
     public static float resElectronics;
     public static float resPlastics;
 
-    public static int partEngines;
-    public static int partFrames;
-    public static int partTires;
+    public static float partEngines;
+    public static float partFrames;
+    public static float partTires;
 
     public static int playerLevel;
     public static float playerMoney;
@@ -148,7 +151,9 @@ public class Variables
     public static int tireLevel;
     public static int frameLevel;
 
-    public static float carValueMultiplier;
+    public static float carValueMultiplier = 1;
+    public static int workerCost = 5000;
+    public static int selledCars;
 
     //-------------------Ticks-----------------------------------
     public static float timeInSek;

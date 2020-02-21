@@ -10,6 +10,9 @@ public class IngameUi : MonoBehaviour
     public Text scraps;
     public Text electronics;
     public Text plastics;
+    public Text money;
+    public Text exp;
+    public Text level;
 
     public Text engines;
     public Text frames;
@@ -17,6 +20,7 @@ public class IngameUi : MonoBehaviour
 
 
     private Part testPart;
+    private Car testCar;
 
     private void Awake()
     {
@@ -42,14 +46,21 @@ public class IngameUi : MonoBehaviour
             button.onClick.AddListener(EnableGarageUI);
         }
 
-        //---------------KILIAN NEU--------------------------------------------------------------------------------//
+        
         if (this.gameObject.name.Contains("autoteil"))
         {   //BUY PART
             button = this.gameObject.GetComponent<Button>();
             testPart = new Part(SortOfPart.Engine, button);
             button.onClick.AddListener(delegate { BuyPart(testPart); });  //****// DELEGATE FÜR ONCLICK //****//
         }
-
+        //---------------KILIAN NEU-------------------------------------------------------------------//
+        if (this.gameObject.name.Contains("wagen"))
+        {   //BUY CAR
+            button = this.gameObject.GetComponent<Button>();
+            testCar = new Car(button);
+            button.onClick.AddListener(delegate { BuyCar(testCar); }); //****// DELEGATE FÜR ONCLICK //****//
+        }
+        //---------------KILIAN NEU-------------------------------------------------------------------//
         if (this.gameObject.name.Contains("Parts"))
         {
             button = this.gameObject.GetComponent<Button>();
@@ -63,7 +74,7 @@ public class IngameUi : MonoBehaviour
         }
         //----added section for de/activating Cars/Parts Ui-----UI needs to be created//
         //----also added function to buy parts ("autoteil")--------------------------//
-        //---------------KILIAN NEU-------------------------------------------------------------------//
+       
     }
     private void Update()
     {
@@ -72,12 +83,17 @@ public class IngameUi : MonoBehaviour
             scraps.text = "Scrap: " + Mathf.RoundToInt(Variables.resScraps).ToString();
             plastics.text = "Plastics: " + Mathf.RoundToInt(Variables.resPlastics).ToString();
             electronics.text = "Electronics: " + Mathf.RoundToInt(Variables.resElectronics).ToString();
+            money.text = "$$$: " + Mathf.RoundToInt(Variables.playerMoney).ToString();
+            exp.text = "EXP: " + Mathf.RoundToInt(Variables.playerExperience).ToString();
+            level.text = "Level: " + Variables.playerLevel;
+
             if (Variables.garageUi.activeSelf)
             {
 
-                engines.text = "Engines: " + Variables.partEngines.ToString();
-                frames.text = "Frames: " + Variables.partFrames.ToString();
-                tires.text = "Tires: " + Variables.partTires.ToString();
+                engines.text = "Engines: " + Mathf.RoundToInt(Variables.partEngines).ToString();
+                frames.text = "Frames: " +
+                    Mathf.RoundToInt(Variables.partFrames).ToString();
+                tires.text = "Tires: " + Mathf.RoundToInt(Variables.partTires).ToString();
             }
 
         }
@@ -153,5 +169,23 @@ public class IngameUi : MonoBehaviour
         }
 
     }
-    //---------------KILIAN NEU--------------------------------------------------------------------------------//
+
+    public void BuyCar(Car car)
+    {
+        if (Variables.partEngines >= car.requiredEngines &&
+            Variables.partFrames >= car.requiredFrames &&
+            Variables.partTires >= car.requiredTires)
+        {
+
+            Variables.partEngines = Variables.partEngines - car.requiredEngines;
+            Variables.partFrames = Variables.partEngines - car.requiredFrames;
+            Variables.partTires = Variables.partEngines - car.requiredTires;
+
+            Variables.playerExperience = Variables.playerExperience + car.expValue;
+            Variables.playerMoney = Variables.playerMoney + (car.moneyValue*Variables.carValueMultiplier);
+            Variables.selledCars++;
+        }
+
+    }
+   
 }
