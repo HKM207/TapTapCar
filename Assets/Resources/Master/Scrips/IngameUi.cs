@@ -38,7 +38,7 @@ public class IngameUi : MonoBehaviour
     {
         if (this.gameObject.name.Contains("Scrapyard"))
         {
-            
+
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(Hauke.ScrapyardClick);
         }
@@ -47,7 +47,7 @@ public class IngameUi : MonoBehaviour
         {
             DisableGarageUI();
             DisableFactoryUI();
-        
+
             //Variables.isIngame = true;
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(DisableGarageUI);
@@ -83,11 +83,15 @@ public class IngameUi : MonoBehaviour
             button.onClick.AddListener(delegate { BuyPart(testPart); });
         }
         //---------------KILIAN NEU-------------------------------------------------------------------//
-        if (this.gameObject.name.Contains("wagen"))
-        {   //BUY CAR
-            button = this.gameObject.GetComponent<Button>();
-            testCar = new Car(button);
-            button.onClick.AddListener(delegate { BuyCar(testCar); }); //****// DELEGATE FÜR ONCLICK //****//
+        for (int i = 1; i <= 3; i++)
+        {
+
+            if (this.gameObject.name.Contains("wagen"+i))
+            {   //BUY CAR
+                button = this.gameObject.GetComponent<Button>();
+                testCar = new Car(button, i);
+                button.onClick.AddListener(delegate { BuyCar(testCar); }); //****// DELEGATE FÜR ONCLICK //****//
+            }
         }
         //---------------KILIAN NEU-------------------------------------------------------------------//
         if (this.gameObject.name.Contains("Parts"))
@@ -238,7 +242,8 @@ public class IngameUi : MonoBehaviour
     {
         if (Variables.partEngines >= car.requiredEngines &&
             Variables.partFrames >= car.requiredFrames &&
-            Variables.partTires >= car.requiredTires)
+            Variables.partTires >= car.requiredTires &&
+            Variables.playerLevel >= car.requiredLevel)
         {
 
             Variables.selledCars++;

@@ -9,18 +9,25 @@ public class Car
 
     public int moneyValue = 500;
     public int expValue = 500;
+    public int requiredLevel;
 
-    public int requiredEngines = 1;
-    public int requiredTires = 0;
-    public int requiredFrames = 0;
+    public int requiredEngines = 2;
+    public int requiredTires = 4;
+    public int requiredFrames = 2;
 
     public Button button;
 
 
-    public Car(Button _button)
+    public Car(Button _button, int _requiredLevel)
     {
         this.button = _button;
+        this.requiredLevel = _requiredLevel;
 
+        this.moneyValue = this.moneyValue * this.requiredLevel;
+        this.expValue = this.expValue * this.requiredLevel;
+        this.requiredEngines = this.requiredEngines * this.requiredLevel;
+        this.requiredTires = this.requiredTires * this.requiredLevel;
+        this.requiredFrames = this.requiredFrames * this.requiredLevel;
     }
 
 

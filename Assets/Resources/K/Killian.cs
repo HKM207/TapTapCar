@@ -4,27 +4,18 @@ using UnityEngine;
 
 public class Killian
 {
-    public static void ScrapyardClick()
-    {
-        int random = Random.Range(0, 101);
-        int[] dropchances = new int[2] {25,50};
-        
-        //int dropchancePlastic = 25;
-        //int dropchanceElectronics = 50;
+    public static void LevelUpSystem()
+    {//need changing for consistent leveling
 
-        Variables.resScraps = Variables.resScraps + (1 * Variables.clickMultiplier);
-
-        if (random >= dropchances[0])
+        for (int i = 1; i <= 10; i++)
         {
-            Variables.resPlastics = Variables.resPlastics + (1 * Variables.clickMultiplier);
-        }
-        if (random >= dropchances[1])
-        {
-            Variables.resElectronics = Variables.resElectronics + (1 * Variables.clickMultiplier);
+            if (Variables.playerExperience >= 1000 * i * (1.5f))
+            {
+                Variables.playerLevel = i;
+            }
         }
 
     }
-
 
 
 

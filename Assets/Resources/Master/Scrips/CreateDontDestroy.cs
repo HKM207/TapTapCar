@@ -46,20 +46,17 @@ public class CreateDontDestroy : MonoBehaviour
 
     private void Update()
     {
+       
 
-        //if (Variables.isIngame && !executed1)
-        //{
-        //    Variables.garageUi.SetActive(false);
-        //    executed1 = true;
-        //}
+
         if (CurrentGamestate == Gamestate.ingame)
         {
-
+            Killian.LevelUpSystem();
             Variables.timeInSek += Time.deltaTime;
             Variables.timeInTicks = Variables.timeInSek * 4;
-            
 
-           
+
+
             if (Variables.scrapYardCollector >= 1)
             {
                 Hauke.ScrapYardCollector();
@@ -74,7 +71,7 @@ public class CreateDontDestroy : MonoBehaviour
                 Variables.isFactoryActiv = true;
             }
             //-------------------------------------------------------------
-            
+
         }
         SaveGame();
     }
@@ -144,9 +141,9 @@ public class Variables
     public static float partFrames;
     public static float partTires;
 
-    public static int playerLevel;
+    public static int playerLevel = 1;
     public static float playerMoney;
-    public static float playerExperience;
+    public static float playerExperience = 0;
 
     public static float clickMultiplier = 1;
 
