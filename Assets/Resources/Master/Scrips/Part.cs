@@ -39,11 +39,11 @@ public class Part
 
 
     //---------------KILIAN NEU--------------------------------------------------------------------------------//
-    public Part(SortOfPart _sort,
-                Button _button)
+    public Part(SortOfPart _sort)
+                
     {
     //---------------KILIAN NEU--------------------------------------------------------------------------------//
-        this.button = _button;
+        
         this.sort = _sort;
 
 

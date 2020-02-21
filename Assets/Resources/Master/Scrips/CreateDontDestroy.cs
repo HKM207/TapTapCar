@@ -10,7 +10,8 @@ public enum Gamestate
 
 public class CreateDontDestroy : MonoBehaviour
 {
-
+    //ignore
+    //bool executed1 = false;
 
     private GameObject logic;
     private static CreateDontDestroy instance;
@@ -40,20 +41,25 @@ public class CreateDontDestroy : MonoBehaviour
     private void Start()
     {
         CurrentGamestate = Gamestate.mainMenu;
+        //Variables.garageUi.SetActive(false);
     }
 
     private void Update()
     {
+
+        //if (Variables.isIngame && !executed1)
+        //{
+        //    Variables.garageUi.SetActive(false);
+        //    executed1 = true;
+        //}
         if (CurrentGamestate == Gamestate.ingame)
         {
 
             Variables.timeInSek += Time.deltaTime;
             Variables.timeInTicks = Variables.timeInSek * 4;
+            
 
-            if (Input.anyKeyDown)
-            {
-                Hauke.ScrapyardClick();
-            }
+           
             if (Variables.scrapYardCollector >= 1)
             {
                 Hauke.ScrapYardCollector();
@@ -68,17 +74,7 @@ public class CreateDontDestroy : MonoBehaviour
                 Variables.isFactoryActiv = true;
             }
             //-------------------------------------------------------------
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (Variables.playerMoney >= Variables.workerCost ) 
-                {
-                    Variables.scrapYardCollector++;
-                    Hauke.ScrapYardCollectorMuliplierCalculation();
-
-                }
-
-            }
+            
         }
         SaveGame();
     }
@@ -130,6 +126,7 @@ public class Variables
 {
 
     //UI SHIT
+    public static bool isIngame = false;
 
     //---------------KILIAN NEU------------//
     public static GameObject partUI;
@@ -159,7 +156,7 @@ public class Variables
 
     public static float carValueMultiplier = 1;
     public static int workerCost = 5000;
-    public static int selledCars;
+    public static int selledCars = 0;
 
     //-------------------Ticks-------------------------------------
     public static float timeInSek;
