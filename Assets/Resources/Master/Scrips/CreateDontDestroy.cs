@@ -67,6 +67,7 @@ public class CreateDontDestroy : MonoBehaviour
             //-----------------------Hauke---------------------------------
             if (Variables.isFactoryActiv)
             {
+                Hauke.FactoryMuliplierCalculation();
                 Hauke.Factory();
             }
             if (Input.GetKeyDown(KeyCode.F))
@@ -174,9 +175,9 @@ public class Variables
     public static float engineProductionRatio;
     public static float frameProductionRatio;
     public static float tireProductionRatio;
-    public static float startEngineProductionRatio = 0.25f;
-    public static float startFrameProductionRatio = 0.25f;
-    public static float startTireProductionRatio = 0.25f;
+    public static float startEngineProductionRatio = 0;
+    public static float startFrameProductionRatio = 0;
+    public static float startTireProductionRatio = 0;
     public static bool isFactoryActiv = false;
     //-------------------------------------------------------------
 
