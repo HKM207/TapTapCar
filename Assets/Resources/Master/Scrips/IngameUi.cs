@@ -104,6 +104,27 @@ public class IngameUi : MonoBehaviour
         //----added section for de/activating Cars/Parts Ui-----UI needs to be created//
         //----also added function to buy parts ("autoteil")--------------------------//
 
+        if (this.gameObject.name.Contains("EngineProduction"))
+        {
+            button = this.gameObject.GetComponent<Button>();
+            button.onClick.AddListener(delegate { UpgradeFactory(0); });
+        }
+        if (this.gameObject.name.Contains("FrameProduction"))
+        {
+            button = this.gameObject.GetComponent<Button>();
+            button.onClick.AddListener(delegate { UpgradeFactory(1); });
+        }
+        if (this.gameObject.name.Contains("TireProduction"))
+        {
+            button = this.gameObject.GetComponent<Button>();
+            button.onClick.AddListener(delegate { UpgradeFactory(2); });
+        }
+        if (this.gameObject.name.Contains("CarProduction1"))
+        {
+            button = this.gameObject.GetComponent<Button>();
+            button.onClick.AddListener(delegate { UpgradeFactory(3); });
+        }
+        
     }
     private void Update()
     {
@@ -142,6 +163,30 @@ public class IngameUi : MonoBehaviour
             DisableGarageUI();
         }
 
+    }
+
+    public void UpgradeFactory(int i)
+    {
+        if (i == 0)
+        {
+            //engine++
+        }
+        else if(i == 1)
+        {
+            //frame++
+        }
+        else if (i == 2)
+        {
+            //tire++
+        }
+        else if( i == 3)
+        {
+            //car++
+        }
+        else 
+        {
+            Debug.Log("error 2 many buttonss");
+        }
     }
 
     public void DisableGarageUI()
