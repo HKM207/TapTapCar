@@ -10,6 +10,7 @@ public class Malte
     private static string saveFileName = "save.save";
 
 
+    #region Saving and loading
     public static void LoadNewGame()
     {
         SceneManager.LoadScene("Ingame");
@@ -91,7 +92,7 @@ public class Malte
             return false;
         }
     }
-
+    #endregion
 }
 
 [System.Serializable]
@@ -143,3 +144,4 @@ public class SaveGame
     }
 
 }
+
