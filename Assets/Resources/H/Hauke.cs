@@ -80,7 +80,15 @@ public class Hauke
         {
             Variables.factoryCost = Variables.startFactoryCost;
         }
+        if (Variables.factoryUpgrades < 4)
+        {
         Variables.factoryCost = Variables.factoryCost * (1 +  Variables.factoryUpgrades);
+
+        }
+        else
+        {
+            Variables.factoryCost = Variables.factoryCost * (1 + Variables.factoryUpgrades / 2);
+        }
     }
     //-------------------------------------------------------------
 }

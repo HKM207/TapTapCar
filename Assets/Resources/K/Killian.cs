@@ -9,7 +9,7 @@ public class Killian
 
         for (int i = 1; i <= 10; i++)
         {
-            if (Variables.playerExperience >= 1000 * i * (1.5f))
+            if (Variables.playerExperience >= 1000 * Mathf.Pow(i,2))
             {
                 Variables.playerLevel = i;
             }

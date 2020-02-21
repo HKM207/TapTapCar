@@ -46,28 +46,26 @@ public class CreateDontDestroy : MonoBehaviour
 
     private void Update()
     {
-        //-----------------------CHEAT-SECTION---------------------------------------------//
-        if (Input.GetKeyDown(KeyCode.P) && Input.GetKeyDown(KeyCode.RightShift))
-        {
-            Variables.playerMoney = Variables.playerMoney + 20000;
-
-            Variables.resScraps = Variables.resScraps +100;
-            Variables.resPlastics = Variables.resPlastics + 100;
-            Variables.resElectronics = Variables.resElectronics + 100;
-
-            Variables.partEngines = Variables.partEngines + 100;
-            Variables.partFrames = Variables.partFrames + 100;
-            Variables.partTires = Variables.partTires + 100;
-        }
-        
-        //-----------------------CHEAT-SECTION---------------------------------------------//
 
 
-        Debug.Log(Variables.factoryCost);
-        Debug.Log(Variables.factoryUpgrades);
 
         if (CurrentGamestate == Gamestate.ingame)
         {
+            //-----------------------CHEAT-SECTION---------------------------------------------//
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                Variables.playerMoney = Variables.playerMoney + 20000;
+
+                Variables.resScraps = Variables.resScraps + 100;
+                Variables.resPlastics = Variables.resPlastics + 100;
+                Variables.resElectronics = Variables.resElectronics + 100;
+
+                Variables.partEngines = Variables.partEngines + 100;
+                Variables.partFrames = Variables.partFrames + 100;
+                Variables.partTires = Variables.partTires + 100;
+            }
+
+            //-----------------------CHEAT-SECTION---------------------------------------------//
             Killian.LevelUpSystem();
             Variables.timeInSek += Time.deltaTime;
             Variables.timeInTicks = Variables.timeInSek * 4;
