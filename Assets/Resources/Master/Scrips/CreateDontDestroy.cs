@@ -39,10 +39,6 @@ public class CreateDontDestroy : MonoBehaviour
 
     private void Start()
     {
-
-        Variables.garageUi = GameObject.FindGameObjectWithTag("GarageUI");
-        //Variables.garageUi.GetComponent<GameObject>();
-        //Variables.garageUi.SetActive(false);
         CurrentGamestate = Gamestate.mainMenu;
     }
 
@@ -80,6 +76,8 @@ public class CreateDontDestroy : MonoBehaviour
             Debug.Log("Anzahl Scrap: " + Variables.resScraps);
             Debug.Log("muliplier " + Variables.scrapYardCollectorMultiplier);
             Debug.Log("colectors " + Variables.scrapYardCollector);
+
+
         }
         SaveGame();
     }
@@ -130,6 +128,11 @@ public class Variables
 {
 
     //UI SHIT
+
+    //---------------KILIAN NEU------------//
+    public static GameObject partUI;
+    public static GameObject carUI;
+    //---------------KILIAN NEU------------//
     public static GameObject garageUi;
 
     //FUCKING VARIABLEN STEHEN
