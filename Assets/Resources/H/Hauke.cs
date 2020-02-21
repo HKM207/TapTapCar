@@ -23,7 +23,6 @@ public class Hauke
 
     public static void ScrapYardCollector()
     {
-        //---------------------ZeitRythmus-----------------------------
         if (Variables.timeInTicks >= Variables.tickCounter)
         {
             int random = Random.Range(0, 101);
@@ -41,14 +40,23 @@ public class Hauke
             }
             Variables.tickCounter += 1;
         }
-        //-------------------------------------------------------------
     }
-    //-------------------------------------------------------------
+
     public static void ScrapYardCollectorMuliplierCalculation()
     {
         if (Variables.scrapYardCollector >= 1)
         {
             Variables.scrapYardCollectorMultiplier = Variables.startScrapYardCollectorMultiplier * Variables.scrapYardCollector;
+        }
+    }
+
+    //-------------------------Factories---------------------------
+    public static void Factory()
+    {
+        if (Variables.timeInTicks >= Variables.tickCounter)
+        {
+
+            Variables.tickCounter += 1;
         }
     }
     //-------------------------------------------------------------
