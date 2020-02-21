@@ -53,11 +53,25 @@ public class Hauke
     //-------------------------Factories---------------------------
     public static void Factory()
     {
+        if (Variables.engineProductionRatio < Variables.startEngineProductionRatio &&
+            Variables.tireProductionRatio < Variables.startTireProductionRatio &&
+            Variables.frameProductionRatio < Variables.startFrameProductionRatio)
+        {
+            Variables.engineProductionRatio = Variables.startEngineProductionRatio;
+            Variables.tireProductionRatio = Variables.startTireProductionRatio;
+            Variables.frameProductionRatio = Variables.startFrameProductionRatio;
+        }
+
         if (Variables.timeInTicks >= Variables.tickCounter)
         {
-
+            Variables.partEngines = Variables.partEngines + (1 * Variables.engineProductionRatio);
+            Variables.partFrames = Variables.partFrames + (1 * Variables.frameProductionRatio);
+            Variables.partTires = Variables.partTires + (1 * Variables.tireProductionRatio);
             Variables.tickCounter += 1;
         }
+        Debug.Log(Variables.partEngines);
+        Debug.Log(Variables.partFrames);
+        Debug.Log(Variables.partTires);
     }
     //-------------------------------------------------------------
 }
