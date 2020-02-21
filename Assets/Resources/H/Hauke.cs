@@ -73,5 +73,21 @@ public class Hauke
         Debug.Log(Variables.partFrames);
         Debug.Log(Variables.partTires);
     }
+
+    public static void FactoryMuliplierCalculation()
+    {
+        if (true)
+        {
+            Variables.engineProductionRatio = Variables.engineProductionRatio + 0.1f;
+        }
+        if (true)
+        {
+            Variables.frameProductionRatio = Variables.frameProductionRatio + 0.1f;
+        }
+        if (true)
+        {
+            Variables.tireProductionRatio = Variables.tireProductionRatio + 0.1f;
+        }
+    }
     //-------------------------------------------------------------
 }
