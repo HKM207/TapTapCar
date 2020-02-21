@@ -46,7 +46,7 @@ public class IngameUi : MonoBehaviour
         if (this.gameObject.name.Contains("autoteil"))
         {   //BUY PART
             button = this.gameObject.GetComponent<Button>();
-            testPart = new Part(SortOfPart.Engine,button);
+            testPart = new Part(SortOfPart.Engine, button);
             button.onClick.AddListener(delegate { BuyPart(testPart); });  //****// DELEGATE FÜR ONCLICK //****//
         }
 
@@ -55,7 +55,7 @@ public class IngameUi : MonoBehaviour
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(EnablePartUI);
         }
-     
+
         if (this.gameObject.name.Contains("Cars"))
         {
             button = this.gameObject.GetComponent<Button>();
@@ -72,17 +72,16 @@ public class IngameUi : MonoBehaviour
             scraps.text = "Scrap: " + Mathf.RoundToInt(Variables.resScraps).ToString();
             plastics.text = "Plastics: " + Mathf.RoundToInt(Variables.resPlastics).ToString();
             electronics.text = "Electronics: " + Mathf.RoundToInt(Variables.resElectronics).ToString();
+            if (Variables.garageUi.activeSelf)
+            {
+
+                engines.text = "Engines: " + Variables.partEngines.ToString();
+                frames.text = "Frames: " + Variables.partFrames.ToString();
+                tires.text = "Tires: " + Variables.partTires.ToString();
+            }
 
         }
         //---------------KILIAN NEU------------------------------showing count of parts--------------------------------//
-        if (this.gameObject.name.Contains("Garage"))
-        {
-            engines.text = "Engines: " + Variables.partEngines.ToString();
-            frames.text = "Frames: " + Variables.partFrames.ToString();
-            tires.text = "Tires: " + Variables.partTires.ToString();
-            
-        }
-        //---------------KILIAN NEU--------------------------------------------------------------------------------//
     }
     public void EnableGarageUI()
     {
@@ -129,13 +128,13 @@ public class IngameUi : MonoBehaviour
     public void BuyPart(Part part)
     { //DELEGATE VERWENDEN FÜR ADDLISTENER
 
-        if (Variables.resScraps         >= part.requiredScrap && 
-            Variables.resPlastics       >= part.requiredPlastics &&
-            Variables.resElectronics    >= part.requiredElectronics)
+        if (Variables.resScraps >= part.requiredScrap &&
+            Variables.resPlastics >= part.requiredPlastics &&
+            Variables.resElectronics >= part.requiredElectronics)
         {
-            Variables.resScraps         = Variables.resScraps - part.requiredScrap;
-            Variables.resPlastics       = Variables.resPlastics - part.requiredPlastics;
-            Variables.resElectronics    = Variables.resElectronics - part.requiredElectronics;
+            Variables.resScraps = Variables.resScraps - part.requiredScrap;
+            Variables.resPlastics = Variables.resPlastics - part.requiredPlastics;
+            Variables.resElectronics = Variables.resElectronics - part.requiredElectronics;
 
             if (part.sort == SortOfPart.Engine)
             {
@@ -150,7 +149,7 @@ public class IngameUi : MonoBehaviour
             {
                 Variables.partTires++;
             }
-            
+
         }
 
     }

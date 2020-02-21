@@ -71,13 +71,6 @@ public class CreateDontDestroy : MonoBehaviour
                 Hauke.ScrapYardCollectorMuliplierCalculation();
 
             }
-            Debug.Log("Anzahl Plastics: " + Variables.resPlastics);
-            Debug.Log("Anzahl Electronics: " + Variables.resElectronics);
-            Debug.Log("Anzahl Scrap: " + Variables.resScraps);
-            Debug.Log("muliplier " + Variables.scrapYardCollectorMultiplier);
-            Debug.Log("colectors " + Variables.scrapYardCollector);
-
-
         }
         SaveGame();
     }
@@ -97,6 +90,7 @@ public class CreateDontDestroy : MonoBehaviour
             //play background music
         }
     }
+
 
     public void NewGame()
     {
