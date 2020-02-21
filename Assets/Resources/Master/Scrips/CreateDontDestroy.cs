@@ -134,6 +134,7 @@ public class Variables
     //---------------KILIAN NEU------------//
     public static GameObject partUI;
     public static GameObject carUI;
+    public static GameObject factoryUI;
     //---------------KILIAN NEU------------//
     public static GameObject garageUi;
 

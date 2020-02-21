@@ -28,6 +28,8 @@ public class IngameUi : MonoBehaviour
         //---------------KILIAN NEU------------//
         Variables.partUI = GameObject.FindGameObjectWithTag("PartUI");
         Variables.carUI = GameObject.FindGameObjectWithTag("CarUI");
+
+        Variables.factoryUI = GameObject.FindGameObjectWithTag("FactoryUI");
         //---------------KILIAN NEU------------ (TAGS WURDEN SCHON HINZUGEFÜGT)--//
     }
 
@@ -39,11 +41,18 @@ public class IngameUi : MonoBehaviour
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(DisableGarageUI);
+            button.onClick.AddListener(DisableFactoryUI);
         }
         if (this.gameObject.name.Contains("Garage"))
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(EnableGarageUI);
+        }
+        //HIER MALTE
+        if (this.gameObject.name.Contains("Factory"))
+        {
+            button = this.gameObject.GetComponent<Button>();
+            button.onClick.AddListener(EnableFactoryUI);
         }
 
         
@@ -120,7 +129,28 @@ public class IngameUi : MonoBehaviour
         }
     }
 
-    //---------------KILIAN NEU--------------------------------------------------------------------------------//
+    public void EnableFactoryUI()
+    {
+
+        if (!Variables.factoryUI.activeSelf)
+        {
+            Variables.factoryUI.SetActive(true);
+        }
+        else
+        {
+            Variables.factoryUI.SetActive(false);
+        }
+    }
+
+    public void DisableFactoryUI()
+    {
+        if (Variables.factoryUI.activeSelf)
+        {
+            Variables.factoryUI.SetActive(false);
+        }
+    }
+
+    
     public void EnablePartUI()
     {
         if (Variables.garageUi.activeSelf)
