@@ -47,11 +47,9 @@ public class CreateDontDestroy : MonoBehaviour
     private void Update()
     {
 
-        //if (Variables.isIngame && !executed1)
-        //{
-        //    Variables.garageUi.SetActive(false);
-        //    executed1 = true;
-        //}
+        Debug.Log(Variables.factoryCost);
+        Debug.Log(Variables.factoryUpgrades);
+
         if (CurrentGamestate == Gamestate.ingame)
         {
 
@@ -67,7 +65,6 @@ public class CreateDontDestroy : MonoBehaviour
             //-----------------------Hauke---------------------------------
             if (Variables.isFactoryActiv)
             {
-                Hauke.FactoryMuliplierCalculation();
                 Hauke.Factory();
             }
             if (Input.GetKeyDown(KeyCode.F))
@@ -157,6 +154,9 @@ public class Variables
 
     public static float carValueMultiplier = 1;
     public static int workerCost = 5000;
+    public static int startFactoryCost = 10000;
+    public static int factoryCost;
+    public static int factoryUpgrades = 0;
     public static int selledCars = 0;
 
     //-------------------Ticks-------------------------------------

@@ -169,15 +169,48 @@ public class IngameUi : MonoBehaviour
     {
         if (i == 0)
         {
-            //engine++
+            Variables.isFactoryActiv = true;
+
+            if (Variables.playerMoney >= Variables.factoryCost)
+            {
+                Variables.engineProductionRatio = Variables.engineProductionRatio + 0.1f;
+                Hauke.FactoryCostsCalculation();
+                Variables.factoryUpgrades++;
+            }
+            else
+            {
+                Debug.Log("kein geld für fabrik");
+            }
         }
         else if(i == 1)
         {
-            //frame++
+            Variables.isFactoryActiv = true;
+
+            if (Variables.playerMoney >= Variables.factoryCost)
+            {
+                Variables.frameProductionRatio = Variables.frameProductionRatio + 0.1f;
+                Hauke.FactoryCostsCalculation();
+                Variables.factoryUpgrades++;
+            }
+            else
+            {
+                Debug.Log("kein geld für fabrik");
+            }
         }
         else if (i == 2)
         {
-            //tire++
+            Variables.isFactoryActiv = true;
+
+            if (Variables.playerMoney >= Variables.factoryCost)
+            {
+                Variables.tireProductionRatio = Variables.tireProductionRatio + 0.1f;
+                Hauke.FactoryCostsCalculation();
+                Variables.factoryUpgrades++;
+            }
+            else
+            {
+                Debug.Log("kein geld für fabrik");
+            }
         }
         else if( i == 3)
         {
@@ -247,6 +280,10 @@ public class IngameUi : MonoBehaviour
             Variables.scrapYardCollector++;
             Hauke.ScrapYardCollectorMuliplierCalculation();
 
+        }
+        if (Variables.playerMoney < Variables.workerCost)
+        {
+            Debug.Log("nicht genug moneten");
         }
     }
 
