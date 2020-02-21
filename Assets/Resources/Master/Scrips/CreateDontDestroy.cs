@@ -48,11 +48,7 @@ public class CreateDontDestroy : MonoBehaviour
         {
 
             Variables.timeInSek += Time.deltaTime;
-            //Debug.Log(Variables.timeInSek);
-
             Variables.timeInTicks = Variables.timeInSek * 4;
-            //Debug.Log("Ticks " + Variables.timeInTicks);
-            //-------------------------------------------------------------
 
             if (Input.anyKeyDown)
             {
@@ -60,16 +56,23 @@ public class CreateDontDestroy : MonoBehaviour
             }
             if (Variables.scrapYardCollector >= 1)
             {
-
                 Hauke.ScrapYardCollector();
             }
+            //-----------------------Hauke---------------------------------
+            if (Variables.isFactoryActiv)
+            {
+                Hauke.Factory();
+            }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Variables.isFactoryActiv = true;
+            }
+            //-------------------------------------------------------------
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-
                 Variables.scrapYardCollector++;
                 Hauke.ScrapYardCollectorMuliplierCalculation();
-
             }
         }
         SaveGame();
@@ -134,9 +137,9 @@ public class Variables
     public static float resElectronics;
     public static float resPlastics;
 
-    public static int partEngines;
-    public static int partFrames;
-    public static int partTires;
+    public static float partEngines;
+    public static float partFrames;
+    public static float partTires;
 
     public static int playerLevel;
     public static float playerMoney;
@@ -150,18 +153,27 @@ public class Variables
 
     public static float carValueMultiplier;
 
-    //-------------------Ticks-----------------------------------
+    //-------------------Ticks-------------------------------------
     public static float timeInSek;
     public static int tickCounter = 1;
     public static float timeInTicks;
     //-------------------------------------------------------------
+
     //-------------------------------------------------------------
     public static float scrapYardCollectorMultiplier;
     public static int scrapYardCollector;
     public static float startScrapYardCollectorMultiplier = 0.125f;
     //-------------------------------------------------------------
+
+    //--------------------Fabrik-----------------------------------
+    public static float engineProductionRatio;
+    public static float frameProductionRatio;
+    public static float tireProductionRatio;
+    public static float startEngineProductionRatio = 0.25f;
+    public static float startFrameProductionRatio = 0.25f;
+    public static float startTireProductionRatio = 0.25f;
+    public static bool isFactoryActiv = false;
+    //-------------------------------------------------------------
+
     //FUCKING VARIABLEN STEHEN
 }
-
-
-

@@ -102,9 +102,9 @@ public class SaveGame
     public float resScraps;
     public float resElectronics;
     public float resPlastics;
-    public int partEngines;
-    public int partFrames;
-    public int partTires;
+    public float partEngines;
+    public float partFrames;
+    public float partTires;
     public int playerLevel;
     public float playerMoney;
     public float playerExperience;
@@ -117,9 +117,9 @@ public class SaveGame
     public SaveGame(float _resScraps,
     float _resElectronics,
     float _resPlastics,
-    int _partEngines,
-    int _partFrames,
-    int _partTires,
+    float _partEngines,
+    float _partFrames,
+    float _partTires,
     int _playerLevel,
     float _playerMoney,
     float _playerExperience,
