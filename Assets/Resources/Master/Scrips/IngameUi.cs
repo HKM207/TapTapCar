@@ -108,6 +108,27 @@ public class IngameUi : MonoBehaviour
         //----added section for de/activating Cars/Parts Ui-----UI needs to be created//
         //----also added function to buy parts ("autoteil")--------------------------//
 
+        if (this.gameObject.name.Contains("EngineProduction"))
+        {
+            button = this.gameObject.GetComponent<Button>();
+            button.onClick.AddListener(delegate { UpgradeFactory(0); });
+        }
+        if (this.gameObject.name.Contains("FrameProduction"))
+        {
+            button = this.gameObject.GetComponent<Button>();
+            button.onClick.AddListener(delegate { UpgradeFactory(1); });
+        }
+        if (this.gameObject.name.Contains("TireProduction"))
+        {
+            button = this.gameObject.GetComponent<Button>();
+            button.onClick.AddListener(delegate { UpgradeFactory(2); });
+        }
+        if (this.gameObject.name.Contains("CarProduction1"))
+        {
+            button = this.gameObject.GetComponent<Button>();
+            button.onClick.AddListener(delegate { UpgradeFactory(3); });
+        }
+        
     }
     private void Update()
     {
@@ -146,6 +167,63 @@ public class IngameUi : MonoBehaviour
             DisableGarageUI();
         }
 
+    }
+
+    public void UpgradeFactory(int i)
+    {
+        if (i == 0)
+        {
+            Variables.isFactoryActiv = true;
+
+            if (Variables.playerMoney >= Variables.factoryCost)
+            {
+                Variables.engineProductionRatio = Variables.engineProductionRatio + 0.1f;
+                Hauke.FactoryCostsCalculation();
+                Variables.factoryUpgrades++;
+            }
+            else
+            {
+                Debug.Log("kein geld für fabrik");
+            }
+        }
+        else if(i == 1)
+        {
+            Variables.isFactoryActiv = true;
+
+            if (Variables.playerMoney >= Variables.factoryCost)
+            {
+                Variables.frameProductionRatio = Variables.frameProductionRatio + 0.1f;
+                Hauke.FactoryCostsCalculation();
+                Variables.factoryUpgrades++;
+            }
+            else
+            {
+                Debug.Log("kein geld für fabrik");
+            }
+        }
+        else if (i == 2)
+        {
+            Variables.isFactoryActiv = true;
+
+            if (Variables.playerMoney >= Variables.factoryCost)
+            {
+                Variables.tireProductionRatio = Variables.tireProductionRatio + 0.1f;
+                Hauke.FactoryCostsCalculation();
+                Variables.factoryUpgrades++;
+            }
+            else
+            {
+                Debug.Log("kein geld für fabrik");
+            }
+        }
+        else if( i == 3)
+        {
+            //car++
+        }
+        else 
+        {
+            Debug.Log("error 2 many buttonss");
+        }
     }
 
     public void DisableGarageUI()
@@ -206,6 +284,10 @@ public class IngameUi : MonoBehaviour
             Variables.scrapYardCollector++;
             Hauke.ScrapYardCollectorMuliplierCalculation();
 
+        }
+        if (Variables.playerMoney < Variables.workerCost)
+        {
+            Debug.Log("nicht genug moneten");
         }
     }
 

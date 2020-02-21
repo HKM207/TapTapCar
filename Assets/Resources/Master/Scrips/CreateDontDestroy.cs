@@ -63,6 +63,9 @@ public class CreateDontDestroy : MonoBehaviour
         //-----------------------CHEAT-SECTION---------------------------------------------//
 
 
+        Debug.Log(Variables.factoryCost);
+        Debug.Log(Variables.factoryUpgrades);
+
         if (CurrentGamestate == Gamestate.ingame)
         {
             Killian.LevelUpSystem();
@@ -167,6 +170,9 @@ public class Variables
 
     public static float carValueMultiplier = 1;
     public static int workerCost = 5000;
+    public static int startFactoryCost = 10000;
+    public static int factoryCost;
+    public static int factoryUpgrades = 0;
     public static int selledCars = 0;
 
     //-------------------Ticks-------------------------------------
@@ -185,9 +191,9 @@ public class Variables
     public static float engineProductionRatio;
     public static float frameProductionRatio;
     public static float tireProductionRatio;
-    public static float startEngineProductionRatio = 0.25f;
-    public static float startFrameProductionRatio = 0.25f;
-    public static float startTireProductionRatio = 0.25f;
+    public static float startEngineProductionRatio = 0;
+    public static float startFrameProductionRatio = 0;
+    public static float startTireProductionRatio = 0;
     public static bool isFactoryActiv = false;
     //-------------------------------------------------------------
 

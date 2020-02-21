@@ -69,9 +69,18 @@ public class Hauke
             Variables.partTires = Variables.partTires + (1 * Variables.tireProductionRatio);
             Variables.tickCounter += 1;
         }
-        Debug.Log(Variables.partEngines);
-        Debug.Log(Variables.partFrames);
-        Debug.Log(Variables.partTires);
+        //Debug.Log(Variables.partEngines);
+        //Debug.Log(Variables.partFrames);
+        //Debug.Log(Variables.partTires);
+    }
+
+    public static void FactoryCostsCalculation()
+    {
+        if (Variables.factoryCost < Variables.startFactoryCost)
+        {
+            Variables.factoryCost = Variables.startFactoryCost;
+        }
+        Variables.factoryCost = Variables.factoryCost * (1 +  Variables.factoryUpgrades);
     }
     //-------------------------------------------------------------
 }
