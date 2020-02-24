@@ -23,6 +23,7 @@ public class Car
         this.button = _button;
         this.requiredLevel = _requiredLevel;
 
+        //Balancing
         this.moneyValue = this.moneyValue * this.requiredLevel;
         this.expValue = this.expValue * this.requiredLevel;
         this.requiredEngines = this.requiredEngines * this.requiredLevel;

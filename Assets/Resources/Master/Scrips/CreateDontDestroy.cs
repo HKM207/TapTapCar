@@ -10,21 +10,14 @@ public enum Gamestate
 
 public class CreateDontDestroy : MonoBehaviour
 {
-    //ignore
-    //bool executed1 = false;
-
     private GameObject logic;
     private static CreateDontDestroy instance;
 
     public static Gamestate CurrentGamestate;
     public static bool isNewGame = true;
 
-
-
-
     private void Awake()
     {
-
         logic = this.gameObject;
         if (instance != null)
         {
@@ -35,23 +28,18 @@ public class CreateDontDestroy : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
-
     }
 
     private void Start()
     {
         CurrentGamestate = Gamestate.mainMenu;
-        //Variables.garageUi.SetActive(false);
     }
 
     private void Update()
     {
-
-
-
         if (CurrentGamestate == Gamestate.ingame)
         {
-            //-----------------------CHEAT-SECTION---------------------------------------------//
+            #region cheats
             if (Input.GetKeyDown(KeyCode.P))
             {
                 Variables.playerMoney = Variables.playerMoney + 20000;
@@ -64,19 +52,16 @@ public class CreateDontDestroy : MonoBehaviour
                 Variables.partFrames = Variables.partFrames + 100;
                 Variables.partTires = Variables.partTires + 100;
             }
-
-            //-----------------------CHEAT-SECTION---------------------------------------------//
+            #endregion
             Killian.LevelUpSystem();
+
             Variables.timeInSek += Time.deltaTime;
             Variables.timeInTicks = Variables.timeInSek * 4;
 
-
-
             if (Variables.scrapYardCollector >= 1)
             {
-                Hauke.ScrapYardCollector();
+                Hauke.ScrapyardWorker();
             }
-            //-----------------------Hauke---------------------------------
             if (Variables.isFactoryActiv)
             {
                 Hauke.Factory();
@@ -85,16 +70,9 @@ public class CreateDontDestroy : MonoBehaviour
             {
                 Variables.isFactoryActiv = true;
             }
-            //-------------------------------------------------------------
-
         }
         SaveGame();
     }
-
-
-
-
-    //-----------------------MALTE---------------------------//
     private void AudioManager()
     {
         if (CurrentGamestate == Gamestate.mainMenu)
@@ -107,7 +85,7 @@ public class CreateDontDestroy : MonoBehaviour
         }
     }
 
-
+    #region Save
     public void NewGame()
     {
         CurrentGamestate = Gamestate.ingame;
@@ -121,33 +99,25 @@ public class CreateDontDestroy : MonoBehaviour
             Malte.LoadGame();
         }
     }
-
-    void SaveGame()
+    public void SaveGame()
     {
         if (CurrentGamestate == Gamestate.ingame && Input.GetKeyDown(KeyCode.L))
         {
             Malte.SaveGame();
         }
     }
-
-    //-----------------------MALTE---------------------------//
-
-
+    #endregion
 }
 public class Variables
 {
-
-    //UI SHIT
     public static bool isIngame = false;
 
-    //---------------KILIAN NEU------------//
     public static GameObject partUI;
     public static GameObject carUI;
     public static GameObject factoryUI;
-    //---------------KILIAN NEU------------//
     public static GameObject garageUi;
 
-    //FUCKING VARIABLEN STEHEN
+
     public static float resScraps;
     public static float resElectronics;
     public static float resPlastics;
@@ -171,21 +141,17 @@ public class Variables
     public static int startFactoryCost = 10000;
     public static int factoryCost;
     public static int factoryUpgrades = 0;
-    public static int selledCars = 0;
+    public static int soldCars = 0;
 
-    //-------------------Ticks-------------------------------------
+
     public static float timeInSek;
     public static int tickCounter = 1;
     public static float timeInTicks;
-    //-------------------------------------------------------------
 
-    //-------------------------------------------------------------
     public static float scrapYardCollectorMultiplier;
     public static int scrapYardCollector;
     public static float startScrapYardCollectorMultiplier = 0.125f;
-    //-------------------------------------------------------------
 
-    //--------------------Fabrik-----------------------------------
     public static float engineProductionRatio;
     public static float frameProductionRatio;
     public static float tireProductionRatio;
@@ -193,7 +159,4 @@ public class Variables
     public static float startFrameProductionRatio = 0;
     public static float startTireProductionRatio = 0;
     public static bool isFactoryActiv = false;
-    //-------------------------------------------------------------
-
-    //FUCKING VARIABLEN STEHEN
 }

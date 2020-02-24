@@ -26,40 +26,33 @@ public class IngameUi : MonoBehaviour
     private void Awake()
     {
         Variables.garageUi = GameObject.FindGameObjectWithTag("GarageUI");
-        //---------------KILIAN NEU------------//
         Variables.partUI = GameObject.FindGameObjectWithTag("PartUI");
         Variables.carUI = GameObject.FindGameObjectWithTag("CarUI");
-
         Variables.factoryUI = GameObject.FindGameObjectWithTag("FactoryUI");
-        //---------------KILIAN NEU------------ (TAGS WURDEN SCHON HINZUGEFÜGT)--//
+        
     }
 
     public void Start()
-    {
+    {   
+        //SWITCHCASE
         if (this.gameObject.name.Contains("Scrapyard"))
         {
-
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(Hauke.ScrapyardClick);
         }
-
         if (this.gameObject.name.Contains("Background"))
         {
             DisableGarageUI();
             DisableFactoryUI();
-
-            //Variables.isIngame = true;
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(DisableGarageUI);
             button.onClick.AddListener(DisableFactoryUI);
         }
-
         if (this.gameObject.name.Contains("BuyWorkers"))
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(BuyWorker);
             Debug.Log("buy worker ;) yes");
-
         }
         if (this.gameObject.name.Contains("Garage"))
         {
@@ -67,47 +60,36 @@ public class IngameUi : MonoBehaviour
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(EnableGarageUI);
         }
-        //HIER MALTE
         if (this.gameObject.name.Contains("Factory"))
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(EnableFactoryUI);
         }
-
-
         if (this.gameObject.name.Contains("autoteil"))
-        {   //BUY PART
+        { 
             button = this.gameObject.GetComponent<Button>();
             testPart = new Part(SortOfPart.Engine);
-
             button.onClick.AddListener(delegate { BuyPart(testPart); });
         }
-        //---------------KILIAN NEU-------------------------------------------------------------------//
         for (int i = 1; i <= 3; i++)
         {
-
             if (this.gameObject.name.Contains("wagen"+i))
             {   //BUY CAR
                 button = this.gameObject.GetComponent<Button>();
                 testCar = new Car(button, i);
-                button.onClick.AddListener(delegate { BuyCar(testCar); }); //****// DELEGATE FÜR ONCLICK //****//
+                button.onClick.AddListener(delegate { BuyCar(testCar); });
             }
         }
-        //---------------KILIAN NEU-------------------------------------------------------------------//
         if (this.gameObject.name.Contains("Parts"))
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(EnablePartUI);
         }
-
         if (this.gameObject.name.Contains("Cars"))
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(EnableCarUI);
         }
-        //----added section for de/activating Cars/Parts Ui-----UI needs to be created//
-        //----also added function to buy parts ("autoteil")--------------------------//
-
         if (this.gameObject.name.Contains("EngineProduction"))
         {
             button = this.gameObject.GetComponent<Button>();
@@ -127,8 +109,7 @@ public class IngameUi : MonoBehaviour
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(delegate { UpgradeFactory(3); });
-        }
-        
+        }  
     }
     private void Update()
     {
@@ -140,37 +121,30 @@ public class IngameUi : MonoBehaviour
             money.text = "$$$: " + Mathf.RoundToInt(Variables.playerMoney).ToString();
             exp.text = "EXP: " + Mathf.RoundToInt(Variables.playerExperience).ToString();
             level.text = "Level: " + Variables.playerLevel;
-            selledCars.text = Variables.selledCars.ToString();
+            selledCars.text = Variables.soldCars.ToString();
 
             if (Variables.garageUi.activeSelf)
             {
-
                 engines.text = "Engines: " + Mathf.RoundToInt(Variables.partEngines).ToString();
-                frames.text = "Frames: " +
-                    Mathf.RoundToInt(Variables.partFrames).ToString();
+                frames.text = "Frames: " + Mathf.RoundToInt(Variables.partFrames).ToString();
                 tires.text = "Tires: " + Mathf.RoundToInt(Variables.partTires).ToString();
             }
-
         }
-        //---------------KILIAN NEU------------------------------showing count of parts--------------------------------//
     }
     public void EnableGarageUI()
     {
-
         if (!Variables.garageUi.activeSelf)
         {
             Variables.garageUi.SetActive(true);
-            //Debug.Log("ENABLE GARAGE UI");
         }
         else
         {
             DisableGarageUI();
         }
-
     }
-
     public void UpgradeFactory(int i)
     {
+        //SWITCHCASE
         if (i == 0)
         {
             Variables.isFactoryActiv = true;
@@ -228,16 +202,13 @@ public class IngameUi : MonoBehaviour
             Debug.Log("error 2 many buttonss");
         }
     }
-
     public void DisableGarageUI()
     {
         if (Variables.garageUi.activeSelf)
         {
-            //Debug.Log("disable GARAGE UI");
             Variables.garageUi.SetActive(false);
         }
     }
-
     public void EnableFactoryUI()
     {
         if (!Variables.factoryUI.activeSelf)
@@ -249,7 +220,6 @@ public class IngameUi : MonoBehaviour
             Variables.factoryUI.SetActive(false);
         }
     }
-
     public void DisableFactoryUI()
     {
         if (Variables.factoryUI.activeSelf)
@@ -257,15 +227,12 @@ public class IngameUi : MonoBehaviour
             Variables.factoryUI.SetActive(false);
         }
     }
-
-
     public void EnablePartUI()
     {
         if (Variables.garageUi.activeSelf)
         {
             Variables.carUI.SetActive(false);
             Variables.partUI.SetActive(true);
-
         }
     }
     public void EnableCarUI()
@@ -274,29 +241,23 @@ public class IngameUi : MonoBehaviour
         {
             Variables.partUI.SetActive(false);
             Variables.carUI.SetActive(true);
-
         }
-
     }
-
     void BuyWorker()
     {
         if (Variables.playerMoney >= Variables.workerCost)
         {
             Variables.playerMoney = Variables.playerMoney - Variables.workerCost;
             Variables.scrapYardCollector++;
-            Hauke.ScrapYardCollectorMuliplierCalculation();
-
+            Hauke.ScrapYardWorkerMultiplierCalculation();
         }
         if (Variables.playerMoney < Variables.workerCost)
         {
             Debug.Log("nicht genug moneten");
         }
     }
-
     public void BuyPart(Part part)
-    { //DELEGATE VERWENDEN FÜR ADDLISTENER
-
+    {
         if (Variables.resScraps >= part.requiredScrap &&
             Variables.resPlastics >= part.requiredPlastics &&
             Variables.resElectronics >= part.requiredElectronics)
@@ -308,7 +269,6 @@ public class IngameUi : MonoBehaviour
             if (part.sort == SortOfPart.Engine)
             {
                 Variables.partEngines++;
-
             }
             else if (part.sort == SortOfPart.Frame)
             {
@@ -318,11 +278,8 @@ public class IngameUi : MonoBehaviour
             {
                 Variables.partTires++;
             }
-
         }
-
     }
-
     public void BuyCar(Car car)
     {
         if (Variables.partEngines >= car.requiredEngines &&
@@ -330,8 +287,7 @@ public class IngameUi : MonoBehaviour
             Variables.partTires >= car.requiredTires &&
             Variables.playerLevel >= car.requiredLevel)
         {
-
-            Variables.selledCars++;
+            Variables.soldCars++;
             Variables.partEngines = Variables.partEngines - car.requiredEngines;
             Variables.partFrames = Variables.partFrames - car.requiredFrames;
             Variables.partTires = Variables.partTires - car.requiredTires;
@@ -339,7 +295,5 @@ public class IngameUi : MonoBehaviour
             Variables.playerExperience = Variables.playerExperience + car.expValue;
             Variables.playerMoney = Variables.playerMoney + (car.moneyValue * Variables.carValueMultiplier);
         }
-
     }
-
 }

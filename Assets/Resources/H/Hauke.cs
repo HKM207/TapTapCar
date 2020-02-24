@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hauke
 {
-    public static void ScrapyardClick()
+    public static void ScrapyardClick()  ///INGAME UI
     {
         int random = Random.Range(0, 101);
         int[] dropchances = new int[2] { 65, 85 };
@@ -21,7 +21,7 @@ public class Hauke
         }
     }
 
-    public static void ScrapYardCollector()
+    public static void ScrapyardWorker()
     {
         if (Variables.timeInTicks >= Variables.tickCounter)
         {
@@ -42,7 +42,7 @@ public class Hauke
         }
     }
 
-    public static void ScrapYardCollectorMuliplierCalculation()
+    public static void ScrapYardWorkerMultiplierCalculation()
     {
         if (Variables.scrapYardCollector >= 1)
         {
@@ -50,7 +50,6 @@ public class Hauke
         }
     }
 
-    //-------------------------Factories---------------------------
     public static void Factory()
     {
         if (Variables.engineProductionRatio < Variables.startEngineProductionRatio &&
@@ -69,9 +68,6 @@ public class Hauke
             Variables.partTires = Variables.partTires + (1 * Variables.tireProductionRatio);
             Variables.tickCounter += 1;
         }
-        //Debug.Log(Variables.partEngines);
-        //Debug.Log(Variables.partFrames);
-        //Debug.Log(Variables.partTires);
     }
 
     public static void FactoryCostsCalculation()
@@ -82,13 +78,11 @@ public class Hauke
         }
         if (Variables.factoryUpgrades < 4)
         {
-        Variables.factoryCost = Variables.factoryCost * (1 +  Variables.factoryUpgrades);
-
+            Variables.factoryCost = Variables.factoryCost * (1 + Variables.factoryUpgrades);
         }
         else
         {
             Variables.factoryCost = Variables.factoryCost * (1 + Variables.factoryUpgrades / 2);
         }
     }
-    //-------------------------------------------------------------
 }

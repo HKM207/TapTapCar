@@ -5,7 +5,7 @@ using UnityEngine;
 public class Killian
 {
     public static void LevelUpSystem()
-    {//need changing for consistent leveling
+    {     //need changing for consistent leveling
 
         for (int i = 1; i <= 10; i++)
         {
@@ -16,7 +16,4 @@ public class Killian
         }
 
     }
-
-
-
 }
