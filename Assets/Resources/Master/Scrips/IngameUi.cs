@@ -23,13 +23,14 @@ public class IngameUi : MonoBehaviour
     private Part testPart;
     private Car testCar;
 
+
     private void Awake()
     {
         Variables.garageUi = GameObject.FindGameObjectWithTag("GarageUI");
         Variables.partUI = GameObject.FindGameObjectWithTag("PartUI");
         Variables.carUI = GameObject.FindGameObjectWithTag("CarUI");
         Variables.factoryUI = GameObject.FindGameObjectWithTag("FactoryUI");
-        
+
     }
 
     public void Start()
@@ -109,7 +110,7 @@ public class IngameUi : MonoBehaviour
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(delegate { UpgradeFactory(3); });
-        }  
+        }
     }
     private void Update()
     {
@@ -130,6 +131,7 @@ public class IngameUi : MonoBehaviour
                 tires.text = "Tires: " + Mathf.RoundToInt(Variables.partTires).ToString();
             }
         }
+
     }
     public void EnableGarageUI()
     {
@@ -294,6 +296,17 @@ public class IngameUi : MonoBehaviour
 
             Variables.playerExperience = Variables.playerExperience + car.expValue;
             Variables.playerMoney = Variables.playerMoney + (car.moneyValue * Variables.carValueMultiplier);
+        }
+    }
+
+
+    void OnGUI()
+    {
+        if (Variables.isPaused)
+        {
+            GUILayout.Label("Game is paused!");
+            if (GUILayout.Button("Click me to unpause"))
+                Variables.isPaused = Malte.TogglePause();
         }
     }
 }

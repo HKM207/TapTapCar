@@ -72,6 +72,7 @@ public class CreateDontDestroy : MonoBehaviour
             }
         }
         SaveGame();
+        Malte.EscMenu();
     }
     private void AudioManager()
     {
@@ -111,6 +112,7 @@ public class CreateDontDestroy : MonoBehaviour
 public class Variables
 {
     public static bool isIngame = false;
+    public static bool isPaused = false;
 
     public static GameObject partUI;
     public static GameObject carUI;
