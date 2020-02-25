@@ -72,6 +72,20 @@ public class CreateDontDestroy : MonoBehaviour
             {
                 Hauke.Factory();
             }
+            //-------------------Hauke-Test----------Auf-Buttons-Legen!-----
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Variables.isResearchFacilityActiv = true;
+            }
+            if (Variables.isResearchFacilityActiv)
+            {
+                Hauke.ResearchFacilityUpgradeCostCalculations();
+                Hauke.ResearchFacilityUpgrades();
+                Debug.Log("clickMultiplier: " + Variables.clickMultiplier);
+                Debug.Log("Kosten: " + Variables.clickMultiplierUpgradeCosts);
+                Debug.Log("anzahl Upgrades: " + Variables.clickMultiplierUpgrades);
+            }
+            //-------------------Hauke-Test---------------------------------
         }
         SaveGame();
     }
@@ -160,5 +174,13 @@ public class Variables
     public static float startEngineProductionRatio = 0;
     public static float startFrameProductionRatio = 0;
     public static float startTireProductionRatio = 0;
+
     public static bool isFactoryActiv = false;
+    //-------------------Hauke-Test---------------------------------
+    public static bool isResearchFacilityActiv = false;
+
+    public static int clickMultiplierUpgradeStartCosts = 2000;
+    public static int clickMultiplierUpgradeCosts;
+    public static int clickMultiplierUpgrades;
+    //-------------------Hauke-Test---------------------------------
 }

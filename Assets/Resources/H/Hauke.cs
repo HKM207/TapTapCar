@@ -127,4 +127,26 @@ public class Hauke
             Variables.factoryCost = Variables.factoryCost * (1 + Variables.factoryUpgrades / 2);
         }
     }
+
+    //-------------------Hauke-Test---------------------------------
+    public static void ResearchFacilityUpgrades()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad1) && Variables.playerMoney >= Variables.clickMultiplierUpgradeCosts)
+        {
+            Variables.playerMoney = Variables.playerMoney - Variables.clickMultiplierUpgradeCosts;
+            Variables.clickMultiplierUpgrades++;
+            Variables.clickMultiplier = Variables.clickMultiplier * Variables.clickMultiplierUpgrades;
+
+            Variables.clickMultiplierUpgradeCosts = Variables.clickMultiplierUpgradeCosts * (Variables.clickMultiplierUpgrades * 4);
+        }
+    }
+
+    public static void ResearchFacilityUpgradeCostCalculations()
+    {
+        if (Variables.clickMultiplierUpgradeCosts <= Variables.clickMultiplierUpgradeStartCosts)
+        {
+            Variables.clickMultiplierUpgradeCosts = Variables.clickMultiplierUpgradeStartCosts;
+        }
+    }
+    //-------------------Hauke-Test---------------------------------
 }
