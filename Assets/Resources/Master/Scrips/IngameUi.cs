@@ -148,12 +148,11 @@ public class IngameUi : MonoBehaviour
         if (i == 0)
         {
             Variables.isFactoryActiv = true;
-
+            Hauke.FactoryCostsCalculation();
             if (Variables.playerMoney >= Variables.factoryCost)
             {
                 Variables.playerMoney = Variables.playerMoney - Variables.factoryCost;
                 Variables.engineProductionRatio = Variables.engineProductionRatio + 0.1f;
-                Hauke.FactoryCostsCalculation();
                 Variables.factoryUpgrades++;
             }
             else
@@ -164,12 +163,11 @@ public class IngameUi : MonoBehaviour
         else if(i == 1)
         {
             Variables.isFactoryActiv = true;
-
+            Hauke.FactoryCostsCalculation();
             if (Variables.playerMoney >= Variables.factoryCost)
             {
                 Variables.playerMoney = Variables.playerMoney - Variables.factoryCost;
                 Variables.frameProductionRatio = Variables.frameProductionRatio + 0.1f;
-                Hauke.FactoryCostsCalculation();
                 Variables.factoryUpgrades++;
             }
             else
@@ -180,12 +178,11 @@ public class IngameUi : MonoBehaviour
         else if (i == 2)
         {
             Variables.isFactoryActiv = true;
-
+            Hauke.FactoryCostsCalculation();
             if (Variables.playerMoney >= Variables.factoryCost)
             {
                 Variables.playerMoney = Variables.playerMoney - Variables.factoryCost;
                 Variables.tireProductionRatio = Variables.tireProductionRatio + 0.1f;
-                Hauke.FactoryCostsCalculation();
                 Variables.factoryUpgrades++;
             }
             else

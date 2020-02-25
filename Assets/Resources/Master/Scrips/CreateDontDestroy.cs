@@ -54,10 +54,16 @@ public class CreateDontDestroy : MonoBehaviour
             }
             #endregion
             Killian.LevelUpSystem();
-
             Variables.timeInSek += Time.deltaTime;
             Variables.timeInTicks = Variables.timeInSek * 4;
-
+            if (Variables.timeInTicks >= Variables.tickCounter && !Variables.isFactoryActiv)
+            {
+                Variables.tickCounter += 1;
+            }
+            if (Variables.timeInTicks >= Variables.tickCounter && Variables.scrapYardCollector == 0)
+            {
+                Variables.tickCounter += 1;
+            }
             if (Variables.scrapYardCollector >= 1)
             {
                 Hauke.ScrapyardWorker();
@@ -65,10 +71,6 @@ public class CreateDontDestroy : MonoBehaviour
             if (Variables.isFactoryActiv)
             {
                 Hauke.Factory();
-            }
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                Variables.isFactoryActiv = true;
             }
         }
         SaveGame();
@@ -117,7 +119,6 @@ public class Variables
     public static GameObject factoryUI;
     public static GameObject garageUi;
 
-
     public static float resScraps;
     public static float resElectronics;
     public static float resPlastics;
@@ -143,9 +144,10 @@ public class Variables
     public static int factoryUpgrades = 0;
     public static int soldCars = 0;
 
-
     public static float timeInSek;
     public static int tickCounter = 1;
+    public static int workerTick = 0;
+    public static int factoryTick = 0;
     public static float timeInTicks;
 
     public static float scrapYardCollectorMultiplier;

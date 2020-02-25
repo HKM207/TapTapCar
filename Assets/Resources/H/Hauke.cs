@@ -23,7 +23,11 @@ public class Hauke
 
     public static void ScrapyardWorker()
     {
-        if (Variables.timeInTicks >= Variables.tickCounter)
+        if (Variables.workerTick == 0)
+        {
+            Variables.workerTick = Variables.tickCounter;
+        }
+        if (Variables.timeInTicks >= Variables.workerTick)
         {
             int random = Random.Range(0, 101);
             int[] dropchances = new int[2] { 55, 75 };
@@ -38,7 +42,7 @@ public class Hauke
             {
                 Variables.resElectronics = Variables.resElectronics + (1 * Variables.scrapYardCollectorMultiplier);
             }
-            Variables.tickCounter += 1;
+            Variables.workerTick += 1;
         }
     }
 
@@ -60,13 +64,51 @@ public class Hauke
             Variables.tireProductionRatio = Variables.startTireProductionRatio;
             Variables.frameProductionRatio = Variables.startFrameProductionRatio;
         }
-
-        if (Variables.timeInTicks >= Variables.tickCounter)
+        if (Variables.factoryTick == 0)
         {
-            Variables.partEngines = Variables.partEngines + (1 * Variables.engineProductionRatio);
-            Variables.partFrames = Variables.partFrames + (1 * Variables.frameProductionRatio);
-            Variables.partTires = Variables.partTires + (1 * Variables.tireProductionRatio);
-            Variables.tickCounter += 1;
+            Variables.factoryTick = Variables.tickCounter;
+        }
+        if (Variables.timeInTicks >= Variables.factoryTick)
+        {
+            Part partEngine = new Part(SortOfPart.Engine);
+            ProducePart(partEngine);
+            Part partFrame = new Part(SortOfPart.Frame);
+            ProducePart(partFrame);
+            Part partTire = new Part(SortOfPart.Tire);
+            ProducePart(partTire);
+            Variables.factoryTick += 1;
+        }
+    }
+    public static void ProducePart(Part part)
+    {
+        if (Variables.resScraps >= part.requiredScrap &&
+            Variables.resPlastics >= part.requiredPlastics &&
+            Variables.resElectronics >= part.requiredElectronics)
+        {
+            if (part.sort == SortOfPart.Engine)
+            {
+                Variables.partEngines = Variables.partEngines + (1 * Variables.engineProductionRatio);
+
+                Variables.resScraps = Variables.resScraps - (part.requiredScrap * Variables.engineProductionRatio);
+                Variables.resPlastics = Variables.resPlastics - (part.requiredPlastics * Variables.engineProductionRatio);
+                Variables.resElectronics = Variables.resElectronics - (part.requiredElectronics * Variables.engineProductionRatio);
+            }
+            else if (part.sort == SortOfPart.Frame)
+            {
+                Variables.partFrames = Variables.partFrames + (1 * Variables.frameProductionRatio);
+
+                Variables.resScraps = Variables.resScraps - (part.requiredScrap * Variables.frameProductionRatio);
+                Variables.resPlastics = Variables.resPlastics - (part.requiredPlastics * Variables.frameProductionRatio);
+                Variables.resElectronics = Variables.resElectronics - (part.requiredElectronics * Variables.frameProductionRatio);
+            }
+            else if (part.sort == SortOfPart.Tire)
+            {
+                Variables.partTires = Variables.partTires + (1 * Variables.tireProductionRatio);
+
+                Variables.resScraps = Variables.resScraps - (part.requiredScrap * Variables.tireProductionRatio);
+                Variables.resPlastics = Variables.resPlastics - (part.requiredPlastics * Variables.tireProductionRatio);
+                Variables.resElectronics = Variables.resElectronics - (part.requiredElectronics * Variables.tireProductionRatio);
+            }
         }
     }
 
@@ -76,11 +118,11 @@ public class Hauke
         {
             Variables.factoryCost = Variables.startFactoryCost;
         }
-        if (Variables.factoryUpgrades < 4)
+        if (Variables.factoryUpgrades < 4 && Variables.playerMoney >= Variables.factoryCost)
         {
             Variables.factoryCost = Variables.factoryCost * (1 + Variables.factoryUpgrades);
         }
-        else
+        else if (Variables.playerMoney >= Variables.factoryCost)
         {
             Variables.factoryCost = Variables.factoryCost * (1 + Variables.factoryUpgrades / 2);
         }
