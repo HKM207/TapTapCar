@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,7 +53,8 @@ public class CreateDontDestroy : MonoBehaviour
                 Variables.partTires = Variables.partTires + 100;
             }
             #endregion
-            Killian.LevelUpSystem();
+            Killian.LevelUpSystem(Variables.levelUpModifier);
+
 
             Variables.timeInSek += Time.deltaTime;
             Variables.timeInTicks = Variables.timeInSek * 4;
@@ -129,6 +130,9 @@ public class Variables
     public static int playerLevel = 1;
     public static float playerMoney;
     public static float playerExperience = 0;
+
+    public static float expNeededForLvlUp = 5000;
+    public const int levelUpModifier = 3;
 
     public static float clickMultiplier = 1;
 
