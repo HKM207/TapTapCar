@@ -53,11 +53,9 @@ public class IngameUi : MonoBehaviour
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(BuyWorker);
-            Debug.Log("buy worker ;) yes");
         }
         if (this.gameObject.name.Contains("Garage"))
         {
-            Debug.Log("BUTTON");
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(EnableGarageUI);
         }
@@ -116,9 +114,9 @@ public class IngameUi : MonoBehaviour
     {
         if (this.gameObject.name.Contains("Ui"))
         {
-            scraps.text = "Scrap: " + Mathf.RoundToInt(Variables.resScraps).ToString();
-            plastics.text = "Plastics: " + Mathf.RoundToInt(Variables.resPlastics).ToString();
-            electronics.text = "Electronics: " + Mathf.RoundToInt(Variables.resElectronics).ToString();
+            scraps.text = Mathf.RoundToInt(Variables.resScraps).ToString();
+            plastics.text = Mathf.RoundToInt(Variables.resPlastics).ToString();
+            electronics.text = Mathf.RoundToInt(Variables.resElectronics).ToString();
             money.text = "$$$: " + Mathf.RoundToInt(Variables.playerMoney).ToString();
             exp.text = "EXP: " + Mathf.RoundToInt(Variables.playerExperience).ToString();
             level.text = "Level: " + Variables.playerLevel;
