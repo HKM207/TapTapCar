@@ -43,6 +43,7 @@ public class CreateDontDestroy : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.P))
             {
                 Variables.playerMoney = Variables.playerMoney + 20000;
+                Variables.playerMoneyTotel = Variables.playerMoneyTotel + 20000;
 
                 Variables.resScraps = Variables.resScraps + 100;
                 Variables.resPlastics = Variables.resPlastics + 100;
@@ -84,6 +85,17 @@ public class CreateDontDestroy : MonoBehaviour
                 Debug.Log("clickMultiplier: " + Variables.clickMultiplier);
                 Debug.Log("Kosten: " + Variables.clickMultiplierUpgradeCosts);
                 Debug.Log("anzahl Upgrades: " + Variables.clickMultiplierUpgrades);
+            }
+
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                Hauke.ExpendingReset();
+                Debug.Log("Gems: " + Variables.playerGems);
+                Debug.Log("resets: " + Variables.totelResets);
+            }
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                Hauke.HardReset();
             }
             //-------------------Hauke-Test---------------------------------
         }
@@ -143,6 +155,11 @@ public class Variables
 
     public static int playerLevel = 1;
     public static float playerMoney;
+    //-------------------Hauke-Test---------------------------------
+    public static float playerMoneyTotel;
+    public static float playerGems;
+    public static int totelResets;
+    //-------------------Hauke-Test---------------------------------
     public static float playerExperience = 0;
 
     public static float clickMultiplier = 1;
@@ -152,9 +169,9 @@ public class Variables
     public static int frameLevel;
 
     public static float carValueMultiplier = 1;
-    public static int workerCost = 5000;
-    public static int startFactoryCost = 10000;
-    public static int factoryCost;
+    public static float workerCost = 5000;
+    public static float startFactoryCost = 10000;
+    public static float factoryCost;
     public static int factoryUpgrades = 0;
     public static int soldCars = 0;
 
@@ -179,8 +196,8 @@ public class Variables
     //-------------------Hauke-Test---------------------------------
     public static bool isResearchFacilityActiv = false;
 
-    public static int clickMultiplierUpgradeStartCosts = 2000;
-    public static int clickMultiplierUpgradeCosts;
+    public static float clickMultiplierUpgradeStartCosts = 2000;
+    public static float clickMultiplierUpgradeCosts;
     public static int clickMultiplierUpgrades;
     //-------------------Hauke-Test---------------------------------
 }

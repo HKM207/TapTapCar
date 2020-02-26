@@ -291,6 +291,7 @@ public class IngameUi : MonoBehaviour
 
             Variables.playerExperience = Variables.playerExperience + car.expValue;
             Variables.playerMoney = Variables.playerMoney + (car.moneyValue * Variables.carValueMultiplier);
+            Variables.playerMoneyTotel = Variables.playerMoneyTotel + (car.moneyValue * Variables.carValueMultiplier);
         }
     }
 }

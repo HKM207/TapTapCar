@@ -148,5 +148,99 @@ public class Hauke
             Variables.clickMultiplierUpgradeCosts = Variables.clickMultiplierUpgradeStartCosts;
         }
     }
-    //-------------------Hauke-Test---------------------------------
+
+    public static void HardReset()
+    {
+        Variables.resScraps = 0;
+        Variables.resElectronics = 0;
+        Variables.resPlastics = 0;
+
+        Variables.partEngines = 0;
+        Variables.partFrames = 0;
+        Variables.partTires = 0;
+
+        Variables.playerLevel = 1;
+        Variables.playerMoney = 0;
+        Variables.playerMoneyTotel = 0;
+        Variables.playerGems = 0;
+        Variables.totelResets = 0;
+        Variables.playerExperience = 0;
+
+        Variables.engineLevel = 0;
+        Variables.tireLevel = 0;
+        Variables.frameLevel = 0;
+
+        Variables.carValueMultiplier = 1;
+        Variables.factoryCost = Variables.startFactoryCost;
+        Variables.factoryUpgrades = 0;
+        Variables.soldCars = 0;
+
+        Variables.timeInSek = 0;
+        Variables.tickCounter = 1;
+        Variables.workerTick = 0;
+        Variables.factoryTick = 0;
+        Variables.timeInTicks = 0;
+
+        Variables.workerCost = 5000;
+        Variables.scrapYardCollectorMultiplier = Variables.startScrapYardCollectorMultiplier;
+        Variables.scrapYardCollector = 0;
+
+        Variables.engineProductionRatio = Variables.startEngineProductionRatio;
+        Variables.frameProductionRatio = Variables.startFrameProductionRatio;
+        Variables.tireProductionRatio = Variables.startTireProductionRatio;
+
+        Variables.isFactoryActiv = false;
+        Variables.isResearchFacilityActiv = false;
+
+        Variables.clickMultiplierUpgradeCosts = Variables.clickMultiplierUpgradeStartCosts;
+        Variables.clickMultiplierUpgrades = 0;
+    }
+
+    public static void ExpendingReset()
+    {
+        Variables.playerGems = Variables.playerGems + (Variables.playerMoneyTotel / 10000);
+
+        Variables.resScraps = 0;
+        Variables.resElectronics = 0;
+        Variables.resPlastics = 0;
+
+        Variables.partEngines = 0;
+        Variables.partFrames = 0;
+        Variables.partTires = 0;
+
+        Variables.playerLevel = 1;
+        Variables.playerMoney = 0;
+        Variables.playerMoneyTotel = 0;
+        Variables.totelResets++;
+        Variables.playerExperience = 0;
+
+        Variables.engineLevel = 0;
+        Variables.tireLevel = 0;
+        Variables.frameLevel = 0;
+
+        Variables.carValueMultiplier = 1;
+        Variables.factoryCost = Variables.startFactoryCost;
+        Variables.factoryUpgrades = 0;
+        Variables.soldCars = 0;
+
+        Variables.timeInSek = 0;
+        Variables.tickCounter = 1;
+        Variables.workerTick = 0;
+        Variables.factoryTick = 0;
+        Variables.timeInTicks = 0;
+
+        Variables.workerCost = 5000;
+        Variables.scrapYardCollectorMultiplier = Variables.startScrapYardCollectorMultiplier;
+        Variables.scrapYardCollector = 0;
+
+        Variables.engineProductionRatio = Variables.startEngineProductionRatio;
+        Variables.frameProductionRatio = Variables.startFrameProductionRatio;
+        Variables.tireProductionRatio = Variables.startTireProductionRatio;
+
+        Variables.isFactoryActiv = false;
+        Variables.isResearchFacilityActiv = false;
+
+        Variables.clickMultiplierUpgradeCosts = Variables.clickMultiplierUpgradeStartCosts;
+        Variables.clickMultiplierUpgrades = 0;
+    }
 }
