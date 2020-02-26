@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Gamestate
 {
-    mainMenu,
+    
     ingame
 }
 
@@ -32,7 +32,7 @@ public class CreateDontDestroy : MonoBehaviour
 
     private void Start()
     {
-        CurrentGamestate = Gamestate.mainMenu;
+        CurrentGamestate = Gamestate.ingame;
     }
 
     private void Update()
@@ -73,7 +73,7 @@ public class CreateDontDestroy : MonoBehaviour
             {
                 Hauke.Factory();
             }
-            //-------------------Hauke-Test----------Auf-Buttons-Legen!-----
+            //---------------------------Auf-Buttons-Legen!-----
             if (Input.GetKeyDown(KeyCode.R))
             {
                 Variables.isResearchFacilityActiv = true;
@@ -97,17 +97,17 @@ public class CreateDontDestroy : MonoBehaviour
             {
                 Hauke.HardReset();
             }
-            //-------------------Hauke-Test---------------------------------
+            //------------------------------------------------
         }
         SaveGame();
         Malte.EscMenu();
     }
     private void AudioManager()
     {
-        if (CurrentGamestate == Gamestate.mainMenu)
-        {
-            //play main menu music
-        }
+        //if (CurrentGamestate == Gamestate.mainMenu)
+        //{
+        //    //play main menu music
+        //}
         if (CurrentGamestate == Gamestate.ingame)
         {
             //play background music
@@ -157,11 +157,11 @@ public class Variables
 
     public static int playerLevel = 1;
     public static float playerMoney;
-    //-------------------Hauke-Test---------------------------------
+
     public static float playerMoneyTotel;
     public static float playerGems;
     public static int totelResets;
-    //-------------------Hauke-Test---------------------------------
+
     public static float playerExperience = 0;
 
     public static float expNeededForLvlUp = 5000;
@@ -198,11 +198,10 @@ public class Variables
     public static float startTireProductionRatio = 0;
 
     public static bool isFactoryActiv = false;
-    //-------------------Hauke-Test---------------------------------
+
     public static bool isResearchFacilityActiv = false;
 
     public static float clickMultiplierUpgradeStartCosts = 2000;
     public static float clickMultiplierUpgradeCosts;
     public static int clickMultiplierUpgrades;
-    //-------------------Hauke-Test---------------------------------
 }
