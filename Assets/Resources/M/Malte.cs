@@ -10,6 +10,7 @@ public class Malte
     private static string saveFileName = "save.save";
 
 
+
     #region Saving and loading
     public static void LoadNewGame()
     {
@@ -67,7 +68,7 @@ public class Malte
         if (File.Exists(path))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(path , FileMode.Open);
+            FileStream file = File.Open(path, FileMode.Open);
             SaveGame save = (SaveGame)bf.Deserialize(file);
             file.Close();
             Variables.resScraps = save.resScraps;
@@ -93,6 +94,27 @@ public class Malte
         }
     }
     #endregion
+
+    public static void EscMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Variables.isPaused = TogglePause();
+    }
+
+
+    public static bool TogglePause()
+    {
+        if (Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+            return (false);
+        }
+        else
+        {
+            Time.timeScale = 0f;
+            return (true);
+        }
+    }
 }
 
 [System.Serializable]

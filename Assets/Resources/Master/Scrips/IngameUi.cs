@@ -23,13 +23,14 @@ public class IngameUi : MonoBehaviour
     private Part testPart;
     private Car testCar;
 
+
     private void Awake()
     {
         Variables.garageUi = GameObject.FindGameObjectWithTag("GarageUI");
         Variables.partUI = GameObject.FindGameObjectWithTag("PartUI");
         Variables.carUI = GameObject.FindGameObjectWithTag("CarUI");
         Variables.factoryUI = GameObject.FindGameObjectWithTag("FactoryUI");
-        
+
     }
 
     public void Start()
@@ -109,7 +110,7 @@ public class IngameUi : MonoBehaviour
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(delegate { UpgradeFactory(3); });
-        }  
+        }
     }
     private void Update()
     {
@@ -130,6 +131,7 @@ public class IngameUi : MonoBehaviour
                 tires.text = "Tires: " + Mathf.RoundToInt(Variables.partTires).ToString();
             }
         }
+
     }
     public void EnableGarageUI()
     {
@@ -148,12 +150,11 @@ public class IngameUi : MonoBehaviour
         if (i == 0)
         {
             Variables.isFactoryActiv = true;
-
+            Hauke.FactoryCostsCalculation();
             if (Variables.playerMoney >= Variables.factoryCost)
             {
                 Variables.playerMoney = Variables.playerMoney - Variables.factoryCost;
                 Variables.engineProductionRatio = Variables.engineProductionRatio + 0.1f;
-                Hauke.FactoryCostsCalculation();
                 Variables.factoryUpgrades++;
             }
             else
@@ -164,12 +165,11 @@ public class IngameUi : MonoBehaviour
         else if(i == 1)
         {
             Variables.isFactoryActiv = true;
-
+            Hauke.FactoryCostsCalculation();
             if (Variables.playerMoney >= Variables.factoryCost)
             {
                 Variables.playerMoney = Variables.playerMoney - Variables.factoryCost;
                 Variables.frameProductionRatio = Variables.frameProductionRatio + 0.1f;
-                Hauke.FactoryCostsCalculation();
                 Variables.factoryUpgrades++;
             }
             else
@@ -180,12 +180,11 @@ public class IngameUi : MonoBehaviour
         else if (i == 2)
         {
             Variables.isFactoryActiv = true;
-
+            Hauke.FactoryCostsCalculation();
             if (Variables.playerMoney >= Variables.factoryCost)
             {
                 Variables.playerMoney = Variables.playerMoney - Variables.factoryCost;
                 Variables.tireProductionRatio = Variables.tireProductionRatio + 0.1f;
-                Hauke.FactoryCostsCalculation();
                 Variables.factoryUpgrades++;
             }
             else
@@ -294,6 +293,18 @@ public class IngameUi : MonoBehaviour
 
             Variables.playerExperience = Variables.playerExperience + car.expValue;
             Variables.playerMoney = Variables.playerMoney + (car.moneyValue * Variables.carValueMultiplier);
+            Variables.playerMoneyTotel = Variables.playerMoneyTotel + (car.moneyValue * Variables.carValueMultiplier);
+        }
+    }
+
+
+    void OnGUI()
+    {
+        if (Variables.isPaused)
+        {
+            GUILayout.Label("Game is paused!");
+            if (GUILayout.Button("Click me to unpause"))
+                Variables.isPaused = Malte.TogglePause();
         }
     }
 }

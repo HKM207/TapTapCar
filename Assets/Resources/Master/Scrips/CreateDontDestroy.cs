@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public enum Gamestate
 {
-    mainMenu,
+    
     ingame
 }
 
@@ -32,7 +32,7 @@ public class CreateDontDestroy : MonoBehaviour
 
     private void Start()
     {
-        CurrentGamestate = Gamestate.mainMenu;
+        CurrentGamestate = Gamestate.ingame;
     }
 
     private void Update()
@@ -43,6 +43,7 @@ public class CreateDontDestroy : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.P))
             {
                 Variables.playerMoney = Variables.playerMoney + 20000;
+                Variables.playerMoneyTotel = Variables.playerMoneyTotel + 20000;
 
                 Variables.resScraps = Variables.resScraps + 100;
                 Variables.resPlastics = Variables.resPlastics + 100;
@@ -53,11 +54,17 @@ public class CreateDontDestroy : MonoBehaviour
                 Variables.partTires = Variables.partTires + 100;
             }
             #endregion
-            Killian.LevelUpSystem();
-
+            Killian.LevelUpSystem(Variables.levelUpModifier);
             Variables.timeInSek += Time.deltaTime;
             Variables.timeInTicks = Variables.timeInSek * 4;
-
+            if (Variables.timeInTicks >= Variables.tickCounter && !Variables.isFactoryActiv)
+            {
+                Variables.tickCounter += 1;
+            }
+            if (Variables.timeInTicks >= Variables.tickCounter && Variables.scrapYardCollector == 0)
+            {
+                Variables.tickCounter += 1;
+            }
             if (Variables.scrapYardCollector >= 1)
             {
                 Hauke.ScrapyardWorker();
@@ -66,19 +73,41 @@ public class CreateDontDestroy : MonoBehaviour
             {
                 Hauke.Factory();
             }
-            if (Input.GetKeyDown(KeyCode.F))
+            //---------------------------Auf-Buttons-Legen!-----
+            if (Input.GetKeyDown(KeyCode.R))
             {
-                Variables.isFactoryActiv = true;
+                Variables.isResearchFacilityActiv = true;
             }
+            if (Variables.isResearchFacilityActiv)
+            {
+                Hauke.ResearchFacilityUpgradeCostCalculations();
+                Hauke.ResearchFacilityUpgrades();
+                Debug.Log("clickMultiplier: " + Variables.clickMultiplier);
+                Debug.Log("Kosten: " + Variables.clickMultiplierUpgradeCosts);
+                Debug.Log("anzahl Upgrades: " + Variables.clickMultiplierUpgrades);
+            }
+
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                Hauke.ExpendingReset();
+                Debug.Log("Gems: " + Variables.playerGems);
+                Debug.Log("resets: " + Variables.totelResets);
+            }
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                Hauke.HardReset();
+            }
+            //------------------------------------------------
         }
         SaveGame();
+        Malte.EscMenu();
     }
     private void AudioManager()
     {
-        if (CurrentGamestate == Gamestate.mainMenu)
-        {
-            //play main menu music
-        }
+        //if (CurrentGamestate == Gamestate.mainMenu)
+        //{
+        //    //play main menu music
+        //}
         if (CurrentGamestate == Gamestate.ingame)
         {
             //play background music
@@ -111,12 +140,12 @@ public class CreateDontDestroy : MonoBehaviour
 public class Variables
 {
     public static bool isIngame = false;
+    public static bool isPaused = false;
 
     public static GameObject partUI;
     public static GameObject carUI;
     public static GameObject factoryUI;
     public static GameObject garageUi;
-
 
     public static float resScraps;
     public static float resElectronics;
@@ -128,7 +157,15 @@ public class Variables
 
     public static int playerLevel = 1;
     public static float playerMoney;
+
+    public static float playerMoneyTotel;
+    public static float playerGems;
+    public static int totelResets;
+
     public static float playerExperience = 0;
+
+    public static float expNeededForLvlUp = 5000;
+    public const int levelUpModifier = 3;
 
     public static float clickMultiplier = 1;
 
@@ -137,15 +174,16 @@ public class Variables
     public static int frameLevel;
 
     public static float carValueMultiplier = 1;
-    public static int workerCost = 5000;
-    public static int startFactoryCost = 10000;
-    public static int factoryCost;
+    public static float workerCost = 5000;
+    public static float startFactoryCost = 10000;
+    public static float factoryCost;
     public static int factoryUpgrades = 0;
     public static int soldCars = 0;
 
-
     public static float timeInSek;
     public static int tickCounter = 1;
+    public static int workerTick = 0;
+    public static int factoryTick = 0;
     public static float timeInTicks;
 
     public static float scrapYardCollectorMultiplier;
@@ -158,5 +196,12 @@ public class Variables
     public static float startEngineProductionRatio = 0;
     public static float startFrameProductionRatio = 0;
     public static float startTireProductionRatio = 0;
+
     public static bool isFactoryActiv = false;
+
+    public static bool isResearchFacilityActiv = false;
+
+    public static float clickMultiplierUpgradeStartCosts = 2000;
+    public static float clickMultiplierUpgradeCosts;
+    public static int clickMultiplierUpgrades;
 }
