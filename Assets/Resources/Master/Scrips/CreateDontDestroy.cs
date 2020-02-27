@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum Gamestate
 {
-    
+
     ingame
 }
 
@@ -38,6 +38,9 @@ public class CreateDontDestroy : MonoBehaviour
 
     private void Update()
     {
+
+
+
         if (CurrentGamestate == Gamestate.ingame)
         {
             #region cheats
@@ -137,6 +140,7 @@ public class CreateDontDestroy : MonoBehaviour
         }
     }
     #endregion
+
 }
 public class Variables
 {
@@ -147,6 +151,7 @@ public class Variables
     public static GameObject carUI;
     public static GameObject factoryUI;
     public static GameObject garageUi;
+    public static GameObject mainUI;
 
     //-----------------Hauke-Test-----------------------
     public static GameObject mainUI;
