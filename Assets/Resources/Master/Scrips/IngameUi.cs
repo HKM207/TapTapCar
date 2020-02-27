@@ -30,7 +30,6 @@ public class IngameUi : MonoBehaviour
         Variables.partUI = GameObject.FindGameObjectWithTag("PartUI");
         Variables.carUI = GameObject.FindGameObjectWithTag("CarUI");
         Variables.factoryUI = GameObject.FindGameObjectWithTag("FactoryUI");
-        Variables.mainUI = GameObject.FindGameObjectWithTag("MainUI");
 
         //-----------------Hauke-Test-----------------------
         Variables.mainUI = GameObject.FindGameObjectWithTag("MainUI");

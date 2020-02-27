@@ -151,7 +151,6 @@ public class Variables
     public static GameObject carUI;
     public static GameObject factoryUI;
     public static GameObject garageUi;
-    public static GameObject mainUI;
 
     //-----------------Hauke-Test-----------------------
     public static GameObject mainUI;
