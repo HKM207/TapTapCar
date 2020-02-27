@@ -30,6 +30,7 @@ public class IngameUi : MonoBehaviour
         Variables.partUI = GameObject.FindGameObjectWithTag("PartUI");
         Variables.carUI = GameObject.FindGameObjectWithTag("CarUI");
         Variables.factoryUI = GameObject.FindGameObjectWithTag("FactoryUI");
+        Variables.mainUI = GameObject.FindGameObjectWithTag("MainUI");
 
     }
 
@@ -157,7 +158,7 @@ public class IngameUi : MonoBehaviour
             }
             else
             {
-                Debug.Log("kein geld für fabrik");
+                IngameUi.DisplayDialogBox("kein geld für fabrik", "Error");
             }
         }
         else if(i == 1)
@@ -303,6 +304,69 @@ public class IngameUi : MonoBehaviour
             GUILayout.Label("Game is paused!");
             if (GUILayout.Button("Click me to unpause"))
                 Variables.isPaused = Malte.TogglePause();
+        }
+    }
+
+    public static bool DisplayDialogBox(string message, string author)
+    {
+        GameObject DialogPrefab;
+        GameObject DialogGo;
+        Text DialogMessage = null;
+        Text DialogAuthor = null;
+        Button DialogOK = null;
+        DialogPrefab = Resources.Load<GameObject>("Master/Prefabs/DialogPrefab");
+        if (DialogPrefab != null)
+        {
+            DialogGo = Instantiate(DialogPrefab);
+            DialogGo.transform.position = Variables.mainUI.transform.position;
+
+            DialogGo.transform.SetParent(Variables.mainUI.transform);
+
+            Transform[] transformArray = DialogGo.GetComponentsInChildren<Transform>();
+            if (transformArray == null)
+            {
+                Debug.Log("failed finding children of dialog text");
+                return false;
+            }
+            else
+            {
+                foreach (Transform item in transformArray)
+                {
+                    if (item != null && item.gameObject != null)
+                    {
+                        if (item.gameObject.name == "message")
+                        {
+                            DialogMessage = item.gameObject.GetComponent<Text>();
+                        }
+                        else if(item.gameObject.name == "author")
+                        {
+                            DialogAuthor = item.gameObject.GetComponent<Text>();
+                        }
+                        else if(item.gameObject.name == "ok")
+                        {
+                            DialogOK = item.gameObject.GetComponent<Button>();
+                        }
+                    }
+                }
+                if (DialogMessage != null && DialogAuthor != null && DialogOK != null)
+                {
+                    DialogMessage.text = message;
+                    DialogAuthor.text = author;
+                    DialogOK.onClick.AddListener(delegate { Destroy(DialogGo, 0.1f); });
+                    return true;
+                }
+                else
+                {
+                    Debug.Log("failed to find message or author");
+                    return false;
+                }
+
+            }
+        }
+        else
+        {
+            Debug.Log("didn't find dialog prefab in Master/Prefabs/DialogPrefab");
+            return false;
         }
     }
 }
