@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum Gamestate
 {
@@ -146,6 +147,15 @@ public class Variables
     public static GameObject carUI;
     public static GameObject factoryUI;
     public static GameObject garageUi;
+
+    //-----------------Hauke-Test-----------------------
+    public static GameObject mainUI;
+    public static Vector3 scrapyardPosition;
+    public static Image scrapDisplay;
+    public static Image electronicsDisplay;
+    public static Image plasticsDisplay;
+    public static Text displayText;
+    //-----------------Hauke-Test-----------------------
 
     public static float resScraps;
     public static float resElectronics;

@@ -31,15 +31,23 @@ public class IngameUi : MonoBehaviour
         Variables.carUI = GameObject.FindGameObjectWithTag("CarUI");
         Variables.factoryUI = GameObject.FindGameObjectWithTag("FactoryUI");
 
+        //-----------------Hauke-Test-----------------------
+        Variables.mainUI = GameObject.FindGameObjectWithTag("MainUI");
+        Variables.scrapDisplay = Resources.Load<Image>("Prefabs/ScrapImage");
+        Variables.electronicsDisplay = Resources.Load<Image>("Prefabs/ElectronicsImage");
+        Variables.plasticsDisplay = Resources.Load<Image>("Prefabs/PlasticsImage");
+        Variables.displayText = Resources.Load<Text>("Prefabs/DisplayText");
+        //-----------------Hauke-Test-----------------------
     }
 
     public void Start()
-    {   
+    {
         //SWITCHCASE
         if (this.gameObject.name.Contains("Scrapyard"))
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(Hauke.ScrapyardClick);
+            Variables.scrapyardPosition = this.gameObject.transform.position;
         }
         if (this.gameObject.name.Contains("Background"))
         {
@@ -65,14 +73,14 @@ public class IngameUi : MonoBehaviour
             button.onClick.AddListener(EnableFactoryUI);
         }
         if (this.gameObject.name.Contains("autoteil"))
-        { 
+        {
             button = this.gameObject.GetComponent<Button>();
             testPart = new Part(SortOfPart.Engine);
             button.onClick.AddListener(delegate { BuyPart(testPart); });
         }
         for (int i = 1; i <= 3; i++)
         {
-            if (this.gameObject.name.Contains("wagen"+i))
+            if (this.gameObject.name.Contains("wagen" + i))
             {   //BUY CAR
                 button = this.gameObject.GetComponent<Button>();
                 testCar = new Car(button, i);
@@ -129,8 +137,48 @@ public class IngameUi : MonoBehaviour
                 tires.text = "Tires: " + Mathf.RoundToInt(Variables.partTires).ToString();
             }
         }
-
     }
+
+    //-----------------Hauke-Test-----------------------
+    public static void DisplayScrapClick()
+    {
+        Image scrap;
+        Text text;
+        scrap = Instantiate(Variables.scrapDisplay);
+        scrap.gameObject.transform.SetParent(Variables.mainUI.transform);
+        scrap.transform.position = Variables.scrapyardPosition + new Vector3(Random.Range(-175, 175), Random.Range(-175, 175), 0);
+        text = Instantiate(Variables.displayText);
+        text.gameObject.transform.SetParent(Variables.mainUI.transform);
+        text.transform.position = scrap.transform.position + new Vector3(0, 125, 0);
+        text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
+    }
+    public static void DisplayElectronicClick()
+    {
+        Image electronic;
+        Text text;
+        electronic = Instantiate(Variables.electronicsDisplay);
+        electronic.gameObject.transform.SetParent(Variables.mainUI.transform);
+        electronic.transform.position = Variables.scrapyardPosition;
+        electronic.transform.position = Variables.scrapyardPosition + new Vector3(Random.Range(-175, 175), Random.Range(-175, 175), 0);
+        text = Instantiate(Variables.displayText);
+        text.gameObject.transform.SetParent(Variables.mainUI.transform);
+        text.transform.position = electronic.transform.position + new Vector3(-125, 125, 0);
+        text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
+    }
+    public static void DisplayPlasticsClick()
+    {
+        Image plastics;
+        Text text;
+        plastics = Instantiate(Variables.plasticsDisplay);
+        plastics.gameObject.transform.SetParent(Variables.mainUI.transform);
+        plastics.transform.position = Variables.scrapyardPosition + new Vector3(Random.Range(-175, 175), Random.Range(-175, 175), 0);
+        text = Instantiate(Variables.displayText);
+        text.gameObject.transform.SetParent(Variables.mainUI.transform);
+        text.transform.position = plastics.transform.position + new Vector3(125, 125, 0);
+        text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
+    }
+    //-----------------Hauke-Test-----------------------
+
     public void EnableGarageUI()
     {
         if (!Variables.garageUi.activeSelf)
@@ -160,7 +208,7 @@ public class IngameUi : MonoBehaviour
                 Debug.Log("kein geld für fabrik");
             }
         }
-        else if(i == 1)
+        else if (i == 1)
         {
             Variables.isFactoryActiv = true;
             Hauke.FactoryCostsCalculation();
@@ -190,11 +238,11 @@ public class IngameUi : MonoBehaviour
                 Debug.Log("kein geld für fabrik");
             }
         }
-        else if( i == 3)
+        else if (i == 3)
         {
             //car++
         }
-        else 
+        else
         {
             Debug.Log("error 2 many buttonss");
         }

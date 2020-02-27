@@ -8,6 +8,8 @@ TagManager:
   - PartUI
   - CarUI
   - FactoryUI
+  - DisplayUI
+  - MainUI
   layers:
   - Default
   - TransparentFX
