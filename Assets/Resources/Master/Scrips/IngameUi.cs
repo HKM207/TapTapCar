@@ -19,10 +19,8 @@ public class IngameUi : MonoBehaviour
     public Text frames;
     public Text tires;
 
-
     private Part testPart;
     private Car testCar;
-
 
     private void Awake()
     {
@@ -37,11 +35,15 @@ public class IngameUi : MonoBehaviour
         Variables.electronicsDisplay = Resources.Load<Image>("Prefabs/ElectronicsImage");
         Variables.plasticsDisplay = Resources.Load<Image>("Prefabs/PlasticsImage");
         Variables.displayText = Resources.Load<Text>("Prefabs/DisplayText");
-        //-----------------Hauke-Test-----------------------
+        //-----------------Hauke-Neu------------------------
+        Variables.researchfacilityUI = Resources.Load<Button>("Prefabs/ResearchFacility");
+        Variables.researchfacilityShop = Resources.Load<Image>("Prefabs/FacilityShop");
+        //-----------------Hauke-Test-----------------------       
     }
 
     public void Start()
     {
+        #region Buttons
         //SWITCHCASE
         if (this.gameObject.name.Contains("Scrapyard"))
         {
@@ -81,7 +83,7 @@ public class IngameUi : MonoBehaviour
         for (int i = 1; i <= 3; i++)
         {
             if (this.gameObject.name.Contains("wagen" + i))
-            {   //BUY CAR
+            {
                 button = this.gameObject.GetComponent<Button>();
                 testCar = new Car(button, i);
                 button.onClick.AddListener(delegate { BuyCar(testCar); });
@@ -117,6 +119,12 @@ public class IngameUi : MonoBehaviour
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(delegate { UpgradeFactory(3); });
         }
+        if (this.gameObject.name.Contains("ResearchFacility"))
+        {
+            button = this.gameObject.GetComponent<Button>();
+            button.onClick.AddListener(EnableResearchFacilityUI);
+        }
+        #endregion Buttons
     }
     private void Update()
     {
@@ -176,6 +184,29 @@ public class IngameUi : MonoBehaviour
         text.gameObject.transform.SetParent(Variables.mainUI.transform);
         text.transform.position = plastics.transform.position + new Vector3(125, 125, 0);
         text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
+    }
+
+    public void EnableResearchFacilityUI()
+    {
+        if (!Variables.shopUI.gameObject.activeSelf)
+        {
+            Variables.shopUI.gameObject.SetActive(true);
+        }
+        else
+        {
+            Variables.shopUI.gameObject.SetActive(false);
+        }
+    }
+    public void DisableResearchFacilityUI()
+    {
+        if (Variables.shopUI.gameObject.activeSelf)
+        {
+            Variables.shopUI.gameObject.SetActive(false);
+        }
+        else
+        {
+            Variables.shopUI.gameObject.SetActive(true);
+        }
     }
     //-----------------Hauke-Test-----------------------
 
@@ -385,11 +416,11 @@ public class IngameUi : MonoBehaviour
                         {
                             DialogMessage = item.gameObject.GetComponent<Text>();
                         }
-                        else if(item.gameObject.name == "author")
+                        else if (item.gameObject.name == "author")
                         {
                             DialogAuthor = item.gameObject.GetComponent<Text>();
                         }
-                        else if(item.gameObject.name == "ok")
+                        else if (item.gameObject.name == "ok")
                         {
                             DialogOK = item.gameObject.GetComponent<Button>();
                         }

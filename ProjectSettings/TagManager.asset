@@ -10,6 +10,7 @@ TagManager:
   - FactoryUI
   - DisplayUI
   - MainUI
+  - ReearchFacilityUI
   layers:
   - Default
   - TransparentFX
