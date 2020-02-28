@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rootcars>
+<car>
+  <name></name>
+  <level></level>
+  <expValue></expValue>
+  <moneyValue></moneyValue>
+  <reqEngines></reqEngines>
+  <reqTires></reqTires>
+  <reqFrames></reqFrames>
+</car>
+<car>
+  <name></name>
+  <level></level>
+  <expValue></expValue>
+  <moneyValue></moneyValue>
+  <reqEngines></reqEngines>
+  <reqTires></reqTires>
+  <reqFrames></reqFrames>
+</car>
+</Rootcars>
