@@ -1,0 +1,20 @@
+[
+  {
+    "name": "car1",
+    "level": "1",
+    "expValue": "",
+    "moneyValue": "500",
+    "reqEngines": "",
+    "reqTires": "",
+    "reqFrames": ""
+  },
+  {
+    "name": "carLEVEL5",
+    "level": "5",
+    "expValue": "",
+    "moneyValue": "12345",
+    "reqEngines": "",
+    "reqTires": "",
+    "reqFrames": ""
+  }
+]

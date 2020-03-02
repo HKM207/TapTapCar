@@ -25,7 +25,7 @@ public class IngameUi : MonoBehaviour
 
 
     private void Awake()
-    {
+    {//wird das jedesmal ausgeführt??
         Variables.garageUi = GameObject.FindGameObjectWithTag("GarageUI");
         Variables.partUI = GameObject.FindGameObjectWithTag("PartUI");
         Variables.carUI = GameObject.FindGameObjectWithTag("CarUI");
@@ -75,7 +75,7 @@ public class IngameUi : MonoBehaviour
             if (this.gameObject.name.Contains("wagen"+i))
             {   //BUY CAR
                 button = this.gameObject.GetComponent<Button>();
-                testCar = new Car(button, i);
+                testCar = new Car(i);
                 button.onClick.AddListener(delegate { BuyCar(testCar); });
             }
         }
@@ -282,7 +282,7 @@ public class IngameUi : MonoBehaviour
         if (Variables.partEngines >= car.requiredEngines &&
             Variables.partFrames >= car.requiredFrames &&
             Variables.partTires >= car.requiredTires &&
-            Variables.playerLevel >= car.requiredLevel)
+            Variables.playerLevel >= car.level)
         {
             Variables.soldCars++;
             Variables.partEngines = Variables.partEngines - car.requiredEngines;
