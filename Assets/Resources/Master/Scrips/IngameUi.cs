@@ -28,13 +28,14 @@ public class IngameUi : MonoBehaviour
         Variables.partUI = GameObject.FindGameObjectWithTag("PartUI");
         Variables.carUI = Resources.Load<GameObject>("Prefabs/CarUIElementPrefab");
         Variables.factoryUI = GameObject.FindGameObjectWithTag("FactoryUI");
+        Variables.scrollListCars = GameObject.Find("CarUIScrollListContents");
 
         //-----------------Hauke-Test-----------------------
         Variables.mainUI = GameObject.FindGameObjectWithTag("MainUI");
         Variables.scrapDisplay = Resources.Load<Image>("Prefabs/ScrapImage");
         Variables.electronicsDisplay = Resources.Load<Image>("Prefabs/ElectronicsImage");
         Variables.plasticsDisplay = Resources.Load<Image>("Prefabs/PlasticsImage");
-        Variables.displayText = Resources.Load<Text>("Prefabs/DisplayText");  
+        Variables.displayText = Resources.Load<Text>("Prefabs/DisplayText");
     }
 
     public void Start()
@@ -60,7 +61,7 @@ public class IngameUi : MonoBehaviour
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(BuyWorker);
         }
-        if (this.gameObject.name.Contains("Garage"))
+        if (this.gameObject.name.Contains("Garage(Clone)"))
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(EnableGarageUI);
@@ -72,12 +73,12 @@ public class IngameUi : MonoBehaviour
                 {
 
                     //SN: Create the Car UI Elements together with the cars.
-                    GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hängen.
+                    //GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hängen.
                     GameObject element;
-                    if (scrollListCars != null)
+                    if (Variables.scrollListCars != null)
                     {
                         element = Instantiate(Variables.carUI);
-                        element.transform.SetParent(scrollListCars.transform);
+                        element.transform.SetParent(Variables.scrollListCars.transform);
                         element.GetComponent<CarElement>().SetCarInfos(car);
                     }
                     else

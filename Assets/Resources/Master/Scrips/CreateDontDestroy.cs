@@ -141,6 +141,7 @@ public class CreateDontDestroy : MonoBehaviour
 }
 public class Variables
 {
+    public static GameObject scrollListCars;
     public static Car[] cars;
 
     public static bool isIngame = false;
