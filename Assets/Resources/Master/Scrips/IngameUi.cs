@@ -34,11 +34,7 @@ public class IngameUi : MonoBehaviour
         Variables.scrapDisplay = Resources.Load<Image>("Prefabs/ScrapImage");
         Variables.electronicsDisplay = Resources.Load<Image>("Prefabs/ElectronicsImage");
         Variables.plasticsDisplay = Resources.Load<Image>("Prefabs/PlasticsImage");
-        Variables.displayText = Resources.Load<Text>("Prefabs/DisplayText");
-        //-----------------Hauke-Neu------------------------
-        Variables.researchfacilityUI = Resources.Load<Button>("Prefabs/ResearchFacility");
-        Variables.researchfacilityShop = Resources.Load<Image>("Prefabs/FacilityShop");
-        //-----------------Hauke-Test-----------------------       
+        Variables.displayText = Resources.Load<Text>("Prefabs/DisplayText");  
     }
 
     public void Start()
@@ -122,13 +118,13 @@ public class IngameUi : MonoBehaviour
         if (this.gameObject.name.Contains("ResearchFacility"))
         {
             button = this.gameObject.GetComponent<Button>();
-            button.onClick.AddListener(EnableResearchFacilityUI);
+            //button.onClick.AddListener(EnableResearchFacilityUI);
         }
         #endregion Buttons
     }
     private void Update()
     {
-        if (this.gameObject.name.Contains("Ui"))
+        if (this.gameObject.name.Contains("UI"))
         {
             scraps.text = Mathf.RoundToInt(Variables.resScraps).ToString();
             plastics.text = Mathf.RoundToInt(Variables.resPlastics).ToString();
@@ -186,28 +182,28 @@ public class IngameUi : MonoBehaviour
         text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
     }
 
-    public void EnableResearchFacilityUI()
-    {
-        if (!Variables.shopUI.gameObject.activeSelf)
-        {
-            Variables.shopUI.gameObject.SetActive(true);
-        }
-        else
-        {
-            Variables.shopUI.gameObject.SetActive(false);
-        }
-    }
-    public void DisableResearchFacilityUI()
-    {
-        if (Variables.shopUI.gameObject.activeSelf)
-        {
-            Variables.shopUI.gameObject.SetActive(false);
-        }
-        else
-        {
-            Variables.shopUI.gameObject.SetActive(true);
-        }
-    }
+    //public void EnableResearchFacilityUI()
+    //{
+    //    if (!Variables.shopUI.gameObject.activeSelf)
+    //    {
+    //        Variables.shopUI.gameObject.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        Variables.shopUI.gameObject.SetActive(false);
+    //    }
+    //}
+    //public void DisableResearchFacilityUI()
+    //{
+    //    if (Variables.shopUI.gameObject.activeSelf)
+    //    {
+    //        Variables.shopUI.gameObject.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        Variables.shopUI.gameObject.SetActive(true);
+    //    }
+    //}
     //-----------------Hauke-Test-----------------------
 
     public void EnableGarageUI()
@@ -392,7 +388,7 @@ public class IngameUi : MonoBehaviour
         Text DialogMessage = null;
         Text DialogAuthor = null;
         Button DialogOK = null;
-        DialogPrefab = Resources.Load<GameObject>("Master/Prefabs/DialogPrefab");
+        DialogPrefab = Resources.Load<GameObject>("Prefabs/DialogPrefab");
         if (DialogPrefab != null)
         {
             DialogGo = Instantiate(DialogPrefab);

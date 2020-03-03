@@ -29,7 +29,6 @@ public class CreateDontDestroy : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
         //Prefabs Instantiaten!
-        ActivateResearchFacility();
     }
 
     private void Start()
@@ -115,20 +114,6 @@ public class CreateDontDestroy : MonoBehaviour
             //play background music
         }
     }
-    public static void ActivateResearchFacility()
-    {
-        Button researchfacility;
-        researchfacility = Instantiate(Variables.researchfacilityUI);
-        researchfacility.gameObject.transform.SetParent(Variables.mainUI.transform);
-        researchfacility.transform.position = Variables.mainUI.transform.position + new Vector3(0, -200, 0);
-
-        Debug.Log("opened Research");
-        Variables.shopUI = Instantiate(Variables.researchfacilityShop);
-        Variables.shopUI.gameObject.transform.SetParent(Variables.mainUI.transform);
-        Variables.shopUI.gameObject.transform.position = Variables.mainUI.transform.position;
-        Variables.shopUI.gameObject.SetActive(false);
-    }
-
 
     #region Save
     public void NewGame()
@@ -163,10 +148,7 @@ public class Variables
     public static GameObject carUI;
     public static GameObject factoryUI;
     public static GameObject garageUi;
-    //-----------------Hauke-Neu------------------------
-    public static Button researchfacilityUI;
-    public static Image researchfacilityShop;
-    public static Image shopUI;
+
     //-----------------Hauke-Test-----------------------
     public static GameObject mainUI;
     public static Vector3 scrapyardPosition;
