@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class IngameUi : MonoBehaviour
 {
     private Button button;
-
     public Text scraps;
     public Text electronics;
     public Text plastics;
@@ -14,23 +13,19 @@ public class IngameUi : MonoBehaviour
     public Text exp;
     public Text level;
     public Text selledCars;
-
     public Text engines;
     public Text frames;
     public Text tires;
-
     private Part testPart;
     private Car testCar;
-
     private void Awake()
-    {//wird das jedesmal ausgeführt??
+    {
         Variables.garageUi = GameObject.FindGameObjectWithTag("GarageUI");
         Variables.partUI = GameObject.FindGameObjectWithTag("PartUI");
         Variables.carUI = Resources.Load<GameObject>("Prefabs/CarUIElementPrefab");
         Variables.factoryUI = GameObject.FindGameObjectWithTag("FactoryUI");
         Variables.scrollListCars = GameObject.Find("CarUIScrollListContents");
 
-        //-----------------Hauke-Test-----------------------
         Variables.mainUI = GameObject.FindGameObjectWithTag("MainUI");
         Variables.scrapDisplay = Resources.Load<Image>("Prefabs/ScrapImage");
         Variables.electronicsDisplay = Resources.Load<Image>("Prefabs/ElectronicsImage");
@@ -66,12 +61,10 @@ public class IngameUi : MonoBehaviour
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(EnableGarageUI);
 
-
             if (Variables.cars != null) // Das hier muss die Liste der Cars einlesen und für jedes Car ein Element instantiaten und das Car da rein übergeben.
             {
                 foreach (Car car in Variables.cars)
                 {
-
                     //SN: Create the Car UI Elements together with the cars.
                     //GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hängen.
                     GameObject element;
@@ -86,8 +79,6 @@ public class IngameUi : MonoBehaviour
                         Debug.Log("ScrollList Not Found ");
                     }
                 }
-
-
                 //if (this.gameObject.name.Contains("Craft"+i))
                 //{   //BUY CAR
                 //    //button = this.gameObject.GetComponent<Button>(); 
@@ -177,8 +168,6 @@ public class IngameUi : MonoBehaviour
             }
         }
     }
-
-    //-----------------Hauke-Test-----------------------
     public static void DisplayScrapClick()
     {
         Image scrap;
@@ -216,7 +205,6 @@ public class IngameUi : MonoBehaviour
         text.transform.position = plastics.transform.position + new Vector3(125, 125, 0);
         text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
     }
-
     //public void EnableResearchFacilityUI()
     //{
     //    if (!Variables.shopUI.gameObject.activeSelf)
@@ -239,8 +227,6 @@ public class IngameUi : MonoBehaviour
     //        Variables.shopUI.gameObject.SetActive(true);
     //    }
     //}
-    //-----------------Hauke-Test-----------------------
-
     public void EnableGarageUI()
     {
         if (!Variables.garageUi.activeSelf)
@@ -404,8 +390,6 @@ public class IngameUi : MonoBehaviour
             Variables.playerMoneyTotel = Variables.playerMoneyTotel + (car.moneyValue * Variables.carValueMultiplier);
         }
     }
-
-
     void OnGUI()
     {
         if (Variables.isPaused)
@@ -415,7 +399,6 @@ public class IngameUi : MonoBehaviour
                 Variables.isPaused = Malte.TogglePause();
         }
     }
-
     public static bool DisplayDialogBox(string message, string author)
     {
         GameObject DialogPrefab;
@@ -469,7 +452,6 @@ public class IngameUi : MonoBehaviour
                     Debug.Log("failed to find message or author");
                     return false;
                 }
-
             }
         }
         else
