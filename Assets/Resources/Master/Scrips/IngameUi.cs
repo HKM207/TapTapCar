@@ -23,10 +23,10 @@ public class IngameUi : MonoBehaviour
     private Car testCar;
 
     private void Awake()
-    {
+    {//wird das jedesmal ausgeführt??
         Variables.garageUi = GameObject.FindGameObjectWithTag("GarageUI");
         Variables.partUI = GameObject.FindGameObjectWithTag("PartUI");
-        Variables.carUI = GameObject.FindGameObjectWithTag("CarUI");
+        Variables.carUI = Resources.Load<GameObject>("Prefabs/CarUIElementPrefab");
         Variables.factoryUI = GameObject.FindGameObjectWithTag("FactoryUI");
 
         //-----------------Hauke-Test-----------------------
@@ -64,6 +64,40 @@ public class IngameUi : MonoBehaviour
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(EnableGarageUI);
+
+
+            if (Variables.cars != null) // Das hier muss die Liste der Cars einlesen und für jedes Car ein Element instantiaten und das Car da rein übergeben.
+            {
+                foreach (Car car in Variables.cars)
+                {
+
+                    //SN: Create the Car UI Elements together with the cars.
+                    GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hängen.
+                    GameObject element;
+                    if (scrollListCars != null)
+                    {
+                        element = Instantiate(Variables.carUI);
+                        element.transform.SetParent(scrollListCars.transform);
+                        element.GetComponent<CarElement>().SetCarInfos(car);
+                    }
+                    else
+                    {
+                        Debug.Log("ScrollList Not Found ");
+                    }
+                }
+
+
+                //if (this.gameObject.name.Contains("Craft"+i))
+                //{   //BUY CAR
+                //    //button = this.gameObject.GetComponent<Button>(); 
+                //    testCar = new Car(i);
+                //    // button.onClick.AddListener(() => { BuyCar(testCar); }); // statt "delegate" habe ich eine anonyme function genommen, damit es nach profi aussieht.
+                //}
+            }
+            else
+            {
+                Debug.Log("Cars not read");
+            }
         }
         if (this.gameObject.name.Contains("Factory"))
         {
@@ -81,7 +115,7 @@ public class IngameUi : MonoBehaviour
             if (this.gameObject.name.Contains("wagen" + i))
             {
                 button = this.gameObject.GetComponent<Button>();
-                testCar = new Car(button, i);
+                testCar = new Car(i);
                 button.onClick.AddListener(delegate { BuyCar(testCar); });
             }
         }
@@ -357,7 +391,7 @@ public class IngameUi : MonoBehaviour
         if (Variables.partEngines >= car.requiredEngines &&
             Variables.partFrames >= car.requiredFrames &&
             Variables.partTires >= car.requiredTires &&
-            Variables.playerLevel >= car.requiredLevel)
+            Variables.playerLevel >= car.level)
         {
             Variables.soldCars++;
             Variables.partEngines = Variables.partEngines - car.requiredEngines;

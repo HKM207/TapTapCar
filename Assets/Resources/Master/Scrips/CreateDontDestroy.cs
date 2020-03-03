@@ -141,6 +141,8 @@ public class CreateDontDestroy : MonoBehaviour
 }
 public class Variables
 {
+    public static Car[] cars;
+
     public static bool isIngame = false;
     public static bool isPaused = false;
 
