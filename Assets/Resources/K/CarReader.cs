@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class JsonReader : MonoBehaviour {
+public class CarReader : MonoBehaviour {
 
     string jsonString;
     public TextAsset jsonTextAsset;
-    public static Car[] cars;
-
-
-
+    
+    
     void Start()
     {
         ReadData();
@@ -19,16 +17,16 @@ public class JsonReader : MonoBehaviour {
     private void ReadData()
     {
         jsonString = jsonTextAsset.text;
-        cars = JsonHelper.getJsonArray<Car>(jsonString);
+        Variables.cars = JsonHelper.getJsonArray<Car>(jsonString);
 
-        //*****access to all attributes of the json objects(cars)******//
-        foreach (Car c in cars)
+        if (Variables.cars != null)
         {
-            
-            Debug.Log(c.level);
-            Debug.Log(c.name +": "+c.moneyValue);
+            Debug.Log("Cars succesfully read");
         }
-        //*****access to all attributes of the json objects(cars)******//
+        else
+        {
+            Debug.Log("Cars not read");
+        }
     }
 
 

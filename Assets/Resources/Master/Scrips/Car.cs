@@ -17,25 +17,26 @@ public class Car
     public int requiredTires = 4;
     public int requiredFrames = 2;
 
-    public Button button;
-
-    public Car() //WIRD IM JSONREADER AUFGERUFEN
+   
+    public Car()
     {
-        Debug.Log(this.name + " KONSTR");
+        //SetValues();
     }
     public Car(int _level)
     {
         this.level = _level;
+        SetValues();
+    }
 
+    public void SetValues()
+    {
         //Balancing
         this.moneyValue = this.moneyValue * this.level;
         this.expValue = this.expValue * this.level;
         this.requiredEngines = this.requiredEngines * this.level;
         this.requiredTires = this.requiredTires * this.level;
         this.requiredFrames = this.requiredFrames * this.level;
+
     }
-
-
-
 
 }
