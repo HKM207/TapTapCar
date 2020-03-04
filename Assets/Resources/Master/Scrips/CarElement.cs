@@ -26,17 +26,10 @@ public class CarElement : MonoBehaviour
     UnityAction upgradeCarMethodCall;
     Car car;
 
-
-    // Use this for initialization
     void Start ()
     {
         sellCarMethodCall += SellCar;
         btnSellCar.onClick.AddListener(sellCarMethodCall);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
     public void SetCarInfos(Car car)

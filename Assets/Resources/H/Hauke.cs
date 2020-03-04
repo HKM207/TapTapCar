@@ -10,17 +10,17 @@ public class Hauke
         int[] dropchances = new int[2] { 65, 85 };
 
         Variables.resScraps = Variables.resScraps + (1 * Variables.clickMultiplier);
-        IngameUi.DisplayScrapClick();
+        Scrapyard.DisplayScrapClick();
 
         if (random >= dropchances[0])
         {
             Variables.resPlastics = Variables.resPlastics + (1 * Variables.clickMultiplier);
-            IngameUi.DisplayElectronicClick();
+            Scrapyard.DisplayElectronicClick();
         }
         if (random >= dropchances[1])
         {
             Variables.resElectronics = Variables.resElectronics + (1 * Variables.clickMultiplier);
-            IngameUi.DisplayPlasticsClick();
+            Scrapyard.DisplayPlasticsClick();
         }
     }
 

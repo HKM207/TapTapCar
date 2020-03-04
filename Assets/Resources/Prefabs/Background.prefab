@@ -174,6 +174,7 @@ GameObject:
   - component: {fileID: 224334707385164800}
   - component: {fileID: 222841611312819852}
   - component: {fileID: 114890785056516560}
+  - component: {fileID: 114317269444434290}
   - component: {fileID: 114791989588135326}
   - component: {fileID: 114000795674024794}
   m_Layer: 5
@@ -349,6 +350,24 @@ MonoBehaviour:
   m_Text: '0 xp / 1000 xp
 
 '
+--- !u!114 &114317269444434290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920072162714726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac137a26426fc53458618948c79d606f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scraps: {fileID: 114700390164635458}
+  electronics: {fileID: 114876710497045956}
+  plastics: {fileID: 114840598738840994}
+  money: {fileID: 114251785302909304}
+  xp: {fileID: 114311167075596614}
+  level: {fileID: 114182988796528608}
+  soldCars: {fileID: 114481270871313058}
 --- !u!114 &114481270871313058
 MonoBehaviour:
   m_ObjectHideFlags: 1

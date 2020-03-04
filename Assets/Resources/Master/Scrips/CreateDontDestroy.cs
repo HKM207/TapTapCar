@@ -12,7 +12,6 @@ public class CreateDontDestroy : MonoBehaviour
 {
     private GameObject logic;
     private static CreateDontDestroy instance;
-
     public static Gamestate CurrentGamestate;
     public static bool isNewGame = true;
 
@@ -28,14 +27,11 @@ public class CreateDontDestroy : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
-        //Prefabs Instantiaten!
     }
-
     private void Start()
     {
         CurrentGamestate = Gamestate.ingame;
     }
-
     private void Update()
     {
         if (CurrentGamestate == Gamestate.ingame)
@@ -74,7 +70,7 @@ public class CreateDontDestroy : MonoBehaviour
             {
                 Hauke.Factory();
             }
-            //---------------------------Auf-Buttons-Legen!-----
+
             if (Input.GetKeyDown(KeyCode.R))
             {
                 Variables.isResearchFacilityActiv = true;
@@ -87,7 +83,6 @@ public class CreateDontDestroy : MonoBehaviour
                 Debug.Log("Kosten: " + Variables.clickMultiplierUpgradeCosts);
                 Debug.Log("anzahl Upgrades: " + Variables.clickMultiplierUpgrades);
             }
-
             if (Input.GetKeyDown(KeyCode.S))
             {
                 Hauke.ExpendingReset();
@@ -98,7 +93,6 @@ public class CreateDontDestroy : MonoBehaviour
             {
                 Hauke.HardReset();
             }
-            //------------------------------------------------
         }
         SaveGame();
         Malte.EscMenu();
@@ -141,80 +135,55 @@ public class CreateDontDestroy : MonoBehaviour
 }
 public class Variables
 {
+    public static GameObject mainUI;
     public static GameObject scrollListCars;
     public static Car[] cars;
-
     public static bool isIngame = false;
     public static bool isPaused = false;
-
     public static GameObject partUI;
     public static GameObject carUI;
     public static GameObject factoryUI;
     public static GameObject garageUi;
-
-    //-----------------Hauke-Test-----------------------
-    public static GameObject mainUI;
-    public static Vector3 scrapyardPosition;
-    public static Image scrapDisplay;
-    public static Image electronicsDisplay;
-    public static Image plasticsDisplay;
-    public static Text displayText;
-    //-----------------Hauke-Test-----------------------
-
     public static float resScraps;
     public static float resElectronics;
     public static float resPlastics;
-
     public static float partEngines;
     public static float partFrames;
     public static float partTires;
-
     public static int playerLevel = 1;
     public static float playerMoney;
-
     public static float playerMoneyTotel;
     public static float playerGems;
     public static int totelResets;
-
     public static float playerExperience = 0;
-
     public static float expNeededForLvlUp = 5000;
     public const int levelUpModifier = 3;
-
     public static float clickMultiplier = 1;
-
     public static int engineLevel;
     public static int tireLevel;
     public static int frameLevel;
-
     public static float carValueMultiplier = 1;
     public static float workerCost = 5000;
     public static float startFactoryCost = 10000;
     public static float factoryCost;
     public static int factoryUpgrades = 0;
     public static int soldCars = 0;
-
     public static float timeInSek;
     public static int tickCounter = 1;
     public static int workerTick = 0;
     public static int factoryTick = 0;
     public static float timeInTicks;
-
     public static float scrapYardCollectorMultiplier;
     public static int scrapYardCollector;
     public static float startScrapYardCollectorMultiplier = 0.125f;
-
     public static float engineProductionRatio;
     public static float frameProductionRatio;
     public static float tireProductionRatio;
     public static float startEngineProductionRatio = 0;
     public static float startFrameProductionRatio = 0;
     public static float startTireProductionRatio = 0;
-
     public static bool isFactoryActiv = false;
-
     public static bool isResearchFacilityActiv = false;
-
     public static float clickMultiplierUpgradeStartCosts = 2000;
     public static float clickMultiplierUpgradeCosts;
     public static int clickMultiplierUpgrades;

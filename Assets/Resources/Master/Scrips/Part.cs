@@ -25,8 +25,6 @@ public class Part
     public Part(SortOfPart _sort)            
     {
         this.sort = _sort;
-
-
         if (this.sort == SortOfPart.Engine)
         {
             this.requiredScrap = 7;

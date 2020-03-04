@@ -12,11 +12,13 @@ public class PrefabManager : MonoBehaviour
     public static Image mainResearchFacilityShop;
     public static Image mainGarageMenu;
     public static Button mainFactory;
-    public static Image mainFactoryShop;
     public static Button mainWorker;
+    public static Image shop;
 
     private void Awake()
     {
+        Variables.mainUI = GameObject.FindGameObjectWithTag("MainUI");
+
         mainBackground = Resources.Load<Button>("Prefabs/Background");
         mainScrapyard = Resources.Load<Button>("Prefabs/Scrapyard");
         mainGarage = Resources.Load<Button>("Prefabs/Garage");
@@ -24,8 +26,6 @@ public class PrefabManager : MonoBehaviour
         mainResearchFacilityShop = Resources.Load<Image>("Prefabs/FacilityShop");
         mainGarageMenu = Resources.Load<Image>("Prefabs/GarageMenu");
         mainFactory = Resources.Load<Button>("Prefabs/Factory");
-        mainFactoryShop = Resources.Load<Image>("Prefabs/FactoryUI");
-        mainWorker = Resources.Load<Button>("Prefabs/BuyWorkers");
     }
 
     void Start ()
@@ -36,8 +36,6 @@ public class PrefabManager : MonoBehaviour
         ActivateGarageMenu();
         ActivateResearchFacility();
         ActivateFactory();
-        ActivateFactoryUI();
-        ActivateWorker();
     }
 
     #region ActivateUI
@@ -78,7 +76,6 @@ public class PrefabManager : MonoBehaviour
         researchfacility.gameObject.transform.SetParent(Variables.mainUI.transform);
         researchfacility.transform.position = Variables.mainUI.transform.position + new Vector3(0, -200, 0);
 
-        Image shop;
         shop = Instantiate(mainResearchFacilityShop);
         shop.gameObject.transform.SetParent(Variables.mainUI.transform);
         shop.gameObject.transform.position = Variables.mainUI.transform.position;
@@ -90,20 +87,6 @@ public class PrefabManager : MonoBehaviour
         Button factory;
         factory = Instantiate(mainFactory);
         factory.gameObject.transform.SetParent(Variables.mainUI.transform);
-    }
-
-    public static void ActivateFactoryUI()
-    {
-        Image factoryShop;
-        factoryShop = Instantiate(mainFactoryShop);
-        factoryShop.gameObject.transform.SetParent(Variables.mainUI.transform);
-    }
-
-    public static void ActivateWorker()
-    {
-        Button buyWorker;
-        buyWorker = Instantiate(mainWorker);
-        buyWorker.gameObject.transform.SetParent(Variables.mainUI.transform);
     }
     #endregion ActivateUI
 }
