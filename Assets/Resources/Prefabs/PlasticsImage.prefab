@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224431300237941962}
   - component: {fileID: 222199097365153844}
   - component: {fileID: 114448708069216050}
-  - component: {fileID: 114432494299862436}
   - component: {fileID: 54532586265013900}
   m_Layer: 5
   m_Name: PlasticsImage
@@ -45,17 +44,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &114432494299862436
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1538406562192862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f0e885cf512ed0469eb4d22cb55bd8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114448708069216050
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,11 +6,14 @@ public class Hauke
 {
     public static void ScrapyardClick()
     {
+        ObjectFactory oFa = new ObjectFactory();
         int random = Random.Range(0, 101);
         int[] dropchances = new int[2] { 65, 85 };
 
         Variables.resScraps = Variables.resScraps + (1 * Variables.clickMultiplier);
         Scrapyard.DisplayScrapClick();
+
+        Resource scrap = oFa.GetObject(SortOfRes.scrap);
 
         if (random >= dropchances[0])
         {
