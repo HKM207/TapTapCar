@@ -8,4 +8,10 @@ public class DestroyThis : MonoBehaviour
     {
         Destroy(this.gameObject, 1.25f);
 	}
+
+    public void SetActive()
+    {
+        this.gameObject.SetActive(false);
+
+    }
 }

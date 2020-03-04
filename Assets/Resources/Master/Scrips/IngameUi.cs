@@ -209,12 +209,16 @@ public class IngameUi : MonoBehaviour
         Image plastics;
         Text text;
         plastics = Instantiate(Variables.plasticsDisplay);
+        //ab hier bleibt
         plastics.gameObject.transform.SetParent(Variables.mainUI.transform);
         plastics.transform.position = Variables.scrapyardPosition + new Vector3(Random.Range(-175, 175), Random.Range(-175, 175), 0);
+        //bis hier bleibt
         text = Instantiate(Variables.displayText);
+        //ab hier bleibt
         text.gameObject.transform.SetParent(Variables.mainUI.transform);
         text.transform.position = plastics.transform.position + new Vector3(125, 125, 0);
         text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
+        //bis hier bleibt
     }
 
     //public void EnableResearchFacilityUI()

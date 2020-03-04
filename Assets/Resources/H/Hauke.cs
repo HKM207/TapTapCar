@@ -6,20 +6,27 @@ public class Hauke
 {
     public static void ScrapyardClick()
     {
+        ObjectFactory oFa = new ObjectFactory();
         int random = Random.Range(0, 101);
         int[] dropchances = new int[2] { 65, 85 };
 
         Variables.resScraps = Variables.resScraps + (1 * Variables.clickMultiplier);
         IngameUi.DisplayScrapClick();
 
+        Resource scrap = oFa.GetObject(SortOfRes.scrap);
+
         if (random >= dropchances[0])
         {
             Variables.resPlastics = Variables.resPlastics + (1 * Variables.clickMultiplier);
+            Resource plastics = oFa.GetObject(SortOfRes.plastic);
             IngameUi.DisplayElectronicClick();
         }
         if (random >= dropchances[1])
         {
             Variables.resElectronics = Variables.resElectronics + (1 * Variables.clickMultiplier);
+            
+
+            Resource electronics = oFa.GetObject(SortOfRes.electronic);
             IngameUi.DisplayPlasticsClick();
         }
     }
