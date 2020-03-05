@@ -90,6 +90,7 @@ public class IngameUi : MonoBehaviour
         if (!PrefabManager.shop.gameObject.activeSelf)
         {
             PrefabManager.shop.gameObject.SetActive(true);
+            Variables.isResearchFacilityActiv = true;
         }
         else
         {
@@ -204,6 +205,26 @@ public class IngameUi : MonoBehaviour
         }
     }
     #endregion Buy Part/Car
+    #region Options
+    public static void EnableOptionUI()
+    {
+        if (!PrefabManager.optionsScreen.gameObject.activeSelf)
+        {
+            PrefabManager.optionsScreen.gameObject.SetActive(true);
+        }
+        else
+        {
+            DisableOptionUI();
+        }
+    }
+    public static void DisableOptionUI()
+    {
+        if (PrefabManager.optionsScreen.gameObject.activeSelf)
+        {
+            PrefabManager.optionsScreen.gameObject.SetActive(false);
+        }
+    }
+    #endregion Options
 
     void OnGUI()
     {

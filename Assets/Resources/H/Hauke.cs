@@ -23,32 +23,33 @@ public class Hauke
             Scrapyard.DisplayPlasticsClick();
         }
     }
-
     public static void ScrapyardWorker()
     {
-        if (Variables.workerTick == 0)
+        if (Variables.scrapYardCollector >= 1)
         {
-            Variables.workerTick = Variables.tickCounter;
-        }
-        if (Variables.timeInTicks >= Variables.workerTick)
-        {
-            int random = Random.Range(0, 101);
-            int[] dropchances = new int[2] { 55, 75 };
-
-            Variables.resScraps = Variables.resScraps + (1 * Variables.scrapYardCollectorMultiplier);
-
-            if (random >= dropchances[0])
+            if (Variables.workerTick == 0)
             {
-                Variables.resPlastics = Variables.resPlastics + (1 * Variables.scrapYardCollectorMultiplier);
+                Variables.workerTick = Variables.tickCounter;
             }
-            if (random >= dropchances[1])
+            if (Variables.timeInTicks >= Variables.workerTick)
             {
-                Variables.resElectronics = Variables.resElectronics + (1 * Variables.scrapYardCollectorMultiplier);
+                int random = Random.Range(0, 101);
+                int[] dropchances = new int[2] { 55, 75 };
+
+                Variables.resScraps = Variables.resScraps + (1 * Variables.scrapYardCollectorMultiplier);
+
+                if (random >= dropchances[0])
+                {
+                    Variables.resPlastics = Variables.resPlastics + (1 * Variables.scrapYardCollectorMultiplier);
+                }
+                if (random >= dropchances[1])
+                {
+                    Variables.resElectronics = Variables.resElectronics + (1 * Variables.scrapYardCollectorMultiplier);
+                }
+                Variables.workerTick += 1;
             }
-            Variables.workerTick += 1;
         }
     }
-
     public static void ScrapYardWorkerMultiplierCalculation()
     {
         if (Variables.scrapYardCollector >= 1)
@@ -56,30 +57,51 @@ public class Hauke
             Variables.scrapYardCollectorMultiplier = Variables.startScrapYardCollectorMultiplier * Variables.scrapYardCollector;
         }
     }
-
     public static void Factory()
     {
-        if (Variables.engineProductionRatio < Variables.startEngineProductionRatio &&
-            Variables.tireProductionRatio < Variables.startTireProductionRatio &&
-            Variables.frameProductionRatio < Variables.startFrameProductionRatio)
+        if (Variables.isFactoryActiv)
         {
-            Variables.engineProductionRatio = Variables.startEngineProductionRatio;
-            Variables.tireProductionRatio = Variables.startTireProductionRatio;
-            Variables.frameProductionRatio = Variables.startFrameProductionRatio;
+
+            if (Variables.engineProductionRatio < Variables.startEngineProductionRatio &&
+                Variables.tireProductionRatio < Variables.startTireProductionRatio &&
+                Variables.frameProductionRatio < Variables.startFrameProductionRatio)
+            {
+                Variables.engineProductionRatio = Variables.startEngineProductionRatio;
+                Variables.tireProductionRatio = Variables.startTireProductionRatio;
+                Variables.frameProductionRatio = Variables.startFrameProductionRatio;
+            }
+            if (Variables.factoryTick == 0)
+            {
+                Variables.factoryTick = Variables.tickCounter;
+            }
+            if (Variables.timeInTicks >= Variables.factoryTick)
+            {
+                Part partEngine = new Part(SortOfPart.Engine);
+                ProducePart(partEngine);
+                Part partFrame = new Part(SortOfPart.Frame);
+                ProducePart(partFrame);
+                Part partTire = new Part(SortOfPart.Tire);
+                ProducePart(partTire);
+                Variables.factoryTick += 1;
+            }
         }
-        if (Variables.factoryTick == 0)
+    }
+    public static void FactoryCostsCalculation()
+    {
+        if (Variables.isFactoryActiv)
         {
-            Variables.factoryTick = Variables.tickCounter;
-        }
-        if (Variables.timeInTicks >= Variables.factoryTick)
-        {
-            Part partEngine = new Part(SortOfPart.Engine);
-            ProducePart(partEngine);
-            Part partFrame = new Part(SortOfPart.Frame);
-            ProducePart(partFrame);
-            Part partTire = new Part(SortOfPart.Tire);
-            ProducePart(partTire);
-            Variables.factoryTick += 1;
+            if (Variables.factoryCost < Variables.startFactoryCost)
+            {
+                Variables.factoryCost = Variables.startFactoryCost;
+            }
+            if (Variables.factoryUpgrades < 4 && Variables.playerMoney >= Variables.factoryCost)
+            {
+                Variables.factoryCost = Variables.factoryCost * (1 + Variables.factoryUpgrades);
+            }
+            else if (Variables.playerMoney >= Variables.factoryCost)
+            {
+                Variables.factoryCost = Variables.factoryCost * (1 + Variables.factoryUpgrades / 2);
+            }
         }
     }
     public static void ProducePart(Part part)
@@ -114,43 +136,34 @@ public class Hauke
             }
         }
     }
-
-    public static void FactoryCostsCalculation()
-    {
-        if (Variables.factoryCost < Variables.startFactoryCost)
-        {
-            Variables.factoryCost = Variables.startFactoryCost;
-        }
-        if (Variables.factoryUpgrades < 4 && Variables.playerMoney >= Variables.factoryCost)
-        {
-            Variables.factoryCost = Variables.factoryCost * (1 + Variables.factoryUpgrades);
-        }
-        else if (Variables.playerMoney >= Variables.factoryCost)
-        {
-            Variables.factoryCost = Variables.factoryCost * (1 + Variables.factoryUpgrades / 2);
-        }
-    }
-
     public static void ResearchFacilityUpgrades()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1) && Variables.playerMoney >= Variables.clickMultiplierUpgradeCosts)
+        if (Variables.isResearchFacilityActiv)
         {
-            Variables.playerMoney = Variables.playerMoney - Variables.clickMultiplierUpgradeCosts;
-            Variables.clickMultiplierUpgrades++;
-            Variables.clickMultiplier = Variables.clickMultiplier * Variables.clickMultiplierUpgrades;
+            Debug.Log("erreicht");
+            if (Input.GetKeyDown(KeyCode.Keypad1) && Variables.playerMoney >= Variables.clickMultiplierUpgradeCosts)
+            {
+                Variables.playerMoney = Variables.playerMoney - Variables.clickMultiplierUpgradeCosts;
+                Variables.clickMultiplierUpgrades++;
+                Variables.clickMultiplier = Variables.clickMultiplier * Variables.clickMultiplierUpgrades;
 
-            Variables.clickMultiplierUpgradeCosts = Variables.clickMultiplierUpgradeCosts * (Variables.clickMultiplierUpgrades * 4);
+                Variables.clickMultiplierUpgradeCosts = Variables.clickMultiplierUpgradeCosts * (Variables.clickMultiplierUpgrades * 4);
+                Debug.Log("clickMultiplier: " + Variables.clickMultiplier);
+                Debug.Log("Kosten: " + Variables.clickMultiplierUpgradeCosts);
+                Debug.Log("anzahl Upgrades: " + Variables.clickMultiplierUpgrades);
+            }
         }
     }
-
     public static void ResearchFacilityUpgradeCostCalculations()
     {
-        if (Variables.clickMultiplierUpgradeCosts <= Variables.clickMultiplierUpgradeStartCosts)
+        if (Variables.isResearchFacilityActiv)
         {
-            Variables.clickMultiplierUpgradeCosts = Variables.clickMultiplierUpgradeStartCosts;
+            if (Variables.clickMultiplierUpgradeCosts <= Variables.clickMultiplierUpgradeStartCosts)
+            {
+                Variables.clickMultiplierUpgradeCosts = Variables.clickMultiplierUpgradeStartCosts;
+            }
         }
     }
-
     public static void HardReset()
     {
         Variables.resScraps = 0;
@@ -196,8 +209,8 @@ public class Hauke
 
         Variables.clickMultiplierUpgradeCosts = Variables.clickMultiplierUpgradeStartCosts;
         Variables.clickMultiplierUpgrades = 0;
+        Variables.clickMultiplier = 1;
     }
-
     public static void ExpendingReset()
     {
         Variables.playerGems = Variables.playerGems + (Variables.playerMoneyTotel / 10000);
@@ -244,5 +257,9 @@ public class Hauke
 
         Variables.clickMultiplierUpgradeCosts = Variables.clickMultiplierUpgradeStartCosts;
         Variables.clickMultiplierUpgrades = 0;
+        Variables.clickMultiplier = 1;
+
+        Debug.Log("Gems: " + Variables.playerGems);
+        Debug.Log("resets: " + Variables.totelResets);
     }
 }

@@ -52,47 +52,8 @@ public class CreateDontDestroy : MonoBehaviour
             }
             #endregion
             Killian.LevelUpSystem(Variables.levelUpModifier);
-            Variables.timeInSek += Time.deltaTime;
-            Variables.timeInTicks = Variables.timeInSek * 4;
-            if (Variables.timeInTicks >= Variables.tickCounter && !Variables.isFactoryActiv)
-            {
-                Variables.tickCounter += 1;
-            }
-            if (Variables.timeInTicks >= Variables.tickCounter && Variables.scrapYardCollector == 0)
-            {
-                Variables.tickCounter += 1;
-            }
-            if (Variables.scrapYardCollector >= 1)
-            {
-                Hauke.ScrapyardWorker();
-            }
-            if (Variables.isFactoryActiv)
-            {
-                Hauke.Factory();
-            }
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                Variables.isResearchFacilityActiv = true;
-            }
-            if (Variables.isResearchFacilityActiv)
-            {
-                Hauke.ResearchFacilityUpgradeCostCalculations();
-                Hauke.ResearchFacilityUpgrades();
-                Debug.Log("clickMultiplier: " + Variables.clickMultiplier);
-                Debug.Log("Kosten: " + Variables.clickMultiplierUpgradeCosts);
-                Debug.Log("anzahl Upgrades: " + Variables.clickMultiplierUpgrades);
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                Hauke.ExpendingReset();
-                Debug.Log("Gems: " + Variables.playerGems);
-                Debug.Log("resets: " + Variables.totelResets);
-            }
-            if (Input.GetKeyDown(KeyCode.H))
-            {
-                Hauke.HardReset();
-            }
+            Tickrate();
+            Calculations();
         }
         SaveGame();
         Malte.EscMenu();
@@ -108,7 +69,26 @@ public class CreateDontDestroy : MonoBehaviour
             //play background music
         }
     }
-
+    public void Tickrate()
+    {
+        Variables.timeInSek += Time.deltaTime;
+        Variables.timeInTicks = Variables.timeInSek * 4;
+        if (Variables.timeInTicks >= Variables.tickCounter && !Variables.isFactoryActiv)
+        {
+            Variables.tickCounter += 1;
+        }
+        if (Variables.timeInTicks >= Variables.tickCounter && Variables.scrapYardCollector == 0)
+        {
+            Variables.tickCounter += 1;
+        }
+    }
+    public void Calculations()
+    {
+        Hauke.ScrapyardWorker();
+        Hauke.ResearchFacilityUpgrades();
+        Hauke.ResearchFacilityUpgradeCostCalculations();
+        Hauke.Factory();
+    }
     #region Save
     public void NewGame()
     {

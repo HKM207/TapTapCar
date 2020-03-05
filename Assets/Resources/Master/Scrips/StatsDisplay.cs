@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class StatsDisplay : MonoBehaviour
 {
     private Button button;
+    private Button optionsbutton;
 
     public Text scraps;
     public Text electronics;
@@ -14,6 +15,7 @@ public class StatsDisplay : MonoBehaviour
     public Text xp;
     public Text level;
     public Text soldCars;
+    public Button options;
 
     private void Start()
     {
@@ -24,6 +26,8 @@ public class StatsDisplay : MonoBehaviour
         button.onClick.AddListener(IngameUi.DisableGarageUI);
         button.onClick.AddListener(IngameUi.DisableFactoryUI);
         button.onClick.AddListener(IngameUi.DisableResearchFacilityUI);
+        optionsbutton = options.gameObject.GetComponent<Button>();
+        optionsbutton.onClick.AddListener(IngameUi.EnableOptionUI);
     }
     void Update()
     {

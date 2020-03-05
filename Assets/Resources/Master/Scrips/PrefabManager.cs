@@ -14,6 +14,8 @@ public class PrefabManager : MonoBehaviour
     public static Button mainFactory;
     public static Button mainWorker;
     public static Image shop;
+    public static Image options;
+    public static Image optionsScreen;
 
     private void Awake()
     {
@@ -26,6 +28,7 @@ public class PrefabManager : MonoBehaviour
         mainResearchFacilityShop = Resources.Load<Image>("Prefabs/FacilityShop");
         mainGarageMenu = Resources.Load<Image>("Prefabs/GarageMenu");
         mainFactory = Resources.Load<Button>("Prefabs/Factory");
+        options = Resources.Load<Image>("Prefabs/Options");
     }
 
     void Start ()
@@ -36,6 +39,7 @@ public class PrefabManager : MonoBehaviour
         ActivateGarageMenu();
         ActivateResearchFacility();
         ActivateFactory();
+        ActivateOptions();
     }
 
     #region ActivateUI
@@ -87,6 +91,13 @@ public class PrefabManager : MonoBehaviour
         Button factory;
         factory = Instantiate(mainFactory);
         factory.gameObject.transform.SetParent(Variables.mainUI.transform);
+    }
+
+    public static void ActivateOptions()
+    {
+        optionsScreen = Instantiate(options);
+        optionsScreen.gameObject.transform.SetParent(Variables.mainUI.transform);
+        optionsScreen.gameObject.SetActive(false);
     }
     #endregion ActivateUI
 }
