@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Hauke
 {
-    public static void ScrapyardClick()
+    public static void ScrapyardClick(ObjectFactory oFa)
     {
-        ObjectFactory oFa = new ObjectFactory();
+        //imScript wo ScrapyardClick ausgeführt wird, eine ObjFac erstellen
+
         int random = Random.Range(0, 101);
         int[] dropchances = new int[2] { 65, 85 };
 
         Variables.resScraps = Variables.resScraps + (1 * Variables.clickMultiplier);
         Scrapyard.DisplayScrapClick();
 
-        Resource scrap = oFa.GetObject(SortOfRes.scrap);
+        ShowClickRes scrap = new ShowClickRes()
 
         if (random >= dropchances[0])
         {

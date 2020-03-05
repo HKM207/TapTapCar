@@ -117,12 +117,12 @@ public class CreateDontDestroy : MonoBehaviour
 
     public void FillScrollLists()
     {
-        if (Variables.cars != null) // Das hier muss die Liste der Cars einlesen und für jedes Car ein Element instantiaten und das Car da rein übergeben.
+        if (Variables.cars != null) // Das hier muss die Liste der Cars einlesen und fï¿½r jedes Car ein Element instantiaten und das Car da rein ï¿½bergeben.
         {
             foreach (Car car in Variables.cars)
             {
                 //SN: Create the Car UI Elements together with the cars.
-                //GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hängen.
+                //GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hï¿½ngen.
                 GameObject element;
                 if (Variables.scrollListCars != null)
                 {
@@ -143,7 +143,7 @@ public class CreateDontDestroy : MonoBehaviour
         //    foreach (Part p in Variables.parts)
         //    {
         //        //SN: Create the Car UI Elements together with the cars.
-        //        //GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hängen.
+        //        //GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hï¿½ngen.
         //        GameObject element;
         //        if (Variables.scrollListCars != null)
         //        {
