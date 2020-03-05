@@ -29,6 +29,7 @@ public class CreateDontDestroy : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
         //Prefabs Instantiaten!
+        Variables.clickImage = Resources.Load<Image>("Prefabs/ClickImage");
     }
 
     private void Start()
@@ -141,6 +142,12 @@ public class CreateDontDestroy : MonoBehaviour
 }
 public class Variables
 {
+    private static int mPoolMaxSize = 10;
+    public static List<ShowClickRes> objPool = new List<ShowClickRes>(mPoolMaxSize);
+
+    public static Text clickText;
+    public static Image clickImage;
+
     public static GameObject scrollListCars;
     public static Car[] cars;
 
