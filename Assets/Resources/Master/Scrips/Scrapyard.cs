@@ -5,9 +5,16 @@ using UnityEngine.UI;
 
 public class Scrapyard : MonoBehaviour
 {
+    public static List<ShowClickRes> scrapList = new List<ShowClickRes>(Variables.Poolsize);
+    public static List<ShowClickRes> electronicList = new List<ShowClickRes>(Variables.Poolsize);
+    public static List<ShowClickRes> plasticList = new List<ShowClickRes>(Variables.Poolsize);
+
     private Button button;
     public Button button2;
     public static Vector3 scrapyardPosition;
+
+    public static Image clickImage;
+    public static Text clickText;
 
     public static Image scrapDisplay;
     public static Image electronicsDisplay;
@@ -16,10 +23,14 @@ public class Scrapyard : MonoBehaviour
 
     void Awake()
     {
+        clickImage = Resources.Load<Image>("Prefabs/ClickImage");
+
         scrapDisplay = Resources.Load<Image>("Prefabs/ScrapImage");
         electronicsDisplay = Resources.Load<Image>("Prefabs/ElectronicsImage");
         plasticsDisplay = Resources.Load<Image>("Prefabs/PlasticsImage");
         displayText = Resources.Load<Text>("Prefabs/DisplayText");
+        clickText = displayText;
+
     }
 
     private void Start()
@@ -32,15 +43,37 @@ public class Scrapyard : MonoBehaviour
 
     public static void DisplayScrapClick()
     {
-        Image scrap;
-        Text text;
-        scrap = Instantiate(scrapDisplay);
-        scrap.gameObject.transform.SetParent(Variables.mainUI.transform);
-        scrap.transform.position = scrapyardPosition + new Vector3(Random.Range(-175, 175), Random.Range(-175, 175), 0);
-        text = Instantiate(displayText);
-        text.gameObject.transform.SetParent(Variables.mainUI.transform);
-        text.transform.position = scrap.transform.position + new Vector3(0, 125, 0);
-        text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
+       
+        ShowClickRes clickRes;
+        if (scrapList.Count < scrapList.Capacity)
+        {
+            clickRes = new ShowClickRes(SortOfRes.scrap);
+            scrapList.Add(clickRes);
+            Debug.Log("new created: counter: " + ShowClickRes.counter);
+        }
+        else if (ShowClickRes.counter == Variables.Poolsize)
+        
+        {
+            ShowClickRes.counter = 0;
+            clickRes = scrapList[ShowClickRes.counter];
+            clickRes = ShowClickRes.SetValues(clickRes);
+            clickRes.image.gameObject.SetActive(true);
+            clickRes.text.gameObject.SetActive(true);
+            Debug.Log("took one out of list: COnter" + ShowClickRes.counter);
+
+
+        }
+
+
+        //Image scrap;
+        //Text text;
+        //scrap = Instantiate(scrapDisplay);
+        //scrap.gameObject.transform.SetParent(Variables.mainUI.transform);
+        //scrap.transform.position = scrapyardPosition + new Vector3(Random.Range(-175, 175), Random.Range(-175, 175), 0);
+        //text = Instantiate(displayText);
+        //text.gameObject.transform.SetParent(Variables.mainUI.transform);
+        //text.transform.position = scrap.transform.position + new Vector3(0, 125, 0);
+        //text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
     }
     public static void DisplayElectronicClick()
     {

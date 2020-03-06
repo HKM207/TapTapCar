@@ -15,7 +15,7 @@ public class Hauke
         if (random >= dropchances[0])
         {
             Variables.resPlastics = Variables.resPlastics + (1 * Variables.clickMultiplier);
-            Scrapyard.DisplayElectronicClick();
+            //Scrapyard.DisplayElectronicClick();
         }
         if (random >= dropchances[1])
         {
