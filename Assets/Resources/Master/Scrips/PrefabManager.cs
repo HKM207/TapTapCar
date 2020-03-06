@@ -37,8 +37,8 @@ public class PrefabManager : MonoBehaviour
         ActivateScrapyard();
         ActivateGarage();
         ActivateGarageMenu();
-        ActivateResearchFacility();
         ActivateFactory();
+        ActivateResearchFacility();
         ActivateOptions();
     }
 

@@ -85,7 +85,6 @@ public class CreateDontDestroy : MonoBehaviour
     public void Calculations()
     {
         Hauke.ScrapyardWorker();
-        Hauke.ResearchFacilityUpgrades();
         Hauke.ResearchFacilityUpgradeCostCalculations();
         Hauke.Factory();
     }
