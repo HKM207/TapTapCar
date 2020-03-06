@@ -49,7 +49,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1769eaf9360605b4fa837dd9bf62307d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9e53bed74f6958d4b82e1c153e35191f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -109,16 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b1448ae4e933a47a1718394ea3c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scraps: {fileID: 0}
-  electronics: {fileID: 0}
-  plastics: {fileID: 0}
-  money: {fileID: 0}
-  exp: {fileID: 0}
-  level: {fileID: 0}
-  selledCars: {fileID: 0}
-  engines: {fileID: 0}
-  frames: {fileID: 0}
-  tires: {fileID: 0}
 --- !u!222 &222602653086551520
 CanvasRenderer:
   m_ObjectHideFlags: 1
