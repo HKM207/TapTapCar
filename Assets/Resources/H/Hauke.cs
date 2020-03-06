@@ -136,24 +136,6 @@ public class Hauke
             }
         }
     }
-    public static void ResearchFacilityUpgrades()
-    {
-        if (Variables.isResearchFacilityActiv)
-        {
-            Debug.Log("erreicht");
-            if (Input.GetKeyDown(KeyCode.Keypad1) && Variables.playerMoney >= Variables.clickMultiplierUpgradeCosts)
-            {
-                Variables.playerMoney = Variables.playerMoney - Variables.clickMultiplierUpgradeCosts;
-                Variables.clickMultiplierUpgrades++;
-                Variables.clickMultiplier = Variables.clickMultiplier * Variables.clickMultiplierUpgrades;
-
-                Variables.clickMultiplierUpgradeCosts = Variables.clickMultiplierUpgradeCosts * (Variables.clickMultiplierUpgrades * 4);
-                Debug.Log("clickMultiplier: " + Variables.clickMultiplier);
-                Debug.Log("Kosten: " + Variables.clickMultiplierUpgradeCosts);
-                Debug.Log("anzahl Upgrades: " + Variables.clickMultiplierUpgrades);
-            }
-        }
-    }
     public static void ResearchFacilityUpgradeCostCalculations()
     {
         if (Variables.isResearchFacilityActiv)
