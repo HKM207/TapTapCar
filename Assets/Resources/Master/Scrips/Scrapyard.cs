@@ -24,13 +24,10 @@ public class Scrapyard : MonoBehaviour
     void Awake()
     {
         clickImage = Resources.Load<Image>("Prefabs/ClickImage");
-
         scrapDisplay = Resources.Load<Image>("Prefabs/ScrapImage");
         electronicsDisplay = Resources.Load<Image>("Prefabs/ElectronicsImage");
         plasticsDisplay = Resources.Load<Image>("Prefabs/PlasticsImage");
-        displayText = Resources.Load<Text>("Prefabs/DisplayText");
-        clickText = displayText;
-
+        clickText = Resources.Load<Text>("Prefabs/DisplayText");
     }
 
     private void Start()
@@ -43,63 +40,114 @@ public class Scrapyard : MonoBehaviour
 
     public static void DisplayScrapClick()
     {
-       
+
         ShowClickRes clickRes;
-        if (scrapList.Count < scrapList.Capacity)
+        if (ShowClickRes.counter < scrapList.Capacity)
         {
             clickRes = new ShowClickRes(SortOfRes.scrap);
             scrapList.Add(clickRes);
             Debug.Log("new created: counter: " + ShowClickRes.counter);
         }
-        else if (ShowClickRes.counter == Variables.Poolsize)
-        
+        else
         {
-            ShowClickRes.counter = 0;
-            clickRes = scrapList[ShowClickRes.counter];
-            clickRes = ShowClickRes.SetValues(clickRes);
-            clickRes.image.gameObject.SetActive(true);
-            clickRes.text.gameObject.SetActive(true);
-            Debug.Log("took one out of list: COnter" + ShowClickRes.counter);
+            foreach (ShowClickRes res in scrapList)
+            {
+                if (res.image.gameObject.activeSelf)
+                {
+                    continue;
+                }
+                else
+                {
+                    scrapList.Remove(res);
+                    clickRes = res;
+                    scrapList.Add(clickRes);
+                    clickRes = ShowClickRes.SetValues(clickRes);
+                    clickRes.image.gameObject.SetActive(true);
+                    clickRes.text.gameObject.SetActive(true);
+                    Debug.Log("took one out of list");
+                    break;
+                }
+               
+
+            }
 
 
         }
 
-
-        //Image scrap;
-        //Text text;
-        //scrap = Instantiate(scrapDisplay);
-        //scrap.gameObject.transform.SetParent(Variables.mainUI.transform);
-        //scrap.transform.position = scrapyardPosition + new Vector3(Random.Range(-175, 175), Random.Range(-175, 175), 0);
-        //text = Instantiate(displayText);
-        //text.gameObject.transform.SetParent(Variables.mainUI.transform);
-        //text.transform.position = scrap.transform.position + new Vector3(0, 125, 0);
-        //text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
     }
     public static void DisplayElectronicClick()
     {
-        Image electronic;
-        Text text;
-        electronic = Instantiate(electronicsDisplay);
-        electronic.gameObject.transform.SetParent(Variables.mainUI.transform);
-        electronic.transform.position = scrapyardPosition;
-        electronic.transform.position = scrapyardPosition + new Vector3(Random.Range(-175, 175), Random.Range(-175, 175), 0);
-        text = Instantiate(displayText);
-        text.gameObject.transform.SetParent(Variables.mainUI.transform);
-        text.transform.position = electronic.transform.position + new Vector3(0, 125, 0);
-        text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
+
+        ShowClickRes clickRes;
+        if (ShowClickRes.counter < electronicList.Capacity)
+        {
+            clickRes = new ShowClickRes(SortOfRes.electronic);
+            electronicList.Add(clickRes);
+            Debug.Log("new created electronics " + ShowClickRes.counter);
+        }
+        else
+        {
+            foreach (ShowClickRes res in electronicList)
+            {
+                if (res.image.gameObject.activeSelf)
+                {
+                    continue;
+                }
+                else
+                {
+                    electronicList.Remove(res);
+                    clickRes = res;
+                    electronicList.Add(clickRes);
+                    clickRes = ShowClickRes.SetValues(clickRes);
+                    clickRes.image.gameObject.SetActive(true);
+                    clickRes.text.gameObject.SetActive(true);
+                    Debug.Log("took one out of list");
+                    break;
+                }
+
+
+            }
+
+
+        }
     }
     public static void DisplayPlasticsClick()
     {
-        Image plastics;
-        Text text;
-        plastics = Instantiate(plasticsDisplay);
-        plastics.gameObject.transform.SetParent(Variables.mainUI.transform);
-        plastics.transform.position = scrapyardPosition + new Vector3(Random.Range(-175, 175), Random.Range(-175, 175), 0);
-        text = Instantiate(displayText);
-        text.gameObject.transform.SetParent(Variables.mainUI.transform);
-        text.transform.position = plastics.transform.position + new Vector3(0, 125, 0);
-        text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
-    }
+
+        ShowClickRes clickRes;
+        if (ShowClickRes.counter < plasticList.Capacity)
+        {
+            clickRes = new ShowClickRes(SortOfRes.plastic);
+            plasticList.Add(clickRes);
+            Debug.Log("new created electronics " + ShowClickRes.counter);
+        }
+        else
+        {
+            foreach (ShowClickRes res in plasticList)
+            {
+                if (res.image.gameObject.activeSelf)
+                {
+                    continue;
+                }
+                else
+                {
+                    electronicList.Remove(res);
+                    clickRes = res;
+                    plasticList.Add(clickRes);
+                    clickRes = ShowClickRes.SetValues(clickRes);
+                    clickRes.image.gameObject.SetActive(true);
+                    clickRes.text.gameObject.SetActive(true);
+                    Debug.Log("took one out of list");
+                    break;
+                }
+
+
+            }
+
+
+        }
+
+}
     public static void BuyWorker()
     {
         if (Variables.playerMoney >= Variables.workerCost)

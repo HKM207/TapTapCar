@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DestroyThis : MonoBehaviour
 {
-	void FixedUpdate()
+	private void FixedUpdate()
     {
-        Invoke("DisableThis", 1.5f);
+        Invoke("DisableThis", 2.5f);
         //Destroy(this.gameObject, 1.25f);
 	}
 
@@ -15,8 +15,8 @@ public class DestroyThis : MonoBehaviour
         if (this.gameObject.activeSelf == true)
         {
             this.gameObject.SetActive(false);
+            this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             
-
         }
 
     }
