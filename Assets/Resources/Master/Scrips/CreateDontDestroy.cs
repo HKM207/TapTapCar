@@ -36,6 +36,7 @@ public class CreateDontDestroy : MonoBehaviour
     {
         if (CurrentGamestate == Gamestate.ingame)
         {
+
             #region cheats
             if (Input.GetKeyDown(KeyCode.P))
             {
@@ -54,6 +55,7 @@ public class CreateDontDestroy : MonoBehaviour
             Killian.LevelUpSystem(Variables.levelUpModifier);
             Tickrate();
             Calculations();
+           
         }
         SaveGame();
         Malte.EscMenu();
@@ -114,6 +116,8 @@ public class CreateDontDestroy : MonoBehaviour
 }
 public class Variables
 {
+    public const int Poolsize = 25;
+
     public static GameObject mainUI;
     public static GameObject scrollListCars;
     public static Car[] cars;

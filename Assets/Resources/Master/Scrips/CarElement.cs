@@ -24,6 +24,7 @@ public class CarElement : MonoBehaviour
     public Button btnUpgradeCar;
     UnityAction sellCarMethodCall; //Action is the delegate without returntype
     UnityAction upgradeCarMethodCall;
+ 
     Car car;
 
     void Start ()
