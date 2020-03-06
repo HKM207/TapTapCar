@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class FacilityShop : MonoBehaviour
 {
@@ -31,23 +32,31 @@ public class FacilityShop : MonoBehaviour
             }
         }
         buttons = this.GetComponentsInChildren<Button>();
-        buttons[0].onClick.AddListener(ClickMultiplier);
-        buttons[1].onClick.AddListener(DebugTest1);
-        buttons[2].onClick.AddListener(DebugTest2);
-        buttons[3].onClick.AddListener(DebugTest3);
-        buttons[4].onClick.AddListener(DebugTest4);
-        buttons[5].onClick.AddListener(DebugTest5);
-        buttons[6].onClick.AddListener(DebugTest6);
-        buttons[7].onClick.AddListener(DebugTest7);
-        buttons[8].onClick.AddListener(DebugTest8);
-        buttons[9].onClick.AddListener(DebugTest9);
-        buttons[10].onClick.AddListener(DebugTest10);
-        buttons[11].onClick.AddListener(DebugTest11);
-        buttons[12].onClick.AddListener(DebugTest12);
-        buttons[13].onClick.AddListener(DebugTest13);
-        buttons[14].onClick.AddListener(DebugTest14);
-        buttons[15].onClick.AddListener(DebugTest15);
+        int count = 0;
+        foreach (var item in buttons)
+        {
+            item.onClick.AddListener(delegate { FacilityButtonMethod(item); });
+            count++;
+        }
     }
+    void FacilityButtonMethod(Button  button)
+    {
+        int buttonIndex = button.transform.GetSiblingIndex();
+        Debug.Log("Clicked Button was " + button.gameObject.name);
+        Debug.Log("Buttons index is " + buttonIndex);
+        switch (buttonIndex)
+        {
+            case 1:
+                ClickMultiplier();
+                break;
+            case 2:
+                DebugTest1();
+                break;
+            default:
+                break;
+        }
+    }
+
     private void ClickMultiplier()
     {
 
