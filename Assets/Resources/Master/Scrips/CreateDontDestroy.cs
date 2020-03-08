@@ -31,6 +31,7 @@ public class CreateDontDestroy : MonoBehaviour
     private void Start()
     {
         CurrentGamestate = Gamestate.ingame;
+        FillScrollLists();
     }
     private void Update()
     {
@@ -113,14 +114,62 @@ public class CreateDontDestroy : MonoBehaviour
     }
     #endregion
 
+
+    public void FillScrollLists()
+    {
+        if (Variables.cars != null) // Das hier muss die Liste der Cars einlesen und für jedes Car ein Element instantiaten und das Car da rein übergeben.
+        {
+            foreach (Car car in Variables.cars)
+            {
+                //SN: Create the Car UI Elements together with the cars.
+                //GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hängen.
+                GameObject element;
+                if (Variables.scrollListCars != null)
+                {
+                    element = Instantiate(Variables.carUI);
+                    element.transform.SetParent(Variables.scrollListCars.transform);
+                    element.GetComponent<CarElement>().SetCarInfos(car);
+                }
+                else
+                {
+                    Debug.Log("CARS ScrollList Not Found ");
+                }
+            }
+
+        }
+
+        //if (Variables.parts != null)
+        //{
+        //    foreach (Part p in Variables.parts)
+        //    {
+        //        //SN: Create the Car UI Elements together with the cars.
+        //        //GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hängen.
+        //        GameObject element;
+        //        if (Variables.scrollListCars != null)
+        //        {
+        //            element = Instantiate(Variables.partUI);
+        //            element.transform.SetParent(Variables.scrollListParts.transform);
+        //            element.GetComponent<PartElement>().SetPartInfos(p);
+        //        }
+        //        else
+        //        {
+        //            Debug.Log("PARTS ScrollList Not Found ");
+        //        }
+        //    }
+
+        //}
+
+    }
 }
 public class Variables
 {
-    public const int Poolsize = 25;
+    public const int Poolsize = 100;
 
     public static GameObject mainUI;
     public static GameObject scrollListCars;
+    public static GameObject scrollListParts;
     public static Car[] cars;
+    public static Part[] parts;
     public static bool isIngame = false;
     public static bool isPaused = false;
     public static GameObject partUI;

@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class CarReader : MonoBehaviour {
+public class DataReader : MonoBehaviour {
 
     string jsonString;
-    public TextAsset jsonTextAsset;
+    public TextAsset carTextAsset;
+    public TextAsset partTextAsset;
     
     
     void Start()
     {
-        ReadData();
+        ReadCarData();
+        ReadPartData();
     }
 
-    private void ReadData()
+    private void ReadCarData()
     {
-        jsonString = jsonTextAsset.text;
-        Variables.cars = JsonHelper.getJsonArray<Car>(jsonString);
+        Variables.cars = JsonHelper.getJsonArray<Car>(carTextAsset.text);
 
         if (Variables.cars != null)
         {
@@ -26,6 +27,19 @@ public class CarReader : MonoBehaviour {
         else
         {
             Debug.Log("Cars not read");
+        }
+    }
+    private void ReadPartData()
+    {
+        Variables.parts = JsonHelper.getJsonArray<Part>(partTextAsset.text);
+
+        if (Variables.parts != null)
+        {
+            Debug.Log("Parts succesfully read");
+        }
+        else
+        {
+            Debug.Log("Parts not read");
         }
     }
 

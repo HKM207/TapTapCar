@@ -8,6 +8,7 @@ public class Scrapyard : MonoBehaviour
     public static List<ShowClickRes> scrapList = new List<ShowClickRes>(Variables.Poolsize);
     public static List<ShowClickRes> electronicList = new List<ShowClickRes>(Variables.Poolsize);
     public static List<ShowClickRes> plasticList = new List<ShowClickRes>(Variables.Poolsize);
+    public GameObject clickParent;
 
     private Button button;
     public Button button2;
@@ -42,11 +43,10 @@ public class Scrapyard : MonoBehaviour
     {
 
         ShowClickRes clickRes;
-        if (ShowClickRes.counter < scrapList.Capacity)
+        if (scrapList.Count < scrapList.Capacity)
         {
             clickRes = new ShowClickRes(SortOfRes.scrap);
             scrapList.Add(clickRes);
-            Debug.Log("new created: counter: " + ShowClickRes.counter);
         }
         else
         {
@@ -64,7 +64,6 @@ public class Scrapyard : MonoBehaviour
                     clickRes = ShowClickRes.SetValues(clickRes);
                     clickRes.image.gameObject.SetActive(true);
                     clickRes.text.gameObject.SetActive(true);
-                    Debug.Log("took one out of list");
                     break;
                 }
                
@@ -79,11 +78,11 @@ public class Scrapyard : MonoBehaviour
     {
 
         ShowClickRes clickRes;
-        if (ShowClickRes.counter < electronicList.Capacity)
+        if (electronicList.Count < electronicList.Capacity)
         {
             clickRes = new ShowClickRes(SortOfRes.electronic);
             electronicList.Add(clickRes);
-            Debug.Log("new created electronics " + ShowClickRes.counter);
+            
         }
         else
         {
@@ -101,7 +100,6 @@ public class Scrapyard : MonoBehaviour
                     clickRes = ShowClickRes.SetValues(clickRes);
                     clickRes.image.gameObject.SetActive(true);
                     clickRes.text.gameObject.SetActive(true);
-                    Debug.Log("took one out of list");
                     break;
                 }
 
@@ -115,11 +113,10 @@ public class Scrapyard : MonoBehaviour
     {
 
         ShowClickRes clickRes;
-        if (ShowClickRes.counter < plasticList.Capacity)
+        if (plasticList.Count < plasticList.Capacity)
         {
             clickRes = new ShowClickRes(SortOfRes.plastic);
             plasticList.Add(clickRes);
-            Debug.Log("new created electronics " + ShowClickRes.counter);
         }
         else
         {
@@ -131,13 +128,12 @@ public class Scrapyard : MonoBehaviour
                 }
                 else
                 {
-                    electronicList.Remove(res);
+                    plasticList.Remove(res);
                     clickRes = res;
                     plasticList.Add(clickRes);
                     clickRes = ShowClickRes.SetValues(clickRes);
                     clickRes.image.gameObject.SetActive(true);
                     clickRes.text.gameObject.SetActive(true);
-                    Debug.Log("took one out of list");
                     break;
                 }
 

@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2d359ecafe04249ad1f99e53dde7f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 1086588314745336, guid: 3c6d7a9328fd9b1468d7264eb8dad3e3, type: 2}
   button2: {fileID: 114565024949253602}
 --- !u!222 &222219053490621092
 CanvasRenderer:

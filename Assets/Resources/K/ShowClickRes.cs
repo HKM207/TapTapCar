@@ -12,7 +12,7 @@ public enum SortOfRes
 }
 public class ShowClickRes
 {
-    public static int counter = 0;
+    public static int counter;
     public Image image;
     public Text text;
     public SortOfRes sortOfRes;
@@ -29,7 +29,7 @@ public class ShowClickRes
 
         this.sortOfRes = _sortOfRes;
 
-        ++counter;
+        counter++;
 
 
 
@@ -78,7 +78,6 @@ public class ShowClickRes
     {
         res.image.transform.position = GetRandomStartPos();
         res.text.transform.position = res.image.transform.position + new Vector3(0, 125, 0);
-        Debug.Log("ValuesSet " + res.image.transform.position);
         return res;
 
     }
@@ -90,21 +89,5 @@ public class ShowClickRes
         return pos;
 
     }
-
-    //if (scrapRes.Count < Variables.mPoolMaxSize)
-    //        {
-    //            ShowClickRes scrap = new ShowClickRes(SortOfRes.scrap);
-    //            scrapRes.Add(scrap);
-    //            Debug.Log(scrap.image.transform.position + " + + + " + scrap.sortOfRes );
-    //
-    //        }
-    //        else
-    //        {
-    //            ShowClickRes scrap = scrapRes[Random.Range(0, Variables.mPoolMaxSize)];
-    //            Debug.Log("took old scrap");
-    //            scrap = SetValues(scrap);
-    //            Debug.Log("values set  " + scrap.sortOfRes);
-    //        }
-
 
 }

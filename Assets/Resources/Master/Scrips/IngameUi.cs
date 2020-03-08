@@ -15,8 +15,13 @@ public class IngameUi : MonoBehaviour
         Variables.garageUi = GameObject.FindGameObjectWithTag("GarageUI");
         Variables.partUI = GameObject.FindGameObjectWithTag("PartUI");
         Variables.factoryUI = GameObject.FindGameObjectWithTag("FactoryUI");
+
+
         Variables.carUI = Resources.Load<GameObject>("Prefabs/CarUIElementPrefab");
+       // Variables.partUI = Resources.Load<GameObject>("Prefabs/PartUIElementPrefab");
+
         Variables.scrollListCars = GameObject.Find("CarUIScrollListContents");
+        Variables.scrollListParts = GameObject.Find("PartUIScrollListContents");
     }
     public void Start()
     {
@@ -25,50 +30,7 @@ public class IngameUi : MonoBehaviour
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(EnableGarageUI);
-            if (Variables.cars != null) // Das hier muss die Liste der Cars einlesen und für jedes Car ein Element instantiaten und das Car da rein übergeben.
-            {
-                foreach (Car car in Variables.cars)
-                {
-                    //SN: Create the Car UI Elements together with the cars.
-                    //GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hängen.
-                    GameObject element;
-                    if (Variables.scrollListCars != null)
-                    {
-                        element = Instantiate(Variables.carUI);
-                        element.transform.SetParent(Variables.scrollListCars.transform);
-                        element.GetComponent<CarElement>().SetCarInfos(car);
-                    }
-                    else
-                    {
-                        Debug.Log("ScrollList Not Found ");
-                    }
-                }
-                //if (this.gameObject.name.Contains("Craft"+i))
-                //{   //BUY CAR
-                //    //button = this.gameObject.GetComponent<Button>(); 
-                //    testCar = new Car(i);
-                //    // button.onClick.AddListener(() => { BuyCar(testCar); }); // statt "delegate" habe ich eine anonyme function genommen, damit es nach profi aussieht.
-                //}
-                //if (this.gameObject.name.Contains("autoteil"))
-                //{
-                //    button = this.gameObject.GetComponent<Button>();
-                //    testPart = new Part(SortOfPart.Engine);
-                //    button.onClick.AddListener(delegate { BuyPart(testPart); });
-                //}
-                //for (int i = 1; i <= 3; i++)
-                //{
-                //    if (this.gameObject.name.Contains("wagen" + i))
-                //    {
-                //        button = this.gameObject.GetComponent<Button>();
-                //        testCar = new Car(i);
-                //        button.onClick.AddListener(delegate { BuyCar(testCar); });
-                //    }
-                //}
-            }
-            else
-            {
-                Debug.Log("Cars not read");
-            }
+            //FillScrollLists();
         }
 
         if (this.gameObject.name.Contains("Parts"))
@@ -235,6 +197,51 @@ public class IngameUi : MonoBehaviour
                 Variables.isPaused = Malte.TogglePause();
         }
     }
+    public static void FillScrollLists()
+    {
+        if (Variables.cars != null) // Das hier muss die Liste der Cars einlesen und für jedes Car ein Element instantiaten und das Car da rein übergeben.
+        {
+            foreach (Car car in Variables.cars)
+            {
+                //SN: Create the Car UI Elements together with the cars.
+                //GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hängen.
+                GameObject element;
+                if (Variables.scrollListCars != null)
+                {
+                    element = Instantiate(Variables.carUI);
+                    element.transform.SetParent(Variables.scrollListCars.transform);
+                    element.GetComponent<CarElement>().SetCarInfos(car);
+                }
+                else
+                {
+                    Debug.Log("CARS ScrollList Not Found ");
+                }
+            }
+           
+        }
+        if (Variables.parts != null) 
+        {
+            foreach (Part p in Variables.parts)
+            {
+                //SN: Create the Car UI Elements together with the cars.
+                //GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hängen.
+                GameObject element;
+                if (Variables.scrollListCars != null)
+                {
+                    element = Instantiate(Variables.partUI);
+                    element.transform.SetParent(Variables.scrollListParts.transform);
+                    element.GetComponent<PartElement>().SetPartInfos(p);
+                }
+                else
+                {
+                    Debug.Log("PARTS ScrollList Not Found ");
+                }
+            }
+           
+        }
+       
+    }
+
     public static bool DisplayDialogBox(string message, string author)
     {
         GameObject DialogPrefab;

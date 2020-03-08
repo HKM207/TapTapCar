@@ -4,7 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - jsonTextAsset: {fileID: 4900000, guid: 3089f4aefa7ed404b995ae375e1bcfad, type: 3}
+  - carTextAsset: {fileID: 4900000, guid: 3089f4aefa7ed404b995ae375e1bcfad, type: 3}
+  - partTextAsset: {fileID: 4900000, guid: 3089f4aefa7ed404b995ae375e1bcfad, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
