@@ -66,13 +66,8 @@ public class Scrapyard : MonoBehaviour
                     clickRes.text.gameObject.SetActive(true);
                     break;
                 }
-               
-
             }
-
-
         }
-
     }
     public static void DisplayElectronicClick()
     {
@@ -81,8 +76,7 @@ public class Scrapyard : MonoBehaviour
         if (electronicList.Count < electronicList.Capacity)
         {
             clickRes = new ShowClickRes(SortOfRes.electronic);
-            electronicList.Add(clickRes);
-            
+            electronicList.Add(clickRes);            
         }
         else
         {
@@ -102,11 +96,7 @@ public class Scrapyard : MonoBehaviour
                     clickRes.text.gameObject.SetActive(true);
                     break;
                 }
-
-
             }
-
-
         }
     }
     public static void DisplayPlasticsClick()
