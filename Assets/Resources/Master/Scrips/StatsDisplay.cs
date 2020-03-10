@@ -11,7 +11,6 @@ public class StatsDisplay : MonoBehaviour
     public Image multiplierBar;
     public Image multiplierBarParent;
     public static float clickTick = 0;
-    public static int lvlClicks;
 
     public Text scraps;
     public Text electronics;
@@ -53,6 +52,7 @@ public class StatsDisplay : MonoBehaviour
     {
         float barWidth = 500;
         float barHeight = 75;
+        int tempClicks = 0;
         clickTick = clickTick + Time.deltaTime;
         RectTransform rectTransform = multiplierBar.GetComponent<RectTransform>();
         RectTransform rectTransformParent = multiplierBarParent.GetComponent<RectTransform>();
@@ -64,69 +64,56 @@ public class StatsDisplay : MonoBehaviour
         }
         if (Variables.clicks <= cmLevel1)
         {
-            rectTransform.sizeDelta = new Vector2((barWidth / cmLevel1) * lvlClicks, barHeight);
-            rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (lvlClicks * ((barWidth / cmLevel1) / 2)), 0);
+            tempClicks = Variables.clicks;
+            rectTransform.sizeDelta = new Vector2((barWidth / cmLevel1) * tempClicks, barHeight);
+            rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (tempClicks * ((barWidth / cmLevel1) / 2)), 0);
             multiplierBar.color = Color.white;
-            if (Variables.clicks == cmLevel1)
-            {
-                lvlClicks = 0;
-            }
         }
         if (Variables.clicks <= cmLevel2 && Variables.clicks > cmLevel1)
         {
-            rectTransform.sizeDelta = new Vector2((barWidth / cmLevel2) * lvlClicks, barHeight);
-            rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (lvlClicks * ((barWidth / cmLevel2) / 2)), 0);
+            tempClicks = Variables.clicks - cmLevel1;
+            rectTransform.sizeDelta = new Vector2((barWidth / (cmLevel2 - cmLevel1)) * tempClicks, barHeight);
+            rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (tempClicks * ((barWidth / (cmLevel2 - cmLevel1)) / 2)), 0);
             multiplierBar.color = Color.blue;
-            if (Variables.clicks == cmLevel2)
-            {
-                lvlClicks = 0;
-            }
-        }
-
+        }                      
         if (Variables.clicks <= cmLevel3 && Variables.clicks > cmLevel2)
         {
-            rectTransform.sizeDelta = new Vector2((barWidth / cmLevel3) * lvlClicks, barHeight);
-            rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (lvlClicks * ((barWidth / cmLevel3) / 2)), 0);
-            multiplierBar.color = Color.green;
-            if (Variables.clicks == cmLevel3)
-            {
-                lvlClicks = 0;
-            }
+            tempClicks = Variables.clicks - cmLevel2;
+            rectTransform.sizeDelta = new Vector2((barWidth / (cmLevel3 - cmLevel2)) * tempClicks, barHeight);
+            rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (tempClicks * ((barWidth / (cmLevel3 - cmLevel2)) / 2)), 0);
+            multiplierBar.color = Color.green;                                      
         }
-
         if (Variables.clicks <= cmLevel4 && Variables.clicks > cmLevel3)
         {
-            rectTransform.sizeDelta = new Vector2((barWidth / cmLevel4) * lvlClicks, barHeight);
-            rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (lvlClicks * ((barWidth / cmLevel4) / 2)), 0);
+            tempClicks = Variables.clicks - cmLevel3;
+            rectTransform.sizeDelta = new Vector2((barWidth / (cmLevel4 - cmLevel3)) * tempClicks, barHeight);
+            rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (tempClicks * ((barWidth / (cmLevel4 - cmLevel3)) / 2)), 0);
             multiplierBar.color = Color.red;
-            if (Variables.clicks == cmLevel4)
-            {
-                lvlClicks = 0;
-            }
         }
-
         if (Variables.clicks <= cmLevel5 && Variables.clicks > cmLevel4)
         {
-            rectTransform.sizeDelta = new Vector2((barWidth / cmLevel5) * lvlClicks, barHeight);
-            rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (lvlClicks * ((barWidth / cmLevel5) / 2)), 0);
+            tempClicks = Variables.clicks - cmLevel4;
+            rectTransform.sizeDelta = new Vector2((barWidth / (cmLevel5 - cmLevel4)) * tempClicks, barHeight);
+            rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (tempClicks * ((barWidth / (cmLevel5 - cmLevel4)) / 2)), 0);
             multiplierBar.color = Color.cyan;
-            if (Variables.clicks == cmLevel5)
-            {
-                lvlClicks = 0;
-            }
         }
 
         if (Variables.clicks <= cmLevelMax && Variables.clicks > cmLevel5)
         {
-            rectTransform.sizeDelta = new Vector2((barWidth / cmLevelMax) * lvlClicks, barHeight);
-            rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (lvlClicks * ((barWidth / cmLevelMax) / 2)), 0);
+            tempClicks = Variables.clicks - cmLevel5;
+            rectTransform.sizeDelta = new Vector2((barWidth / (cmLevelMax - cmLevel5)) * tempClicks, barHeight);
+            rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (tempClicks * ((barWidth / (cmLevelMax - cmLevel5)) / 2)), 0);
             multiplierBar.color = Color.yellow;
         }
+        if (Variables.clicks >= cmLevelMax)
+        {
+            multiplierBar.color = Color.magenta;
+        }
     }
-    private int cmLevel1 = 5;
-    private int cmLevel2 = 10;
-    private int cmLevel3 = 25;
-    private int cmLevel4 = 62;
-    private int cmLevel5 = 150;
-    private int cmLevelMax = 200;
+    private int cmLevel1 = 10;
+    private int cmLevel2 = 25;
+    private int cmLevel3 = 65;
+    private int cmLevel4 = 150;
+    private int cmLevel5 = 400;
+    private int cmLevelMax = 1000;
 }

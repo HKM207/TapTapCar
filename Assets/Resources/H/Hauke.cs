@@ -8,7 +8,6 @@ public class Hauke
     {
         Variables.clicks++;
         StatsDisplay.clickTick = 0;
-        StatsDisplay.lvlClicks++;
 
         int random = Random.Range(0, 101);
         int[] dropchances = new int[2] { 65, 85 };
