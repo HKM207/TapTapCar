@@ -36,7 +36,6 @@ public class StatsDisplay : MonoBehaviour
     void Update()
     {
         MultiplierBar();
-
         scraps.text = Mathf.RoundToInt(Variables.resScraps).ToString();
         plastics.text = Mathf.RoundToInt(Variables.resPlastics).ToString();
         electronics.text = Mathf.RoundToInt(Variables.resElectronics).ToString();
@@ -44,8 +43,6 @@ public class StatsDisplay : MonoBehaviour
         xp.text = "EXP: " + Mathf.RoundToInt(Variables.playerExperience).ToString();
         level.text = "Level: " + Variables.playerLevel;
         soldCars.text = Variables.soldCars.ToString();
-
-
     }
 
     public void MultiplierBar()
@@ -57,7 +54,7 @@ public class StatsDisplay : MonoBehaviour
         RectTransform rectTransform = multiplierBar.GetComponent<RectTransform>();
         RectTransform rectTransformParent = multiplierBarParent.GetComponent<RectTransform>();
 
-        if (clickTick >= 3)
+        if (clickTick >= 1)
         {
             Variables.clicks = 0;
             clickTick = 0;
@@ -75,13 +72,13 @@ public class StatsDisplay : MonoBehaviour
             rectTransform.sizeDelta = new Vector2((barWidth / (cmLevel2 - cmLevel1)) * tempClicks, barHeight);
             rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (tempClicks * ((barWidth / (cmLevel2 - cmLevel1)) / 2)), 0);
             multiplierBar.color = Color.blue;
-        }                      
+        }
         if (Variables.clicks <= cmLevel3 && Variables.clicks > cmLevel2)
         {
             tempClicks = Variables.clicks - cmLevel2;
             rectTransform.sizeDelta = new Vector2((barWidth / (cmLevel3 - cmLevel2)) * tempClicks, barHeight);
             rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (tempClicks * ((barWidth / (cmLevel3 - cmLevel2)) / 2)), 0);
-            multiplierBar.color = Color.green;                                      
+            multiplierBar.color = Color.green;
         }
         if (Variables.clicks <= cmLevel4 && Variables.clicks > cmLevel3)
         {
@@ -97,7 +94,6 @@ public class StatsDisplay : MonoBehaviour
             rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (tempClicks * ((barWidth / (cmLevel5 - cmLevel4)) / 2)), 0);
             multiplierBar.color = Color.cyan;
         }
-
         if (Variables.clicks <= cmLevelMax && Variables.clicks > cmLevel5)
         {
             tempClicks = Variables.clicks - cmLevel5;
