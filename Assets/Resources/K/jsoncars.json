@@ -3,55 +3,42 @@
     "name": "car1",
     "level": "1",
     "expValue": "1000",
-    "moneyValue": "500",
-    "reqEngines": "7",
-    "requiredTires": "9",
-    "reqFrames": "5"
+    "moneyValue": "1000",
+    "requiredScrap": "1",
+    "requiredPlastics": "9",
+    "requiredElectronics": "5",
+    "upgradeCosts": "1"
   },
   {
     "name": "car1",
-    "level": "1",
+    "level": "2",
     "expValue": "1000",
     "moneyValue": "500",
-    "reqEngines": "7",
-    "requiredTires": "9",
-    "reqFrames": "5"
+    "requiredScrap": "7",
+    "requiredPlastics": "9",
+    "requiredElectronics": "5",
+    "upgradeCosts": "1"
   },
   {
     "name": "car1",
-    "level": "1",
+    "level": "3",
     "expValue": "1000",
     "moneyValue": "500",
-    "reqEngines": "7",
-    "requiredTires": "9",
-    "reqFrames": "5"
+    "requiredScrap": "7",
+    "requiredPlastics": "9",
+    "requiredElectronics": "5",
+    "upgradeCosts": "1"
   },
   {
     "name": "car1",
-    "level": "1",
+    "level": "4",
     "expValue": "1000",
     "moneyValue": "500",
-    "reqEngines": "7",
-    "requiredTires": "9",
-    "reqFrames": "5"
-  },
-  {
-    "name": "car1",
-    "level": "1",
-    "expValue": "1000",
-    "moneyValue": "500",
-    "reqEngines": "7",
-    "requiredTires": "9",
-    "reqFrames": "5"
-  },
-  {
-    "name": "car1",
-    "level": "1",
-    "expValue": "1000",
-    "moneyValue": "500",
-    "reqEngines": "7",
-    "requiredTires": "9",
-    "reqFrames": "5"
+    "requiredScrap": "7",
+    "requiredPlastics": "9",
+    "requiredElectronics": "5",
+    "upgradeCosts": "1"
   }
+
 
 ]

@@ -31,7 +31,7 @@ public class CreateDontDestroy : MonoBehaviour
     private void Start()
     {
         CurrentGamestate = Gamestate.ingame;
-        FillScrollLists();
+ 
     }
     private void Update()
     {
@@ -48,9 +48,6 @@ public class CreateDontDestroy : MonoBehaviour
                 Variables.resPlastics = Variables.resPlastics + 100;
                 Variables.resElectronics = Variables.resElectronics + 100;
 
-                Variables.partEngines = Variables.partEngines + 100;
-                Variables.partFrames = Variables.partFrames + 100;
-                Variables.partTires = Variables.partTires + 100;
             }
             #endregion
             Killian.LevelUpSystem(Variables.levelUpModifier);
@@ -115,51 +112,6 @@ public class CreateDontDestroy : MonoBehaviour
     #endregion
 
 
-    public void FillScrollLists()
-    {
-        if (Variables.cars != null) // Das hier muss die Liste der Cars einlesen und für jedes Car ein Element instantiaten und das Car da rein übergeben.
-        {
-            foreach (Car car in Variables.cars)
-            {
-                //SN: Create the Car UI Elements together with the cars.
-                //GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hängen.
-                GameObject element;
-                if (Variables.scrollListCars != null)
-                {
-                    element = Instantiate(Variables.carUI);
-                    element.transform.SetParent(Variables.scrollListCars.transform);
-                    element.GetComponent<CarElement>().SetCarInfos(car);
-                }
-                else
-                {
-                    Debug.Log("CARS ScrollList Not Found ");
-                }
-            }
-
-        }
-
-        //if (Variables.parts != null)
-        //{
-        //    foreach (Part p in Variables.parts)
-        //    {
-        //        //SN: Create the Car UI Elements together with the cars.
-        //        //GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hängen.
-        //        GameObject element;
-        //        if (Variables.scrollListCars != null)
-        //        {
-        //            element = Instantiate(Variables.partUI);
-        //            element.transform.SetParent(Variables.scrollListParts.transform);
-        //            element.GetComponent<PartElement>().SetPartInfos(p);
-        //        }
-        //        else
-        //        {
-        //            Debug.Log("PARTS ScrollList Not Found ");
-        //        }
-        //    }
-
-        //}
-
-    }
 }
 public class Variables
 {
@@ -169,7 +121,7 @@ public class Variables
     public static GameObject scrollListCars;
     public static GameObject scrollListParts;
     public static Car[] cars;
-    public static Part[] parts;
+   
     public static bool isIngame = false;
     public static bool isPaused = false;
     public static GameObject partUI;
@@ -179,9 +131,11 @@ public class Variables
     public static float resScraps;
     public static float resElectronics;
     public static float resPlastics;
-    public static float partEngines;
-    public static float partFrames;
-    public static float partTires;
+
+    //public static float partEngines;
+    //public static float partFrames;
+    //public static float partTires;
+
     public static int playerLevel = 1;
     public static float playerMoney;
     public static float playerMoneyTotel;
@@ -191,9 +145,11 @@ public class Variables
     public static float expNeededForLvlUp = 5000;
     public const int levelUpModifier = 3;
     public static float clickMultiplier = 1;
-    public static int engineLevel;
-    public static int tireLevel;
-    public static int frameLevel;
+
+    //public static int engineLevel;
+    //public static int tireLevel;
+    //public static int frameLevel;
+
     public static float carValueMultiplier = 1;
     public static float workerCost = 5000;
     public static float startFactoryCost = 10000;
@@ -208,12 +164,14 @@ public class Variables
     public static float scrapYardCollectorMultiplier;
     public static int scrapYardCollector;
     public static float startScrapYardCollectorMultiplier = 0.125f;
-    public static float engineProductionRatio;
-    public static float frameProductionRatio;
-    public static float tireProductionRatio;
-    public static float startEngineProductionRatio = 0;
-    public static float startFrameProductionRatio = 0;
-    public static float startTireProductionRatio = 0;
+
+    //public static float engineProductionRatio;
+    //public static float frameProductionRatio;
+    //public static float tireProductionRatio;
+    //public static float startEngineProductionRatio = 0;
+    //public static float startFrameProductionRatio = 0;
+    //public static float startTireProductionRatio = 0;
+
     public static bool isFactoryActiv = false;
     public static bool isResearchFacilityActiv = false;
     public static float clickMultiplierUpgradeStartCosts = 2000;
