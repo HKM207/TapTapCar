@@ -27,7 +27,7 @@ public class PrefabManager : MonoBehaviour
         mainResearchFacility = Resources.Load<Button>("Prefabs/ResearchFacility");
         mainResearchFacilityShop = Resources.Load<Image>("Prefabs/FacilityShop");
         mainGarageMenu = Resources.Load<Image>("Prefabs/GarageMenu");
-        mainFactory = Resources.Load<Button>("Prefabs/Factory");
+        //mainFactory = Resources.Load<Button>("Prefabs/Factory");
         options = Resources.Load<Image>("Prefabs/Options");
     }
 
@@ -37,7 +37,7 @@ public class PrefabManager : MonoBehaviour
         ActivateScrapyard();
         ActivateGarage();
         ActivateGarageMenu();
-        ActivateFactory();
+        //ActivateFactory();
         ActivateResearchFacility();
         ActivateOptions();
     }
@@ -86,12 +86,12 @@ public class PrefabManager : MonoBehaviour
         shop.gameObject.SetActive(false);
     }
 
-    public static void ActivateFactory()
-    {
-        Button factory;
-        factory = Instantiate(mainFactory);
-        factory.gameObject.transform.SetParent(Variables.mainUI.transform);
-    }
+    //public static void ActivateFactory()
+    //{
+    //    Button factory;
+    //    factory = Instantiate(mainFactory);
+    //    factory.gameObject.transform.SetParent(Variables.mainUI.transform);
+    //}
 
     public static void ActivateOptions()
     {

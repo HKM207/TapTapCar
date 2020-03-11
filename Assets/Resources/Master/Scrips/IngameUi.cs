@@ -82,24 +82,24 @@ public class IngameUi : MonoBehaviour
     }
     #endregion Garage
     #region Factory
-    public static void EnableFactoryUI()
-    {
-        if (!Variables.factoryUI.activeSelf)
-        {
-            Variables.factoryUI.SetActive(true);
-        }
-        else
-        {
-            Variables.factoryUI.SetActive(false);
-        }
-    }
-    public static void DisableFactoryUI()
-    {
-        if (Variables.factoryUI.activeSelf)
-        {
-            Variables.factoryUI.SetActive(false);
-        }
-    }
+    //public static void EnableFactoryUI()
+    //{
+    //    if (!Variables.factoryUI.activeSelf)
+    //    {
+    //        Variables.factoryUI.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        Variables.factoryUI.SetActive(false);
+    //    }
+    //}
+    //public static void DisableFactoryUI()
+    //{
+    //    if (Variables.factoryUI.activeSelf)
+    //    {
+    //        Variables.factoryUI.SetActive(false);
+    //    }
+    //}
     #endregion Factory
       
     public void EnableCarUI()
