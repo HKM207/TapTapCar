@@ -115,6 +115,8 @@ public class CreateDontDestroy : MonoBehaviour
 }
 public class Variables
 {
+    public static int totalClicks;
+
     public const int Poolsize = 100;
 
     public static GameObject mainUI;

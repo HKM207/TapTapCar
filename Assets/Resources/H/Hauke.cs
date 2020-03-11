@@ -6,6 +6,11 @@ public class Hauke
 {
     public static void ScrapyardClick()
     {
+        Variables.totalClicks++;
+        if (Variables.totalClicks % 10 == 0)
+        {
+            RandomCar randomGift = new RandomCar(Random.Range(1, 4));
+        }
         int random = Random.Range(0, 101);
         int[] dropchances = new int[2] { 65, 85 };
 

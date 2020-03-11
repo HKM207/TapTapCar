@@ -8,6 +8,7 @@ public class Scrapyard : MonoBehaviour
     public static List<ShowClickRes> scrapList = new List<ShowClickRes>(Variables.Poolsize);
     public static List<ShowClickRes> electronicList = new List<ShowClickRes>(Variables.Poolsize);
     public static List<ShowClickRes> plasticList = new List<ShowClickRes>(Variables.Poolsize);
+    
     public GameObject clickParent;
 
     private Button button;
@@ -61,7 +62,7 @@ public class Scrapyard : MonoBehaviour
                     scrapList.Remove(res);
                     clickRes = res;
                     scrapList.Add(clickRes);
-                    clickRes = ShowClickRes.SetValues(clickRes);
+                    clickRes = ShowClickRes.SetValues(clickRes,scrapyardPosition);
                     clickRes.image.gameObject.SetActive(true);
                     clickRes.text.gameObject.SetActive(true);
                     break;
@@ -97,7 +98,7 @@ public class Scrapyard : MonoBehaviour
                     electronicList.Remove(res);
                     clickRes = res;
                     electronicList.Add(clickRes);
-                    clickRes = ShowClickRes.SetValues(clickRes);
+                    clickRes = ShowClickRes.SetValues(clickRes,scrapyardPosition);
                     clickRes.image.gameObject.SetActive(true);
                     clickRes.text.gameObject.SetActive(true);
                     break;
@@ -131,7 +132,7 @@ public class Scrapyard : MonoBehaviour
                     plasticList.Remove(res);
                     clickRes = res;
                     plasticList.Add(clickRes);
-                    clickRes = ShowClickRes.SetValues(clickRes);
+                    clickRes = ShowClickRes.SetValues(clickRes,scrapyardPosition);
                     clickRes.image.gameObject.SetActive(true);
                     clickRes.text.gameObject.SetActive(true);
                     break;
