@@ -126,11 +126,7 @@ public class Scrapyard : MonoBehaviour
                     clickRes.text.gameObject.SetActive(true);
                     break;
                 }
-
-
             }
-
-
         }
 
 }

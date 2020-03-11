@@ -57,7 +57,14 @@ public class StatsDisplay : MonoBehaviour
         if (clickTick >= 1)
         {
             Variables.clicks = 0;
+            Variables.clickMultiplier = 1;
             clickTick = 0;
+            lvl1Recieved = false;
+            lvl2Recieved = false;
+            lvl3Recieved = false;
+            lvl4Recieved = false;
+            lvl5Recieved = false;
+            lvlMaxRecieved = false;
         }
         if (Variables.clicks <= cmLevel1)
         {
@@ -72,6 +79,11 @@ public class StatsDisplay : MonoBehaviour
             rectTransform.sizeDelta = new Vector2((barWidth / (cmLevel2 - cmLevel1)) * tempClicks, barHeight);
             rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (tempClicks * ((barWidth / (cmLevel2 - cmLevel1)) / 2)), 0);
             multiplierBar.color = Color.blue;
+            if (!lvl1Recieved)
+            {
+                Variables.clickMultiplier += 0.25f;
+                lvl1Recieved = true;
+            }
         }
         if (Variables.clicks <= cmLevel3 && Variables.clicks > cmLevel2)
         {
@@ -79,6 +91,11 @@ public class StatsDisplay : MonoBehaviour
             rectTransform.sizeDelta = new Vector2((barWidth / (cmLevel3 - cmLevel2)) * tempClicks, barHeight);
             rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (tempClicks * ((barWidth / (cmLevel3 - cmLevel2)) / 2)), 0);
             multiplierBar.color = Color.green;
+            if (!lvl2Recieved)
+            {
+                Variables.clickMultiplier += 0.5f;
+                lvl2Recieved = true;
+            }
         }
         if (Variables.clicks <= cmLevel4 && Variables.clicks > cmLevel3)
         {
@@ -86,6 +103,11 @@ public class StatsDisplay : MonoBehaviour
             rectTransform.sizeDelta = new Vector2((barWidth / (cmLevel4 - cmLevel3)) * tempClicks, barHeight);
             rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (tempClicks * ((barWidth / (cmLevel4 - cmLevel3)) / 2)), 0);
             multiplierBar.color = Color.red;
+            if (!lvl3Recieved)
+            {
+                Variables.clickMultiplier += 0.75f;
+                lvl3Recieved = true;
+            }
         }
         if (Variables.clicks <= cmLevel5 && Variables.clicks > cmLevel4)
         {
@@ -93,6 +115,11 @@ public class StatsDisplay : MonoBehaviour
             rectTransform.sizeDelta = new Vector2((barWidth / (cmLevel5 - cmLevel4)) * tempClicks, barHeight);
             rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (tempClicks * ((barWidth / (cmLevel5 - cmLevel4)) / 2)), 0);
             multiplierBar.color = Color.cyan;
+            if (!lvl4Recieved)
+            {
+                Variables.clickMultiplier += 1.5f;
+                lvl4Recieved = true;
+            }
         }
         if (Variables.clicks <= cmLevelMax && Variables.clicks > cmLevel5)
         {
@@ -100,16 +127,32 @@ public class StatsDisplay : MonoBehaviour
             rectTransform.sizeDelta = new Vector2((barWidth / (cmLevelMax - cmLevel5)) * tempClicks, barHeight);
             rectTransform.position = rectTransformParent.position - new Vector3(barWidth / 2 - (tempClicks * ((barWidth / (cmLevelMax - cmLevel5)) / 2)), 0);
             multiplierBar.color = Color.yellow;
+            if (!lvl5Recieved)
+            {
+                Variables.clickMultiplier += 2f;
+                lvl5Recieved = true;
+            }
         }
         if (Variables.clicks >= cmLevelMax)
         {
             multiplierBar.color = Color.magenta;
+            if (!lvlMaxRecieved)
+            {
+                Variables.clickMultiplier += 4f;
+                lvlMaxRecieved = true;
+            }
         }
     }
     private int cmLevel1 = 10;
+    private bool lvl1Recieved = false;
     private int cmLevel2 = 25;
+    private bool lvl2Recieved = false;
     private int cmLevel3 = 65;
+    private bool lvl3Recieved = false;
     private int cmLevel4 = 150;
+    private bool lvl4Recieved = false;
     private int cmLevel5 = 400;
+    private bool lvl5Recieved = false;
     private int cmLevelMax = 1000;
+    private bool lvlMaxRecieved = false;
 }
