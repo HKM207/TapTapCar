@@ -56,7 +56,6 @@ public class CreateDontDestroy : MonoBehaviour
             Killian.LevelUpSystem(Variables.levelUpModifier);
             Tickrate();
             Calculations();
-           
         }
         SaveGame();
         Malte.EscMenu();
@@ -164,6 +163,7 @@ public class CreateDontDestroy : MonoBehaviour
 public class Variables
 {
     public const int Poolsize = 100;
+    public static int clicks = 0;
 
     public static GameObject mainUI;
     public static GameObject scrollListCars;

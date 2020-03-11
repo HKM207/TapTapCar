@@ -8,7 +8,6 @@ public enum SortOfRes
     scrap,
     electronic,
     plastic
-
 }
 public class ShowClickRes
 {
@@ -26,35 +25,22 @@ public class ShowClickRes
     }
     public ShowClickRes(SortOfRes _sortOfRes)
     {
-
         this.sortOfRes = _sortOfRes;
-
         counter++;
 
-
-
         this.image = GameObject.Instantiate(Scrapyard.clickImage);
-
         this.image.gameObject.transform.SetParent(Variables.mainUI.transform);
-
         this.image.transform.position = GetRandomStartPos();
 
         this.text = GameObject.Instantiate(Scrapyard.clickText);
-        this.text.gameObject.transform.SetParent(Variables.mainUI.transform);
-
-        
+        this.text.gameObject.transform.SetParent(Variables.mainUI.transform);      
         this.text.transform.position = image.transform.position + new Vector3(0, 125, 0);
-
         this.text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
-        
-
 
         if (this.sortOfRes == SortOfRes.scrap)
         {
             Sprite sprite = Resources.Load<Sprite>("Master/ConceptGraphics/scrap");
             this.image.GetComponent<Image>().sprite = sprite;
-
-
         }
         else if (this.sortOfRes == SortOfRes.electronic)
         {
@@ -78,8 +64,8 @@ public class ShowClickRes
     {
         res.image.transform.position = GetRandomStartPos();
         res.text.transform.position = res.image.transform.position + new Vector3(0, 125, 0);
+        res.text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
         return res;
-
     }
     public static Vector3 GetRandomStartPos()
     {
