@@ -1,6 +1,6 @@
 [
   {
-    "name": "car1",
+    "name": "Master/ConceptGraphics/car2",
     "level": "1",
     "expValue": "1000",
     "moneyValue": "1000",
@@ -10,7 +10,7 @@
     "upgradeCosts": "1"
   },
   {
-    "name": "car1",
+    "name": "Master/ConceptGraphics/car3",
     "level": "2",
     "expValue": "1000",
     "moneyValue": "500",
@@ -20,7 +20,7 @@
     "upgradeCosts": "1"
   },
   {
-    "name": "car1",
+    "name": "Master/ConceptGraphics/car4",
     "level": "3",
     "expValue": "1000",
     "moneyValue": "500",
@@ -30,7 +30,7 @@
     "upgradeCosts": "1"
   },
   {
-    "name": "car1",
+    "name": "Master/ConceptGraphics/car4",
     "level": "4",
     "expValue": "1000",
     "moneyValue": "500",

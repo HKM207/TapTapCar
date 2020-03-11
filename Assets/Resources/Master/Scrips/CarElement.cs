@@ -38,6 +38,8 @@ public class CarElement : MonoBehaviour
     public void SetCarInfos(Car car)
     {
         this.car = car;
+        Sprite sprite = Resources.Load<Sprite>(car.name);
+        btnSellCar.GetComponent<Image>().sprite = sprite;
         scrapCosts.text = car.requiredScrap.ToString();
         plasticCosts.text = car.requiredPlastics.ToString();
         electronicsCosts.text = car.requiredElectronics.ToString();

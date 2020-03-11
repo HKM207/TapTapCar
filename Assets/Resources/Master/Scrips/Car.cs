@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class Car
 {
     public string name;
-
     public int moneyValue;
     public int expValue;
     public int level;
@@ -34,13 +33,14 @@ public class Car
 
     public void SetValues()
     {
-        //Balancing
+        
         this.upgradeCosts = this.upgradeCosts * this.moneyValue * 2;
         this.moneyValue = this.moneyValue * this.level;
         this.expValue = this.expValue * this.level;
         this.requiredScrap = this.requiredScrap * this.level;
         this.requiredPlastics = this.requiredPlastics * this.level;
         this.requiredElectronics = this.requiredElectronics * this.level;
+        this.upgradeLevel = 1;
 
     }
 

@@ -15,8 +15,7 @@ public class RandomCar
     public RandomCar(int rndSort)
     {
         float rndResGetter;
-       
-        
+
         switch (rndSort)
         {
             case 1:
