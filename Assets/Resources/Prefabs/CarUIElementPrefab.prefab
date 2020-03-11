@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222368930943504214}
   - component: {fileID: 114438794520691828}
   m_Layer: 5
-  m_Name: costTires
+  m_Name: costPlastics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 114590542656518868}
   - component: {fileID: 114211057471983936}
   m_Layer: 5
-  m_Name: btEngine
+  m_Name: btnCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 222609181067625640}
   - component: {fileID: 114828529058808740}
   m_Layer: 5
-  m_Name: costFrames
+  m_Name: costElectronics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 222854169927634712}
   - component: {fileID: 114706721309394640}
   m_Layer: 5
-  m_Name: costEngines
+  m_Name: costScraps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -506,7 +506,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 01d9497095b39134f9d6abfa2ef264a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8cdd7b71ae099bf4ea7500d4b527f783, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -705,9 +705,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ee198c53ee3ea4aa74148459feb017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  engineCosts: {fileID: 114706721309394640}
-  tireCosts: {fileID: 114438794520691828}
-  frameCosts: {fileID: 114828529058808740}
+  scrapCosts: {fileID: 114706721309394640}
+  plasticCosts: {fileID: 114438794520691828}
+  electronicsCosts: {fileID: 114828529058808740}
   requiredLevel: {fileID: 114613657530309454}
   upgradeCosts: {fileID: 114617231923240308}
   xpReward: {fileID: 114685949830192288}

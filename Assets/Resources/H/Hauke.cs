@@ -8,7 +8,11 @@ public class Hauke
     {
         Variables.clicks++;
         StatsDisplay.clickTick = 0;
-
+        Variables.totalClicks++;
+        if (Variables.totalClicks % 10 == 0)
+        {
+            RandomCar randomGift = new RandomCar(Random.Range(1, 4));
+        }
         int random = Random.Range(0, 101);
         int[] dropchances = new int[2] { 65, 85 };
 
@@ -65,26 +69,26 @@ public class Hauke
         if (Variables.isFactoryActiv)
         {
 
-            if (Variables.engineProductionRatio < Variables.startEngineProductionRatio &&
-                Variables.tireProductionRatio < Variables.startTireProductionRatio &&
-                Variables.frameProductionRatio < Variables.startFrameProductionRatio)
-            {
-                Variables.engineProductionRatio = Variables.startEngineProductionRatio;
-                Variables.tireProductionRatio = Variables.startTireProductionRatio;
-                Variables.frameProductionRatio = Variables.startFrameProductionRatio;
-            }
+            //if (Variables.engineProductionRatio < Variables.startEngineProductionRatio &&
+            //    Variables.tireProductionRatio < Variables.startTireProductionRatio &&
+            //    Variables.frameProductionRatio < Variables.startFrameProductionRatio)
+            //{
+            //    Variables.engineProductionRatio = Variables.startEngineProductionRatio;
+            //    Variables.tireProductionRatio = Variables.startTireProductionRatio;
+            //    Variables.frameProductionRatio = Variables.startFrameProductionRatio;
+            //}
             if (Variables.factoryTick == 0)
             {
                 Variables.factoryTick = Variables.tickCounter;
             }
             if (Variables.timeInTicks >= Variables.factoryTick)
             {
-                Part partEngine = new Part(SortOfPart.Engine);
-                ProducePart(partEngine);
-                Part partFrame = new Part(SortOfPart.Frame);
-                ProducePart(partFrame);
-                Part partTire = new Part(SortOfPart.Tire);
-                ProducePart(partTire);
+                //Part partEngine = new Part(SortOfPart.Engine);
+                //ProducePart(partEngine);
+                //Part partFrame = new Part(SortOfPart.Frame);
+                //ProducePart(partFrame);
+                //Part partTire = new Part(SortOfPart.Tire);
+                //ProducePart(partTire);
                 Variables.factoryTick += 1;
             }
         }
@@ -107,38 +111,38 @@ public class Hauke
             }
         }
     }
-    public static void ProducePart(Part part)
-    {
-        if (Variables.resScraps >= part.requiredScrap &&
-            Variables.resPlastics >= part.requiredPlastics &&
-            Variables.resElectronics >= part.requiredElectronics)
-        {
-            if (part.sort == SortOfPart.Engine)
-            {
-                Variables.partEngines = Variables.partEngines + (1 * Variables.engineProductionRatio);
+    //public static void ProducePart(Part part)
+    //{
+    //    if (Variables.resScraps >= part.requiredScrap &&
+    //        Variables.resPlastics >= part.requiredPlastics &&
+    //        Variables.resElectronics >= part.requiredElectronics)
+    //    {
+    //        if (part.sort == SortOfPart.Engine)
+    //        {
+    //            Variables.partEngines = Variables.partEngines + (1 * Variables.engineProductionRatio);
 
-                Variables.resScraps = Variables.resScraps - (part.requiredScrap * Variables.engineProductionRatio);
-                Variables.resPlastics = Variables.resPlastics - (part.requiredPlastics * Variables.engineProductionRatio);
-                Variables.resElectronics = Variables.resElectronics - (part.requiredElectronics * Variables.engineProductionRatio);
-            }
-            else if (part.sort == SortOfPart.Frame)
-            {
-                Variables.partFrames = Variables.partFrames + (1 * Variables.frameProductionRatio);
+    //            Variables.resScraps = Variables.resScraps - (part.requiredScrap * Variables.engineProductionRatio);
+    //            Variables.resPlastics = Variables.resPlastics - (part.requiredPlastics * Variables.engineProductionRatio);
+    //            Variables.resElectronics = Variables.resElectronics - (part.requiredElectronics * Variables.engineProductionRatio);
+    //        }
+    //        else if (part.sort == SortOfPart.Frame)
+    //        {
+    //            Variables.partFrames = Variables.partFrames + (1 * Variables.frameProductionRatio);
 
-                Variables.resScraps = Variables.resScraps - (part.requiredScrap * Variables.frameProductionRatio);
-                Variables.resPlastics = Variables.resPlastics - (part.requiredPlastics * Variables.frameProductionRatio);
-                Variables.resElectronics = Variables.resElectronics - (part.requiredElectronics * Variables.frameProductionRatio);
-            }
-            else if (part.sort == SortOfPart.Tire)
-            {
-                Variables.partTires = Variables.partTires + (1 * Variables.tireProductionRatio);
+    //            Variables.resScraps = Variables.resScraps - (part.requiredScrap * Variables.frameProductionRatio);
+    //            Variables.resPlastics = Variables.resPlastics - (part.requiredPlastics * Variables.frameProductionRatio);
+    //            Variables.resElectronics = Variables.resElectronics - (part.requiredElectronics * Variables.frameProductionRatio);
+    //        }
+    //        else if (part.sort == SortOfPart.Tire)
+    //        {
+    //            Variables.partTires = Variables.partTires + (1 * Variables.tireProductionRatio);
 
-                Variables.resScraps = Variables.resScraps - (part.requiredScrap * Variables.tireProductionRatio);
-                Variables.resPlastics = Variables.resPlastics - (part.requiredPlastics * Variables.tireProductionRatio);
-                Variables.resElectronics = Variables.resElectronics - (part.requiredElectronics * Variables.tireProductionRatio);
-            }
-        }
-    }
+    //            Variables.resScraps = Variables.resScraps - (part.requiredScrap * Variables.tireProductionRatio);
+    //            Variables.resPlastics = Variables.resPlastics - (part.requiredPlastics * Variables.tireProductionRatio);
+    //            Variables.resElectronics = Variables.resElectronics - (part.requiredElectronics * Variables.tireProductionRatio);
+    //        }
+    //    }
+    //}
     public static void ResearchFacilityUpgradeCostCalculations()
     {
         if (Variables.isResearchFacilityActiv)
@@ -155,9 +159,7 @@ public class Hauke
         Variables.resElectronics = 0;
         Variables.resPlastics = 0;
 
-        Variables.partEngines = 0;
-        Variables.partFrames = 0;
-        Variables.partTires = 0;
+       
 
         Variables.playerLevel = 1;
         Variables.playerMoney = 0;
@@ -166,9 +168,6 @@ public class Hauke
         Variables.totelResets = 0;
         Variables.playerExperience = 0;
 
-        Variables.engineLevel = 0;
-        Variables.tireLevel = 0;
-        Variables.frameLevel = 0;
 
         Variables.carValueMultiplier = 1;
         Variables.factoryCost = Variables.startFactoryCost;
@@ -185,9 +184,7 @@ public class Hauke
         Variables.scrapYardCollectorMultiplier = Variables.startScrapYardCollectorMultiplier;
         Variables.scrapYardCollector = 0;
 
-        Variables.engineProductionRatio = Variables.startEngineProductionRatio;
-        Variables.frameProductionRatio = Variables.startFrameProductionRatio;
-        Variables.tireProductionRatio = Variables.startTireProductionRatio;
+       
 
         Variables.isFactoryActiv = false;
         Variables.isResearchFacilityActiv = false;
@@ -204,19 +201,11 @@ public class Hauke
         Variables.resElectronics = 0;
         Variables.resPlastics = 0;
 
-        Variables.partEngines = 0;
-        Variables.partFrames = 0;
-        Variables.partTires = 0;
-
         Variables.playerLevel = 1;
         Variables.playerMoney = 0;
         Variables.playerMoneyTotel = 0;
         Variables.totelResets++;
         Variables.playerExperience = 0;
-
-        Variables.engineLevel = 0;
-        Variables.tireLevel = 0;
-        Variables.frameLevel = 0;
 
         Variables.carValueMultiplier = 1;
         Variables.factoryCost = Variables.startFactoryCost;
@@ -232,10 +221,6 @@ public class Hauke
         Variables.workerCost = 5000;
         Variables.scrapYardCollectorMultiplier = Variables.startScrapYardCollectorMultiplier;
         Variables.scrapYardCollector = 0;
-
-        Variables.engineProductionRatio = Variables.startEngineProductionRatio;
-        Variables.frameProductionRatio = Variables.startFrameProductionRatio;
-        Variables.tireProductionRatio = Variables.startTireProductionRatio;
 
         Variables.isFactoryActiv = false;
         Variables.isResearchFacilityActiv = false;

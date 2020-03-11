@@ -9,18 +9,22 @@ public class Car
 {
     public string name;
 
-    public int moneyValue = 500;
-    public int expValue = 500;
+    public int moneyValue;
+    public int expValue;
     public int level;
+    public int upgradeLevel;
+    public int upgradeCosts;
 
-    public int requiredEngines = 2;
-    public int requiredTires = 4;
-    public int requiredFrames = 2;
+    public int requiredScrap = 2;
+    public int requiredPlastics = 4;
+    public int requiredElectronics = 2;
 
    
     public Car()
     {
-        //SetValues();
+        //Debug.Log("works");
+        //this.upgradeCosts = this.moneyValue * 2;
+        SetValues();
     }
     public Car(int _level)
     {
@@ -31,11 +35,12 @@ public class Car
     public void SetValues()
     {
         //Balancing
+        this.upgradeCosts = this.upgradeCosts * this.moneyValue * 2;
         this.moneyValue = this.moneyValue * this.level;
         this.expValue = this.expValue * this.level;
-        this.requiredEngines = this.requiredEngines * this.level;
-        this.requiredTires = this.requiredTires * this.level;
-        this.requiredFrames = this.requiredFrames * this.level;
+        this.requiredScrap = this.requiredScrap * this.level;
+        this.requiredPlastics = this.requiredPlastics * this.level;
+        this.requiredElectronics = this.requiredElectronics * this.level;
 
     }
 

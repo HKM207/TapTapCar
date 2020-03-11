@@ -12,9 +12,9 @@ using UnityEngine.UI;
 /// </summary>
 public class CarElement : MonoBehaviour
 {
-    public Text engineCosts;
-    public Text tireCosts;
-    public Text frameCosts;
+    public Text scrapCosts;
+    public Text plasticCosts;
+    public Text electronicsCosts;
     public Text requiredLevel;
 
     public Text upgradeCosts;
@@ -24,55 +24,68 @@ public class CarElement : MonoBehaviour
     public Button btnUpgradeCar;
     UnityAction sellCarMethodCall; //Action is the delegate without returntype
     UnityAction upgradeCarMethodCall;
- 
+
     Car car;
 
-    void Start ()
+    void Start()
     {
         sellCarMethodCall += SellCar;
+        upgradeCarMethodCall += UpgradeCar;
+        btnUpgradeCar.onClick.AddListener(upgradeCarMethodCall);
         btnSellCar.onClick.AddListener(sellCarMethodCall);
-	}
+    }
 
     public void SetCarInfos(Car car)
     {
         this.car = car;
-        engineCosts.text = car.requiredEngines.ToString();
-        tireCosts.text = car.requiredTires.ToString();
-        frameCosts.text = car.requiredFrames.ToString();
+        scrapCosts.text = car.requiredScrap.ToString();
+        plasticCosts.text = car.requiredPlastics.ToString();
+        electronicsCosts.text = car.requiredElectronics.ToString();
         requiredLevel.text = car.level.ToString();
-        upgradeCosts.text =  car.moneyValue.ToString();
+        upgradeCosts.text = (car.upgradeCosts * car.moneyValue*2).ToString();
         xpReward.text = car.expValue.ToString();
         Debug.Log("Car Info Given To UI ");
     }
 
-public void SellCar()
+    public void SellCar()
     {
-        if (Variables.partEngines >= car.requiredEngines &&
-            Variables.partFrames >= car.requiredFrames &&
-            Variables.partTires >= car.requiredTires &&
+        if (Variables.resScraps >= car.requiredScrap &&
+            Variables.resElectronics >= car.requiredElectronics &&
+            Variables.resPlastics >= car.requiredPlastics &&
             Variables.playerLevel >= car.level)
         {
             Debug.Log("Selling Car ");
             Variables.soldCars++;
-            Variables.partEngines = Variables.partEngines - car.requiredEngines;
-            Variables.partFrames = Variables.partFrames - car.requiredFrames;
-            Variables.partTires = Variables.partTires - car.requiredTires;
+            Variables.resScraps = Variables.resScraps - car.requiredScrap;
+            Variables.resElectronics = Variables.resElectronics - car.requiredElectronics;
+            Variables.resPlastics = Variables.resPlastics - car.requiredPlastics;
 
             Variables.playerExperience = Variables.playerExperience + car.expValue;
-            Variables.playerMoney = Variables.playerMoney + (car.moneyValue * Variables.carValueMultiplier);
-            Variables.playerMoneyTotel = Variables.playerMoneyTotel + (car.moneyValue * Variables.carValueMultiplier);
+            Variables.playerMoney = Variables.playerMoney + (car.moneyValue * Variables.carValueMultiplier * car.upgradeLevel);
+            Variables.playerMoneyTotel = Variables.playerMoneyTotel + (car.moneyValue * Variables.carValueMultiplier * car.upgradeLevel);
         }
         else
         {
             Debug.Log("Requirements not met, selling it anyway ");
             Variables.soldCars++;
-            Variables.partEngines = Variables.partEngines - car.requiredEngines;
-            Variables.partFrames = Variables.partFrames - car.requiredFrames;
-            Variables.partTires = Variables.partTires - car.requiredTires;
+            Variables.resScraps = Variables.resScraps - car.requiredScrap;
+            Variables.resElectronics = Variables.resElectronics - car.requiredElectronics;
+            Variables.resPlastics = Variables.resPlastics - car.requiredPlastics;
 
             Variables.playerExperience = Variables.playerExperience + car.expValue;
             Variables.playerMoney = Variables.playerMoney + (car.moneyValue * Variables.carValueMultiplier);
             Variables.playerMoneyTotel = Variables.playerMoneyTotel + (car.moneyValue * Variables.carValueMultiplier);
         }
+    }
+
+    public void UpgradeCar()
+    {
+        if (Variables.playerMoney >= car.upgradeCosts )
+        {
+            Variables.playerMoney = Variables.playerMoney - (car.upgradeCosts * car.moneyValue);
+            Debug.Log("UpgradedCar");
+            car.upgradeLevel++;
+        }
+
     }
 }

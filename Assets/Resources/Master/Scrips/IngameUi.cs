@@ -6,22 +6,21 @@ using UnityEngine.UI;
 public class IngameUi : MonoBehaviour
 {
     private Button button;
-    private Part testPart;
+   
     private Car testCar;
 
     private void Awake()
     {
         Variables.mainUI = GameObject.FindGameObjectWithTag("MainUI");
         Variables.garageUi = GameObject.FindGameObjectWithTag("GarageUI");
-        Variables.partUI = GameObject.FindGameObjectWithTag("PartUI");
         Variables.factoryUI = GameObject.FindGameObjectWithTag("FactoryUI");
 
 
         Variables.carUI = Resources.Load<GameObject>("Prefabs/CarUIElementPrefab");
-       // Variables.partUI = Resources.Load<GameObject>("Prefabs/PartUIElementPrefab");
+      
 
         Variables.scrollListCars = GameObject.Find("CarUIScrollListContents");
-        Variables.scrollListParts = GameObject.Find("PartUIScrollListContents");
+       
     }
     public void Start()
     {
@@ -30,14 +29,9 @@ public class IngameUi : MonoBehaviour
         {
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(EnableGarageUI);
-            //FillScrollLists();
+            FillScrollLists();
         }
 
-        if (this.gameObject.name.Contains("Parts"))
-        {
-            button = this.gameObject.GetComponent<Button>();
-            button.onClick.AddListener(EnablePartUI);
-        }
         if (this.gameObject.name.Contains("Cars"))
         {
             button = this.gameObject.GetComponent<Button>();
@@ -107,15 +101,7 @@ public class IngameUi : MonoBehaviour
         }
     }
     #endregion Factory
-    #region Enable Part/CarUI
-    public void EnablePartUI()
-    {
-        if (Variables.garageUi.activeSelf)
-        {
-            Variables.carUI.SetActive(false);
-            Variables.partUI.SetActive(true);
-        }
-    }
+      
     public void EnableCarUI()
     {
         if (Variables.garageUi.activeSelf)
@@ -124,49 +110,8 @@ public class IngameUi : MonoBehaviour
             Variables.carUI.SetActive(true);
         }
     }
-    #endregion Enable Part/CarUI
-    #region Buy Part/Car
-    public void BuyPart(Part part)
-    {
-        if (Variables.resScraps >= part.requiredScrap &&
-            Variables.resPlastics >= part.requiredPlastics &&
-            Variables.resElectronics >= part.requiredElectronics)
-        {
-            Variables.resScraps = Variables.resScraps - part.requiredScrap;
-            Variables.resPlastics = Variables.resPlastics - part.requiredPlastics;
-            Variables.resElectronics = Variables.resElectronics - part.requiredElectronics;
-            if (part.sort == SortOfPart.Engine)
-            {
-                Variables.partEngines++;
-            }
-            else if (part.sort == SortOfPart.Frame)
-            {
-                Variables.partFrames++;
-            }
-            else if (part.sort == SortOfPart.Tire)
-            {
-                Variables.partTires++;
-            }
-        }
-    }
-    public void BuyCar(Car car)
-    {
-        if (Variables.partEngines >= car.requiredEngines &&
-            Variables.partFrames >= car.requiredFrames &&
-            Variables.partTires >= car.requiredTires &&
-            Variables.playerLevel >= car.level)
-        {
-            Variables.soldCars++;
-            Variables.partEngines = Variables.partEngines - car.requiredEngines;
-            Variables.partFrames = Variables.partFrames - car.requiredFrames;
-            Variables.partTires = Variables.partTires - car.requiredTires;
-
-            Variables.playerExperience = Variables.playerExperience + car.expValue;
-            Variables.playerMoney = Variables.playerMoney + (car.moneyValue * Variables.carValueMultiplier);
-            Variables.playerMoneyTotel = Variables.playerMoneyTotel + (car.moneyValue * Variables.carValueMultiplier);
-        }
-    }
-    #endregion Buy Part/Car
+   
+ 
     #region Options
     public static void EnableOptionUI()
     {
@@ -219,26 +164,7 @@ public class IngameUi : MonoBehaviour
             }
            
         }
-        if (Variables.parts != null) 
-        {
-            foreach (Part p in Variables.parts)
-            {
-                //SN: Create the Car UI Elements together with the cars.
-                //GameObject scrollListCars = GameObject.Find("CarUIScrollListContents"); // Script sollte man evtl. direkt an dieses Ding hängen.
-                GameObject element;
-                if (Variables.scrollListCars != null)
-                {
-                    element = Instantiate(Variables.partUI);
-                    element.transform.SetParent(Variables.scrollListParts.transform);
-                    element.GetComponent<PartElement>().SetPartInfos(p);
-                }
-                else
-                {
-                    Debug.Log("PARTS ScrollList Not Found ");
-                }
-            }
-           
-        }
+        
        
     }
 
