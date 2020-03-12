@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 843348649}
   - component: {fileID: 843348652}
   - component: {fileID: 843348651}
+  - component: {fileID: 843348653}
   m_Layer: 0
   m_Name: logic
   m_TagString: Untagged
@@ -283,7 +284,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carTextAsset: {fileID: 4900000, guid: 3089f4aefa7ed404b995ae375e1bcfad, type: 3}
-  partTextAsset: {fileID: 0}
+  labTextAssest: {fileID: 4900000, guid: ed3f7cb1fdfcb6a4092879bbcef231e9, type: 3}
+--- !u!114 &843348653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 843348648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3654b90b24530214da425eb4bc5e742d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoFile: {fileID: 4900000, guid: ed3f7cb1fdfcb6a4092879bbcef231e9, type: 3}
 --- !u!1 &870766573
 GameObject:
   m_ObjectHideFlags: 0

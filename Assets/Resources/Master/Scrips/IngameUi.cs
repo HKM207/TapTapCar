@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class IngameUi : MonoBehaviour
 {
     private Button button;
-   
+
     private Car testCar;
 
     private void Awake()
@@ -17,10 +17,10 @@ public class IngameUi : MonoBehaviour
 
 
         Variables.carUI = Resources.Load<GameObject>("Prefabs/CarUIElementPrefab");
-      
+
 
         Variables.scrollListCars = GameObject.Find("CarUIScrollListContents");
-       
+
     }
     public void Start()
     {
@@ -101,7 +101,7 @@ public class IngameUi : MonoBehaviour
         }
     }
     #endregion Factory
-      
+
     public void EnableCarUI()
     {
         if (Variables.garageUi.activeSelf)
@@ -110,8 +110,8 @@ public class IngameUi : MonoBehaviour
             Variables.carUI.SetActive(true);
         }
     }
-   
- 
+
+
     #region Options
     public static void EnableOptionUI()
     {
@@ -162,10 +162,10 @@ public class IngameUi : MonoBehaviour
                     Debug.Log("CARS ScrollList Not Found ");
                 }
             }
-           
+
         }
-        
-       
+
+
     }
 
     public static bool DisplayDialogBox(string message, string author)

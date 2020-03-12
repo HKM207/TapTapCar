@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class FacilityShop : MonoBehaviour
 {
     public static Button facilityButton;
-    public Button[] buttons;
+    public static Button[] buttons;
 
     public void Awake()
     {
