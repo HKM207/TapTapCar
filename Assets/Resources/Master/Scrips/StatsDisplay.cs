@@ -16,7 +16,6 @@ public class StatsDisplay : MonoBehaviour
     public Text electronics;
     public Text plastics;
     public Text money;
-    public Text xp;
     public Text level;
     public Text soldCars;
     public Button options;
@@ -40,7 +39,6 @@ public class StatsDisplay : MonoBehaviour
         plastics.text = Mathf.RoundToInt(Variables.resPlastics).ToString();
         electronics.text = Mathf.RoundToInt(Variables.resElectronics).ToString();
         money.text = "$$$: " + Mathf.RoundToInt(Variables.playerMoney).ToString();
-        xp.text = "EXP: " + Mathf.RoundToInt(Variables.playerExperience).ToString();
         level.text = "Level: " + Variables.playerLevel;
         soldCars.text = Variables.soldCars.ToString();
     }

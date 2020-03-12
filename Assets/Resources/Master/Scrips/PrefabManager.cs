@@ -48,6 +48,9 @@ public class PrefabManager : MonoBehaviour
         Button background;
         background = Instantiate(mainBackground);
         background.gameObject.transform.SetParent(Variables.mainUI.transform);
+        background.gameObject.GetComponent<RectTransform>().offsetMin = Vector2.zero;
+        background.gameObject.GetComponent<RectTransform>().offsetMax = Vector2.zero;
+        background.gameObject.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
     }
 
     public static void ActivateScrapyard()
@@ -55,7 +58,9 @@ public class PrefabManager : MonoBehaviour
         Button scrapyard;
         scrapyard = Instantiate(mainScrapyard);
         scrapyard.gameObject.transform.SetParent(Variables.mainUI.transform);
-        scrapyard.transform.position = new Vector3(506, Screen.height - 720, 0);
+        scrapyard.gameObject.GetComponent<RectTransform>().offsetMin = Vector2.zero;
+        scrapyard.gameObject.GetComponent<RectTransform>().offsetMax = Vector2.zero;
+        scrapyard.gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
     }
 
     public static void ActivateGarage()
@@ -63,7 +68,9 @@ public class PrefabManager : MonoBehaviour
         Button garage;
         garage = Instantiate(mainGarage);
         garage.gameObject.transform.SetParent(Variables.mainUI.transform);
-        garage.transform.position = new Vector3(506, 520, 0);
+        garage.gameObject.GetComponent<RectTransform>().offsetMin = Vector2.zero;
+        garage.gameObject.GetComponent<RectTransform>().offsetMax = Vector2.zero;
+        garage.gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
     }
 
     public static void ActivateGarageMenu()
@@ -78,7 +85,9 @@ public class PrefabManager : MonoBehaviour
         Button researchfacility;
         researchfacility = Instantiate(mainResearchFacility);
         researchfacility.gameObject.transform.SetParent(Variables.mainUI.transform);
-        researchfacility.transform.position = Variables.mainUI.transform.position + new Vector3(0, -200, 0);
+        researchfacility.gameObject.GetComponent<RectTransform>().offsetMin = Vector2.zero;
+        researchfacility.gameObject.GetComponent<RectTransform>().offsetMax = Vector2.zero;
+        researchfacility.gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
 
         shop = Instantiate(mainResearchFacilityShop);
         shop.gameObject.transform.SetParent(Variables.mainUI.transform);

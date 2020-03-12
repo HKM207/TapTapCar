@@ -8,11 +8,8 @@ public class Scrapyard : MonoBehaviour
     public static List<ShowClickRes> scrapList = new List<ShowClickRes>(Variables.Poolsize);
     public static List<ShowClickRes> electronicList = new List<ShowClickRes>(Variables.Poolsize);
     public static List<ShowClickRes> plasticList = new List<ShowClickRes>(Variables.Poolsize);
-    
-    public GameObject clickParent;
 
     private Button button;
-    public Button button2;
     public static Vector3 scrapyardPosition;
 
     public static Image clickImage;
@@ -37,7 +34,6 @@ public class Scrapyard : MonoBehaviour
         button = this.gameObject.GetComponent<Button>();
         button.onClick.AddListener(Hauke.ScrapyardClick);
         scrapyardPosition = this.gameObject.transform.position;
-        button2.onClick.AddListener(BuyWorker);
     }
 
     public static void DisplayScrapClick()
