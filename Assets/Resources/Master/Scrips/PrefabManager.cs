@@ -36,48 +36,57 @@ public class PrefabManager : MonoBehaviour
         ActivateBackground();
         ActivateScrapyard();
         ActivateGarage();
-        ActivateGarageMenu();
         //ActivateFactory();
         ActivateResearchFacility();
         ActivateOptions();
+        ActivateGarageMenu();
     }
 
     #region ActivateUI
+    public static Button ResetValues(Button button)
+    {
+        RectTransform rect = button.GetComponent<RectTransform>();       
+        rect.gameObject.transform.SetParent(Variables.mainUI.transform);
+        rect.offsetMin = rect.offsetMax = Vector2.zero;
+        rect.localScale = new Vector3(1, 1, 1);
+        return button;
+    }
+
+    public static Image ResetValuesImage(Image image)
+    {
+        RectTransform rect = image.GetComponent<RectTransform>();
+        rect.gameObject.transform.SetParent(Variables.mainUI.transform);
+        rect.offsetMin = rect.offsetMax = Vector2.zero;
+        rect.localScale = new Vector3(1, 1, 1);
+        return image;
+    }
+
     public static void ActivateBackground()
     {
         Button background;
         background = Instantiate(mainBackground);
-        background.gameObject.transform.SetParent(Variables.mainUI.transform);
-        background.gameObject.GetComponent<RectTransform>().offsetMin = Vector2.zero;
-        background.gameObject.GetComponent<RectTransform>().offsetMax = Vector2.zero;
-        background.gameObject.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
+        background = ResetValues(background);
     }
 
     public static void ActivateScrapyard()
     {
         Button scrapyard;
         scrapyard = Instantiate(mainScrapyard);
-        scrapyard.gameObject.transform.SetParent(Variables.mainUI.transform);
-        scrapyard.gameObject.GetComponent<RectTransform>().offsetMin = Vector2.zero;
-        scrapyard.gameObject.GetComponent<RectTransform>().offsetMax = Vector2.zero;
-        scrapyard.gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        scrapyard = ResetValues(scrapyard); 
     }
 
     public static void ActivateGarage()
     {
         Button garage;
         garage = Instantiate(mainGarage);
-        garage.gameObject.transform.SetParent(Variables.mainUI.transform);
-        garage.gameObject.GetComponent<RectTransform>().offsetMin = Vector2.zero;
-        garage.gameObject.GetComponent<RectTransform>().offsetMax = Vector2.zero;
-        garage.gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        garage = ResetValues(garage);
     }
 
     public static void ActivateGarageMenu()
     {
         Image garageMenu;
         garageMenu = Instantiate(mainGarageMenu);
-        garageMenu.gameObject.transform.SetParent(Variables.mainUI.transform);
+        garageMenu = ResetValuesImage(garageMenu);
     }
 
     public static void ActivateResearchFacility()
@@ -105,7 +114,7 @@ public class PrefabManager : MonoBehaviour
     public static void ActivateOptions()
     {
         optionsScreen = Instantiate(options);
-        optionsScreen.gameObject.transform.SetParent(Variables.mainUI.transform);
+        optionsScreen = ResetValuesImage(optionsScreen);
         optionsScreen.gameObject.SetActive(false);
     }
     #endregion ActivateUI
