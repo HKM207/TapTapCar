@@ -86,6 +86,7 @@ public class PrefabManager : MonoBehaviour
     public static void ActivateGarageMenu()
     {
         garageMenu = Instantiate(mainGarageMenu);
+        Variables.scrollListCars = GameObject.Find("CarUIScrollListContents");
         garageMenu = ResetValuesImage(garageMenu);
         garageMenu.gameObject.SetActive(false);
     }

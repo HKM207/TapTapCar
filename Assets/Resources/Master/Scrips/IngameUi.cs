@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class IngameUi : MonoBehaviour
 {
+    public GameObject scrollList;
+
     private Button button;
 
     private void Awake()
     {
         Variables.mainUI = GameObject.FindGameObjectWithTag("MainUI");
         Variables.carUI = Resources.Load<GameObject>("Prefabs/CarUIElementPrefab");
-        Variables.scrollListCars = GameObject.Find("CarUIScrollListContents");      
     }
 
     #region ResearchFacility
