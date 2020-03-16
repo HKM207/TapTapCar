@@ -30,14 +30,12 @@ public class CreateDontDestroy : MonoBehaviour
     }
     private void Start()
     {
-        CurrentGamestate = Gamestate.ingame;
- 
+        CurrentGamestate = Gamestate.ingame; 
     }
     private void Update()
     {
         if (CurrentGamestate == Gamestate.ingame)
         {
-
             #region cheats
             if (Input.GetKeyDown(KeyCode.P))
             {
@@ -72,10 +70,6 @@ public class CreateDontDestroy : MonoBehaviour
     {
         Variables.timeInSek += Time.deltaTime;
         Variables.timeInTicks = Variables.timeInSek * 4;
-        if (Variables.timeInTicks >= Variables.tickCounter && !Variables.isFactoryActiv)
-        {
-            Variables.tickCounter += 1;
-        }
         if (Variables.timeInTicks >= Variables.tickCounter && Variables.scrapYardCollector == 0)
         {
             Variables.tickCounter += 1;
@@ -108,56 +102,53 @@ public class CreateDontDestroy : MonoBehaviour
         }
     }
     #endregion
-
-
 }
 public class Variables
 {
     public static int totalClicks;
-
-    public const int Poolsize = 100;
     public static int clicks = 0;
 
+    public const int Poolsize = 100;
+
     public static GameObject mainUI;
+    public static GameObject carUI;
     public static GameObject scrollListCars;
     public static Car[] cars;
    
     public static bool isIngame = false;
     public static bool isPaused = false;
-    public static GameObject carUI;
 
     public static float resScraps;
     public static float resElectronics;
     public static float resPlastics;
 
     public static int playerLevel = 1;
-    public static float playerMoney;
-    public static float playerMoneyTotel;
-
-    public static float playerGems;
-    public static int totelResets;
     public static float playerExperience = 0;
     public static float expNeededForLvlUp = 5000;
     public const int levelUpModifier = 3;
-    public static float clickMultiplier = 1;
 
-    public static float carValueMultiplier = 1;
-    public static float workerCost = 5000;
-    public static float startFactoryCost = 10000;
-    public static float factoryCost;
-    public static int factoryUpgrades = 0;
+    public static float playerMoney;
+    public static float playerMoneyTotel;
     public static int soldCars = 0;
+
+    public static float playerGems;
+    public static int totelResets;
+
+    public static float clickMultiplier = 1;
+    public static float carValueMultiplier = 1;
+
     public static float timeInSek;
     public static int tickCounter = 1;
-    public static int workerTick = 0;
-    public static int factoryTick = 0;
     public static float timeInTicks;
+    public static int workerTick = 0;
+
+    public static float workerCost = 5000;
     public static float scrapYardCollectorMultiplier;
     public static int scrapYardCollector;
     public static float startScrapYardCollectorMultiplier = 0.125f;
 
-    public static bool isFactoryActiv = false;
     public static bool isResearchFacilityActiv = false;
+
     public static float clickMultiplierUpgradeStartCosts = 2000;
     public static float clickMultiplierUpgradeCosts;
     public static int clickMultiplierUpgrades;

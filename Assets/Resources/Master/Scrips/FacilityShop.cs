@@ -8,10 +8,12 @@ public class FacilityShop : MonoBehaviour
 {
     public static Button facilityButton;
     public static Button[] buttons;
+    static GameObject parent;
 
     public void Awake()
     {
         facilityButton = Resources.Load<Button>("Prefabs/facilityButton");
+        parent = this.gameObject;
     }
 
     void Start()
@@ -21,14 +23,16 @@ public class FacilityShop : MonoBehaviour
         {
             facilityBtn = Instantiate(facilityButton);
             facilityBtn.gameObject.name = "Button_" + i.ToString() + "0";
-            facilityBtn.gameObject.transform.SetParent(this.gameObject.transform);
-            facilityBtn.gameObject.transform.position = new Vector3(270, 1530, 0) + new Vector3(0, -200 * i, 0);
+            facilityBtn = ResetValues(facilityBtn);
+            //facilityBtn.gameObject.transform.SetParent(this.gameObject.transform);
+            //facilityBtn.gameObject.transform.position = new Vector3(270, 1530, 0) + new Vector3(0, -200 * i, 0);
             for (int k = 1; k < 4; k++)
             {
                 facilityBtn = Instantiate(facilityButton);
                 facilityBtn.gameObject.name = "Button_" + i.ToString() + k.ToString();
-                facilityBtn.gameObject.transform.SetParent(this.gameObject.transform);
-                facilityBtn.gameObject.transform.position = new Vector3(270, 1530, 0) + new Vector3(300 * k, -200 * i, 0);
+                facilityBtn = ResetValues(facilityBtn);
+                //facilityBtn.gameObject.transform.SetParent(this.gameObject.transform);
+                //facilityBtn.gameObject.transform.position = new Vector3(270, 1530, 0) + new Vector3(300 * k, -200 * i, 0);
             }
         }
         buttons = this.GetComponentsInChildren<Button>();
@@ -39,6 +43,16 @@ public class FacilityShop : MonoBehaviour
             count++;
         }
     }
+
+    public static Button ResetValues(Button button)
+    {
+        RectTransform rect = button.GetComponent<RectTransform>();
+        rect.gameObject.transform.SetParent(parent.gameObject.transform);
+        rect.offsetMin = rect.offsetMax = Vector2.zero;
+        rect.localScale = new Vector3(1, 1, 1);
+        return button;
+    }
+
     void FacilityButtonMethod(Button  button)
     {
         int buttonIndex = button.transform.GetSiblingIndex();

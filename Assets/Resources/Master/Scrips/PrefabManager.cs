@@ -79,6 +79,8 @@ public class PrefabManager : MonoBehaviour
         Button garage;
         garage = Instantiate(mainGarage);
         garage = ResetValues(garage);
+        garage.onClick.AddListener(IngameUi.EnableGarageUI);
+        IngameUi.FillScrollLists();
     }
 
     public static void ActivateGarageMenu()
@@ -92,14 +94,10 @@ public class PrefabManager : MonoBehaviour
     {
         Button researchfacility;
         researchfacility = Instantiate(mainResearchFacility);
-        researchfacility.gameObject.transform.SetParent(Variables.mainUI.transform);
-        researchfacility.gameObject.GetComponent<RectTransform>().offsetMin = Vector2.zero;
-        researchfacility.gameObject.GetComponent<RectTransform>().offsetMax = Vector2.zero;
-        researchfacility.gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        researchfacility = ResetValues(researchfacility);
 
         shop = Instantiate(mainResearchFacilityShop);
-        shop.gameObject.transform.SetParent(Variables.mainUI.transform);
-        shop.gameObject.transform.position = Variables.mainUI.transform.position;
+        shop = ResetValuesImage(shop);
         shop.gameObject.SetActive(false);
     }
 
