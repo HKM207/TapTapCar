@@ -38,12 +38,15 @@ public class ShowClickRes
 
         this.image = GameObject.Instantiate(Scrapyard.clickImage);
         this.image.gameObject.transform.SetParent(Variables.mainUI.transform);
+        //this.image = PrefabManager.ResetValuesImage(this.image);
+        
+        this.image.GetComponent<RectTransform>().offsetMin = this.image.GetComponent<RectTransform>().offsetMax = new Vector2(1, 1);
 
-        this.image.transform.position = GetRandomStartPos(Scrapyard.scrapyardPosition);
+        //this.image.transform.position = GetRandomStartPos(Scrapyard.scrapyardPosition);
 
         this.text = GameObject.Instantiate(Scrapyard.clickText);
         this.text.gameObject.transform.SetParent(Variables.mainUI.transform);      
-        this.text.transform.position = image.transform.position + new Vector3(0, 125, 0);
+        this.text.transform.position = image.transform.position + new Vector3(0, 0, 0);
         this.text.text = "+ " + (1 * Variables.clickMultiplier).ToString();
 
         if (this.sortOfRes == SortOfRes.scrap)

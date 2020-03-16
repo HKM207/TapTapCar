@@ -15,6 +15,7 @@ public class DataReader : MonoBehaviour
     {
         Variables.cars = JsonHelper.getJsonArray<Car>(carTextAsset);
         Variables.buttonClasses = JsonHelper.getJsonArray<ButtonClass>(labTextAssest);
+        IngameUi.FillScrollLists();
         Debug.Log(Variables.buttonClasses.Length);
         
 
