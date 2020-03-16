@@ -85,7 +85,6 @@ public class CreateDontDestroy : MonoBehaviour
     {
         Hauke.ScrapyardWorker();
         Hauke.ResearchFacilityUpgradeCostCalculations();
-        Hauke.Factory();
     }
     #region Save
     public void NewGame()
@@ -121,36 +120,26 @@ public class Variables
 
     public static GameObject mainUI;
     public static GameObject scrollListCars;
-    public static GameObject scrollListParts;
     public static Car[] cars;
    
     public static bool isIngame = false;
     public static bool isPaused = false;
-    public static GameObject partUI;
     public static GameObject carUI;
-    public static GameObject factoryUI;
-    public static GameObject garageUi;
+
     public static float resScraps;
     public static float resElectronics;
     public static float resPlastics;
 
-    //public static float partEngines;
-    //public static float partFrames;
-    //public static float partTires;
-
     public static int playerLevel = 1;
     public static float playerMoney;
     public static float playerMoneyTotel;
+
     public static float playerGems;
     public static int totelResets;
     public static float playerExperience = 0;
     public static float expNeededForLvlUp = 5000;
     public const int levelUpModifier = 3;
     public static float clickMultiplier = 1;
-
-    //public static int engineLevel;
-    //public static int tireLevel;
-    //public static int frameLevel;
 
     public static float carValueMultiplier = 1;
     public static float workerCost = 5000;
@@ -166,13 +155,6 @@ public class Variables
     public static float scrapYardCollectorMultiplier;
     public static int scrapYardCollector;
     public static float startScrapYardCollectorMultiplier = 0.125f;
-
-    //public static float engineProductionRatio;
-    //public static float frameProductionRatio;
-    //public static float tireProductionRatio;
-    //public static float startEngineProductionRatio = 0;
-    //public static float startFrameProductionRatio = 0;
-    //public static float startTireProductionRatio = 0;
 
     public static bool isFactoryActiv = false;
     public static bool isResearchFacilityActiv = false;

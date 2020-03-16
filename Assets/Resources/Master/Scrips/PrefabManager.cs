@@ -14,6 +14,7 @@ public class PrefabManager : MonoBehaviour
     public static Button mainFactory;
     public static Button mainWorker;
     public static Image shop;
+    public static Image garageMenu;
     public static Image options;
     public static Image optionsScreen;
 
@@ -27,7 +28,6 @@ public class PrefabManager : MonoBehaviour
         mainResearchFacility = Resources.Load<Button>("Prefabs/ResearchFacility");
         mainResearchFacilityShop = Resources.Load<Image>("Prefabs/FacilityShop");
         mainGarageMenu = Resources.Load<Image>("Prefabs/GarageMenu");
-        mainFactory = Resources.Load<Button>("Prefabs/Factory");
         options = Resources.Load<Image>("Prefabs/Options");
     }
 
@@ -36,41 +36,56 @@ public class PrefabManager : MonoBehaviour
         ActivateBackground();
         ActivateScrapyard();
         ActivateGarage();
-        ActivateGarageMenu();
-        ActivateFactory();
         ActivateResearchFacility();
+        ActivateGarageMenu();
         ActivateOptions();
     }
 
     #region ActivateUI
+    public static Button ResetValues(Button button)
+    {
+        RectTransform rect = button.GetComponent<RectTransform>();       
+        rect.gameObject.transform.SetParent(Variables.mainUI.transform);
+        rect.offsetMin = rect.offsetMax = Vector2.zero;
+        rect.localScale = new Vector3(1, 1, 1);
+        return button;
+    }
+
+    public static Image ResetValuesImage(Image image)
+    {
+        RectTransform rect = image.GetComponent<RectTransform>();
+        rect.gameObject.transform.SetParent(Variables.mainUI.transform);
+        rect.offsetMin = rect.offsetMax = Vector2.zero;
+        rect.localScale = new Vector3(1, 1, 1);
+        return image;
+    }
+
     public static void ActivateBackground()
     {
         Button background;
         background = Instantiate(mainBackground);
-        background.gameObject.transform.SetParent(Variables.mainUI.transform);
+        background = ResetValues(background);
     }
 
     public static void ActivateScrapyard()
     {
         Button scrapyard;
         scrapyard = Instantiate(mainScrapyard);
-        scrapyard.gameObject.transform.SetParent(Variables.mainUI.transform);
-        scrapyard.transform.position = new Vector3(506, Screen.height - 720, 0);
+        scrapyard = ResetValues(scrapyard); 
     }
 
     public static void ActivateGarage()
     {
         Button garage;
         garage = Instantiate(mainGarage);
-        garage.gameObject.transform.SetParent(Variables.mainUI.transform);
-        garage.transform.position = new Vector3(506, 520, 0);
+        garage = ResetValues(garage);
     }
 
     public static void ActivateGarageMenu()
     {
-        Image garageMenu;
         garageMenu = Instantiate(mainGarageMenu);
-        garageMenu.gameObject.transform.SetParent(Variables.mainUI.transform);
+        garageMenu = ResetValuesImage(garageMenu);
+        garageMenu.gameObject.SetActive(false);
     }
 
     public static void ActivateResearchFacility()
@@ -78,7 +93,9 @@ public class PrefabManager : MonoBehaviour
         Button researchfacility;
         researchfacility = Instantiate(mainResearchFacility);
         researchfacility.gameObject.transform.SetParent(Variables.mainUI.transform);
-        researchfacility.transform.position = Variables.mainUI.transform.position + new Vector3(0, -200, 0);
+        researchfacility.gameObject.GetComponent<RectTransform>().offsetMin = Vector2.zero;
+        researchfacility.gameObject.GetComponent<RectTransform>().offsetMax = Vector2.zero;
+        researchfacility.gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
 
         shop = Instantiate(mainResearchFacilityShop);
         shop.gameObject.transform.SetParent(Variables.mainUI.transform);
@@ -86,17 +103,10 @@ public class PrefabManager : MonoBehaviour
         shop.gameObject.SetActive(false);
     }
 
-    public static void ActivateFactory()
-    {
-        Button factory;
-        factory = Instantiate(mainFactory);
-        factory.gameObject.transform.SetParent(Variables.mainUI.transform);
-    }
-
     public static void ActivateOptions()
     {
         optionsScreen = Instantiate(options);
-        optionsScreen.gameObject.transform.SetParent(Variables.mainUI.transform);
+        optionsScreen = ResetValuesImage(optionsScreen);
         optionsScreen.gameObject.SetActive(false);
     }
     #endregion ActivateUI

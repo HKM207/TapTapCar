@@ -6,21 +6,12 @@ using UnityEngine.UI;
 public class IngameUi : MonoBehaviour
 {
     private Button button;
-   
-    private Car testCar;
 
     private void Awake()
     {
         Variables.mainUI = GameObject.FindGameObjectWithTag("MainUI");
-        Variables.garageUi = GameObject.FindGameObjectWithTag("GarageUI");
-        Variables.factoryUI = GameObject.FindGameObjectWithTag("FactoryUI");
-
-
         Variables.carUI = Resources.Load<GameObject>("Prefabs/CarUIElementPrefab");
-      
-
-        Variables.scrollListCars = GameObject.Find("CarUIScrollListContents");
-       
+        Variables.scrollListCars = GameObject.Find("CarUIScrollListContents");      
     }
     public void Start()
     {
@@ -30,12 +21,6 @@ public class IngameUi : MonoBehaviour
             button = this.gameObject.GetComponent<Button>();
             button.onClick.AddListener(EnableGarageUI);
             FillScrollLists();
-        }
-
-        if (this.gameObject.name.Contains("Cars"))
-        {
-            button = this.gameObject.GetComponent<Button>();
-            button.onClick.AddListener(EnableCarUI);
         }
         #endregion Buttons
     }
@@ -64,54 +49,23 @@ public class IngameUi : MonoBehaviour
     #region Garage
     public void EnableGarageUI()
     {
-        if (!Variables.garageUi.activeSelf)
+        if (!PrefabManager.garageMenu.gameObject.activeSelf)
         {
-            Variables.garageUi.SetActive(true);
+            PrefabManager.garageMenu.gameObject.SetActive(true);
         }
         else
         {
-            DisableGarageUI();
+            PrefabManager.garageMenu.gameObject.SetActive(false);
         }
     }
     public static void DisableGarageUI()
     {
-        if (Variables.garageUi.activeSelf)
+        if (PrefabManager.garageMenu.gameObject.activeSelf)
         {
-            Variables.garageUi.SetActive(false);
+            PrefabManager.garageMenu.gameObject.SetActive(false);
         }
     }
     #endregion Garage
-    #region Factory
-    public static void EnableFactoryUI()
-    {
-        if (!Variables.factoryUI.activeSelf)
-        {
-            Variables.factoryUI.SetActive(true);
-        }
-        else
-        {
-            Variables.factoryUI.SetActive(false);
-        }
-    }
-    public static void DisableFactoryUI()
-    {
-        if (Variables.factoryUI.activeSelf)
-        {
-            Variables.factoryUI.SetActive(false);
-        }
-    }
-    #endregion Factory
-      
-    public void EnableCarUI()
-    {
-        if (Variables.garageUi.activeSelf)
-        {
-            Variables.partUI.SetActive(false);
-            Variables.carUI.SetActive(true);
-        }
-    }
-   
- 
     #region Options
     public static void EnableOptionUI()
     {
@@ -161,11 +115,8 @@ public class IngameUi : MonoBehaviour
                 {
                     Debug.Log("CARS ScrollList Not Found ");
                 }
-            }
-           
-        }
-        
-       
+            }          
+        }       
     }
 
     public static bool DisplayDialogBox(string message, string author)

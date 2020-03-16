@@ -16,19 +16,16 @@ public class StatsDisplay : MonoBehaviour
     public Text electronics;
     public Text plastics;
     public Text money;
-    public Text xp;
     public Text level;
     public Text soldCars;
     public Button options;
 
     private void Start()
     {
-        IngameUi.DisableGarageUI();
-        IngameUi.DisableFactoryUI();
         IngameUi.DisableResearchFacilityUI();
         button = this.gameObject.GetComponent<Button>();
         button.onClick.AddListener(IngameUi.DisableGarageUI);
-        button.onClick.AddListener(IngameUi.DisableFactoryUI);
+        IngameUi.DisableGarageUI();
         button.onClick.AddListener(IngameUi.DisableResearchFacilityUI);
         optionsbutton = options.gameObject.GetComponent<Button>();
         optionsbutton.onClick.AddListener(IngameUi.EnableOptionUI);
@@ -40,7 +37,6 @@ public class StatsDisplay : MonoBehaviour
         plastics.text = Mathf.RoundToInt(Variables.resPlastics).ToString();
         electronics.text = Mathf.RoundToInt(Variables.resElectronics).ToString();
         money.text = "$$$: " + Mathf.RoundToInt(Variables.playerMoney).ToString();
-        xp.text = "EXP: " + Mathf.RoundToInt(Variables.playerExperience).ToString();
         level.text = "Level: " + Variables.playerLevel;
         soldCars.text = Variables.soldCars.ToString();
     }
