@@ -79,6 +79,8 @@ public class PrefabManager : MonoBehaviour
         Button garage;
         garage = Instantiate(mainGarage);
         garage = ResetValues(garage);
+        garage.onClick.AddListener(IngameUi.EnableGarageUI);
+        IngameUi.FillScrollLists();
     }
 
     public static void ActivateGarageMenu()

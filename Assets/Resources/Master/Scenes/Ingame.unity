@@ -285,7 +285,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carTextAsset: {fileID: 4900000, guid: 3089f4aefa7ed404b995ae375e1bcfad, type: 3}
   labTextAssest: {fileID: 4900000, guid: bacb62e2af3b6394ebd13eb462d7db2d, type: 3}
-  GetCars: []
 --- !u!114 &843348653
 MonoBehaviour:
   m_ObjectHideFlags: 0

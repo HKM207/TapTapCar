@@ -13,17 +13,6 @@ public class IngameUi : MonoBehaviour
         Variables.carUI = Resources.Load<GameObject>("Prefabs/CarUIElementPrefab");
         Variables.scrollListCars = GameObject.Find("CarUIScrollListContents");      
     }
-    public void Start()
-    {
-        #region Buttons
-        if (this.gameObject.name.Contains("Garage(Clone)"))
-        {
-            button = this.gameObject.GetComponent<Button>();
-            button.onClick.AddListener(EnableGarageUI);
-            FillScrollLists();
-        }
-        #endregion Buttons
-    }
 
     #region ResearchFacility
     public static void EnableResearchFacilityUI()
@@ -47,7 +36,7 @@ public class IngameUi : MonoBehaviour
     }
     #endregion ResearchFacility
     #region Garage
-    public void EnableGarageUI()
+    public static void EnableGarageUI()
     {
         if (!PrefabManager.garageMenu.gameObject.activeSelf)
         {
@@ -118,7 +107,6 @@ public class IngameUi : MonoBehaviour
             }          
         }       
     }
-
     public static bool DisplayDialogBox(string message, string author)
     {
         GameObject DialogPrefab;
@@ -131,9 +119,7 @@ public class IngameUi : MonoBehaviour
         {
             DialogGo = Instantiate(DialogPrefab);
             DialogGo.transform.position = Variables.mainUI.transform.position;
-
             DialogGo.transform.SetParent(Variables.mainUI.transform);
-
             Transform[] transformArray = DialogGo.GetComponentsInChildren<Transform>();
             if (transformArray == null)
             {

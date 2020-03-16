@@ -92,23 +92,16 @@ public class Hauke
 
 
         Variables.carValueMultiplier = 1;
-        Variables.factoryCost = Variables.startFactoryCost;
-        Variables.factoryUpgrades = 0;
         Variables.soldCars = 0;
 
         Variables.timeInSek = 0;
         Variables.tickCounter = 1;
         Variables.workerTick = 0;
-        Variables.factoryTick = 0;
         Variables.timeInTicks = 0;
 
         Variables.workerCost = 5000;
         Variables.scrapYardCollectorMultiplier = Variables.startScrapYardCollectorMultiplier;
         Variables.scrapYardCollector = 0;
-
-       
-
-        Variables.isFactoryActiv = false;
         Variables.isResearchFacilityActiv = false;
 
         Variables.clickMultiplierUpgradeCosts = Variables.clickMultiplierUpgradeStartCosts;
@@ -129,22 +122,18 @@ public class Hauke
         Variables.totelResets++;
         Variables.playerExperience = 0;
 
-        Variables.carValueMultiplier = 1;
-        Variables.factoryCost = Variables.startFactoryCost;
-        Variables.factoryUpgrades = 0;
+        Variables.carValueMultiplier = 1;;
         Variables.soldCars = 0;
 
         Variables.timeInSek = 0;
         Variables.tickCounter = 1;
         Variables.workerTick = 0;
-        Variables.factoryTick = 0;
         Variables.timeInTicks = 0;
 
         Variables.workerCost = 5000;
         Variables.scrapYardCollectorMultiplier = Variables.startScrapYardCollectorMultiplier;
         Variables.scrapYardCollector = 0;
 
-        Variables.isFactoryActiv = false;
         Variables.isResearchFacilityActiv = false;
 
         Variables.clickMultiplierUpgradeCosts = Variables.clickMultiplierUpgradeStartCosts;
