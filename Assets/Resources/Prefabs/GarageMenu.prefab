@@ -108,7 +108,6 @@ GameObject:
   - component: {fileID: 224913994307160224}
   - component: {fileID: 222853642961267596}
   - component: {fileID: 114745234410712016}
-  - component: {fileID: 114011568710080970}
   m_Layer: 5
   m_Name: GarageMenu
   m_TagString: GarageUI
@@ -116,17 +115,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114011568710080970
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1983561100356912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d118b4398bc1ba41b4889fc4298e650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114032046567559730
 MonoBehaviour:
   m_ObjectHideFlags: 1

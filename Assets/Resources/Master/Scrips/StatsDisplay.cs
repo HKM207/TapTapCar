@@ -22,12 +22,10 @@ public class StatsDisplay : MonoBehaviour
 
     private void Start()
     {
-        IngameUi.DisableGarageUI();
-        //IngameUi.DisableFactoryUI();
         IngameUi.DisableResearchFacilityUI();
         button = this.gameObject.GetComponent<Button>();
         button.onClick.AddListener(IngameUi.DisableGarageUI);
-        //button.onClick.AddListener(IngameUi.DisableFactoryUI);
+        IngameUi.DisableGarageUI();
         button.onClick.AddListener(IngameUi.DisableResearchFacilityUI);
         optionsbutton = options.gameObject.GetComponent<Button>();
         optionsbutton.onClick.AddListener(IngameUi.EnableOptionUI);

@@ -14,6 +14,7 @@ public class PrefabManager : MonoBehaviour
     public static Button mainFactory;
     public static Button mainWorker;
     public static Image shop;
+    public static Image garageMenu;
     public static Image options;
     public static Image optionsScreen;
 
@@ -27,7 +28,6 @@ public class PrefabManager : MonoBehaviour
         mainResearchFacility = Resources.Load<Button>("Prefabs/ResearchFacility");
         mainResearchFacilityShop = Resources.Load<Image>("Prefabs/FacilityShop");
         mainGarageMenu = Resources.Load<Image>("Prefabs/GarageMenu");
-        //mainFactory = Resources.Load<Button>("Prefabs/Factory");
         options = Resources.Load<Image>("Prefabs/Options");
     }
 
@@ -36,10 +36,9 @@ public class PrefabManager : MonoBehaviour
         ActivateBackground();
         ActivateScrapyard();
         ActivateGarage();
-        //ActivateFactory();
         ActivateResearchFacility();
-        ActivateOptions();
         ActivateGarageMenu();
+        ActivateOptions();
     }
 
     #region ActivateUI
@@ -84,9 +83,9 @@ public class PrefabManager : MonoBehaviour
 
     public static void ActivateGarageMenu()
     {
-        Image garageMenu;
         garageMenu = Instantiate(mainGarageMenu);
         garageMenu = ResetValuesImage(garageMenu);
+        garageMenu.gameObject.SetActive(false);
     }
 
     public static void ActivateResearchFacility()
@@ -103,13 +102,6 @@ public class PrefabManager : MonoBehaviour
         shop.gameObject.transform.position = Variables.mainUI.transform.position;
         shop.gameObject.SetActive(false);
     }
-
-    //public static void ActivateFactory()
-    //{
-    //    Button factory;
-    //    factory = Instantiate(mainFactory);
-    //    factory.gameObject.transform.SetParent(Variables.mainUI.transform);
-    //}
 
     public static void ActivateOptions()
     {
