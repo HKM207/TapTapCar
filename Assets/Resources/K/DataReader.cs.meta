@@ -5,7 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - carTextAsset: {fileID: 4900000, guid: 3089f4aefa7ed404b995ae375e1bcfad, type: 3}
-  - labTextAssest: {fileID: 4900000, guid: ed3f7cb1fdfcb6a4092879bbcef231e9, type: 3}
+  - labTextAssest: {fileID: 4900000, guid: bacb62e2af3b6394ebd13eb462d7db2d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -1,0 +1,29 @@
+[
+  {
+    "upgradeName": "Engine",
+    "description": "Increases value of cars",
+    "cost": "1"
+  },
+  {
+    "upgradeName": "I don know",
+    "description": "Increases value of cars",
+    "cost": "1"
+  },
+  {
+    "upgradeName": "Tire",
+    "description": "Increases value of cars",
+    "cost": "1"
+  },
+  {
+    "upgradeName": "Frame",
+    "description": "Increases value of cars",
+    "cost": "1"
+  },
+  {
+    "upgradeName": "Turbo",
+    "description": "Increases value of cars",
+    "cost": "1"
+  }
+
+
+]
