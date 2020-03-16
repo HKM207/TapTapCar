@@ -3,56 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class DataReader : MonoBehaviour {
-
-    string jsonString;
+public class DataReader : MonoBehaviour
+{
+    /// <summary>
+    /// Space for TextAssets
+    /// </summary>
     public TextAsset carTextAsset;
-    public TextAsset partTextAsset;
+    public TextAsset labTextAssest;
     
-    
-    void Start()
+    private void Start()
     {
-        ReadCarData();
-        //ReadPartData();
+        Variables.cars = JsonHelper.getJsonArray<Car>(carTextAsset);
+        Variables.buttonClasses = JsonHelper.getJsonArray<ButtonClass>(labTextAssest);
+        Debug.Log(Variables.buttonClasses.Length);
+        
+
     }
-
-    private void ReadCarData()
-    {
-        Variables.cars = JsonHelper.getJsonArray<Car>(carTextAsset.text);
-
-        if (Variables.cars != null)
-        {
-            Debug.Log("Cars succesfully read");
-        }
-        else
-        {
-            Debug.Log("Cars not read");
-        }
-    }
-    //private void ReadPartData()
-    //{
-    //    Variables.parts = JsonHelper.getJsonArray<Part>(partTextAsset.text);
-
-    //    if (Variables.parts != null)
-    //    {
-    //        Debug.Log("Parts succesfully read");
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Parts not read");
-    //    }
-    //}
-
 
 }
 
-
-
 public class JsonHelper
 {
-    public static T[] getJsonArray<T>(string json)
+    public static T[] getJsonArray<T>(TextAsset jsonData)
     {
-        string newJson = "{ \"array\": " + json + "}";
+        string jsonString = jsonData.text;
+        string newJson = "{ \"array\": " + jsonString + "}";
         Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(newJson);
         return wrapper.array;
     }
@@ -64,3 +39,21 @@ public class JsonHelper
     }
 
 }
+
+//tried building method for generic array
+    //private T[] ReadData<T>(TextAsset jsonData, T[] array)
+    //{
+    //    string jsonString = jsonData.text;
+    //    array = JsonHelper.getJsonArray<T>(jsonString);
+        
+    //    if (array != null)
+    //    {
+    //        Debug.Log(array.GetType() + " loaded");
+    //    }
+    //    else
+    //    {
+    //        Debug.Log(array.Length + " not loaded");
+    //    }
+    //    array.GetType();
+    //    return array;
+    //}

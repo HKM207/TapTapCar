@@ -1,0 +1,23 @@
+[
+  {
+    "upgradeName": "yes",
+    "description": "big boy upgrade",
+    "cost": "20"
+  },
+  {
+    "upgradeName": "no",
+    "description": "small boy upgrade",
+    "cost": "20"
+  },
+  {
+    "upgradeName": "maybe",
+    "description": "tiny boy upgrade",
+    "cost": "20"
+  },
+  {
+    "upgradeName": "göawb",
+    "description": "large boy upgrade",
+    "cost": "20"
+  }
+
+]

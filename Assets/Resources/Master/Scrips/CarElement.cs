@@ -37,6 +37,7 @@ public class CarElement : MonoBehaviour
 
     public void SetCarInfos(Car car)
     {
+        Debug.Log("im here");
         this.car = car;
         Sprite sprite = Resources.Load<Sprite>(car.name);
         btnSellCar.GetComponent<Image>().sprite = sprite;

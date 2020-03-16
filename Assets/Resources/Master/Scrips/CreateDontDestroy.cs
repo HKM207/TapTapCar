@@ -161,4 +161,6 @@ public class Variables
     public static float clickMultiplierUpgradeStartCosts = 2000;
     public static float clickMultiplierUpgradeCosts;
     public static int clickMultiplierUpgrades;
+
+    public static ButtonClass[] buttonClasses;
 }
